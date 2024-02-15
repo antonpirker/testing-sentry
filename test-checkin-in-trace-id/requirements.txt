@@ -1,0 +1,7 @@
+ipdb
+
+requests
+
+celery[redis]
+
+-e ../../code/sentry-python

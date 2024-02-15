@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Home</title> 
+        <meta charset="utf-8">
+        <script
+            src="https://browser.sentry-cdn.com/7.72.0/bundle.tracing.replay.debug.min.js"
+            integrity="sha384-6+5r0eWTnh4bvvl+e0KDv8Ae04fbAsbWc3am187nHDh7vnZLSmnp3PK8OrJ5JRf1"
+            crossorigin="anonymous">
+        </script>        
+        <script>
+            window.onload = () => {
+                Sentry.init({
+                    dsn: "https://d655584d05f14c58b86e9034aab6817f@o447951.ingest.sentry.io/5461230",
+                    // Alternatively, use `process.env.npm_package_version` for a dynamic release version
+                    // if your build tool supports it.
+                    release: "my-project-name@2.3.12",
+                    integrations: [new Sentry.BrowserTracing(), new Sentry.Replay()],
+
+                    // Set tracesSampleRate to 1.0 to capture 100%
+                    // of transactions for performance monitoring.
+                    // We recommend adjusting this value in production
+                    tracesSampleRate: 1.0,
+
+                    // Set `tracePropagationTargets` to control for which URLs distributed tracing should be enabled
+                    tracePropagationTargets: ["localhost", "localhost:8000", /^https:\/\/yourserver\.io\/api/],
+
+                    // Capture Replay for 10% of all sessions,
+                    // plus for 100% of sessions with an error
+                    replaysSessionSampleRate: 0.1,
+                    replaysOnErrorSampleRate: 1.0,
+
+                    debug: true,
+                });
+
+                const btn = document.querySelector("#btn");
+                const result = document.querySelector("#result");
+
+                btn.addEventListener("click", async () => {
+                    const response = await fetch("http://localhost:8000/something/from-js-with-love");
+                    const data = await response.json();
+                    result.innerHTML = JSON.stringify(data);             
+                });
+                
+                // Click button immediately on page load.
+                btn.click(); 
+            };            
+        </script>
+    </head>
+    <body>
+        <!-- <script type="module" src="app.js"></script> -->
+        <div class="container">
+            <h1>Hello World</h1>
+            <p>
+                <button id="btn">Click Me to start the Celery task on the backend</button>
+            </p>
+            <h2>Result:</h2>
+            <p id="result">
+
+            </p>
+        </div>
+</html>

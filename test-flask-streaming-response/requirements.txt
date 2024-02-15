@@ -1,0 +1,10 @@
+
+flask
+blinker
+markupsafe
+
+gunicorn
+
+-e  ../../code/sentry-python
+
+ipdb

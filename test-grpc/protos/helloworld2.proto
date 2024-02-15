@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.sentry.helloworld2";
+option java_outer_classname = "HelloWorldProto2";
+option objc_class_prefix = "HLW2";
+
+package helloworld2;
+
+// The greeting service definition.
+service Greeter2 {
+  // Sends a greeting
+  rpc SayHello2 (HelloRequest2) returns (HelloReply2) {}
+
+  rpc SayHelloStreamReply2 (HelloRequest2) returns (stream HelloReply2) {}
+
+  rpc SayHelloBidiStrea2 (stream HelloRequest2) returns (stream HelloReply2) {}
+}
+
+// The request message containing the user's name.
+message HelloRequest2 {
+  string name = 1;
+}
+
+// The response message containing the greetings
+message HelloReply2 {
+  string message = 1;
+}

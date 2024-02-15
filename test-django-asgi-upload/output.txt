@@ -1,0 +1,14 @@
+HTTP/1.1 100 Continue
+
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+Server-Timing: TimerPanel_utime;dur=5.008999999999986;desc="User CPU time", TimerPanel_stime;dur=3.460000000000005;desc="System CPU time", TimerPanel_total;dur=8.46899999999999;desc="Total CPU time", TimerPanel_total_time;dur=8.628042000054847;desc="Elapsed time", SQLPanel_sql_time;dur=0;desc="SQL 0 queries", CachePanel_total_time;dur=0;desc="Cache 0 Calls"
+X-Frame-Options: DENY
+Content-Length: 25
+Vary: Cookie
+X-Content-Type-Options: nosniff
+Referrer-Policy: same-origin
+Cross-Origin-Opener-Policy: same-origin
+Server: daphne
+
+File received. Thank you!
