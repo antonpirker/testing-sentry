@@ -1,6 +1,9 @@
 .envrc
 .env
 
+celerybeat-schedule
+dump.rdb
+
 .DS_Store
 
 # Byte-compiled / optimized / DLL files
