@@ -3,8 +3,6 @@
 # exit on first error
 set -xe
 
-reset
-
 # create and activate virtual environment
 python -m venv .venv
 source .venv/bin/activate

@@ -1,4 +1,4 @@
-celery==4.2.2
+celery==4.4.7
 redis
 
 -e ../../../code/sentry-python 

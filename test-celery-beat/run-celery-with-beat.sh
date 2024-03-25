@@ -3,11 +3,12 @@
 # exit on first error
 set -euo pipefail
 
-reset
-
 # Delete Celery beat schedule because because when switching versions
 # a wrong schedule will cause strange errors
 rm -f celerybeat-schedule
+
+# Delete redis database (empty the queue)
+rm -rf dump.rdb
 
 # create and activate virtual environment
 python -m venv .venv
