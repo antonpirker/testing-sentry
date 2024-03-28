@@ -1,5 +1,7 @@
 import os
+
 import sentry_sdk
+from sentry_sdk.integrations.celery import CeleryIntegration
 
 from tasks import task_a, task_b
 
@@ -12,13 +14,17 @@ def main():
         "traces_sample_rate": 1.0,
         "send_default_pii": True,
         "debug": True,
+        "integrations": [CeleryIntegration(
+            # propagate_traces=False, 
+        )]
+
     }
     print(f"Sentry Settings: {sentry_settings}")
     sentry_sdk.init(**sentry_settings)
 
     with sentry_sdk.start_transaction(op="function", name="celery-task-started-from-transaction"):
         task_a.delay("Task A from main (via delay)")
-        task_b.apply_async(("Task B from main (via apply_async)", ))
+        task_b.apply_async(("Task B from main (via apply_async)", ), headers={"sentry-propagate-traces": False})
 
 
 if __name__ == "__main__":

@@ -10,7 +10,7 @@ from sentry_sdk.integrations.celery import CeleryIntegration
 
 app = Celery("tasks", broker='redis://localhost:6379/0')
 app.conf.beat_schedule = {
-    'task_a': {
+    'task_propagate_6': {
         'task': 'tasks.task_a',
         'schedule': crontab(minute='*/1'),
         'args': ('Task A from beat',),
@@ -34,7 +34,10 @@ def connect_sentry(**kwargs):
         "traces_sample_rate": 1.0,
         "send_default_pii": True,
         "debug": True,
-        "integrations": [CeleryIntegration(monitor_beat_tasks=True)]
+        "integrations": [CeleryIntegration(
+            monitor_beat_tasks=True, 
+            propagate_traces=False, 
+        )]
     }
     print(f"Sentry Settings: {sentry_settings}")
     sentry_sdk.init(**sentry_settings)
