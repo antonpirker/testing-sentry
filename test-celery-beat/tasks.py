@@ -1,5 +1,6 @@
 import os 
 import time
+import random
 
 from celery import Celery, signals
 from celery.schedules import crontab
@@ -37,7 +38,7 @@ def connect_sentry(**kwargs):
         "integrations": [CeleryIntegration(
             monitor_beat_tasks=True, 
             propagate_traces=False, 
-        )]
+        )],
     }
     print(f"Sentry Settings: {sentry_settings}")
     sentry_sdk.init(**sentry_settings)
@@ -46,12 +47,47 @@ def connect_sentry(**kwargs):
 @app.task
 def task_a(msg):
     print("[task-a] That's my message to the world: %s" % msg)
-    time.sleep(10)
-    raise Exception("Something went wrong in the world")
+    for _ in range(1):
+        with sentry_sdk.start_transaction(op="function", name="trx-with-metrics"):
+            for x in range(20000):
+                time.sleep(1)
+                with sentry_sdk.metrics.timing(key="metric_timing"):
+                    sentry_sdk.metrics.incr(
+                        key="metric_increment",
+                        value=1,
+                        tags={
+                            "browser": "Firefox",
+                            "app_version": "1.0.0"
+                        }
+                    ) 
+                    sentry_sdk.metrics.distribution(
+                        key="metric_distribution",
+                        value=random.randint(10, 50),
+                        unit="millisecond",
+                        tags={
+                            "page": "/home"
+                        }
+                    )
+                    sentry_sdk.metrics.set(
+                        key="metric_set",
+                        value="jane",
+                        unit="username",
+                        tags={
+                            "page": "/home"
+                        }
+                    )
+                    sentry_sdk.metrics.gauge(
+                        key="metric_gauge",
+                        value=random.randint(10, 200),
+                        unit="millisecond",
+                        tags={
+                            "page": "/home"
+                        }
+                    )
 
 
 @app.task
 def task_b(msg):
     print("[task-b] Hello there %s" % msg)
-    time.sleep(10)
-    raise Exception("Oh no! Abort! Alarm alarm!")
+    # time.sleep(10)
+    # raise Exception("Oh no! Abort! Alarm alarm!")

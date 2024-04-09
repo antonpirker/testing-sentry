@@ -22,4 +22,5 @@ redis-server --daemonize yes
 # Run Celery and beat in the same process
 celery -A tasks.app worker \
     --loglevel=DEBUG \
-    --concurrency=1
+    --concurrency=1 
+    # --max-tasks-per-child=2
