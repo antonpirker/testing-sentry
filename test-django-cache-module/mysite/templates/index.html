@@ -1,0 +1,15 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>My Django App</title>
+</head>
+<body>
+    Hello World!
+
+    <ul>
+        {% for item in items %}
+            {% include "_item.html" with item=item only %}
+        {% endfor %}
+    </ul>
+</body>
+</html>

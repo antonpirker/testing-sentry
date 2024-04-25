@@ -1,0 +1,4 @@
+{% load cache %}
+{% cache 5 some_item item %}
+    <li>~~~ {{ item|stringformat:"03d"  }} ~~~</li>
+{% endcache %}

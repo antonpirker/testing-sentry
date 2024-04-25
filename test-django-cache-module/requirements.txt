@@ -1,0 +1,11 @@
+Django<3.2
+
+psycopg  # connection to Postgres database
+
+memcache
+pymemcache
+redis
+
+ipdb
+
+-e ../../../code/sentry-python  # sdk in a sibling folder to this projects folder
