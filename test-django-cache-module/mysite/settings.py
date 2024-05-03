@@ -158,7 +158,7 @@ sentry_sdk.init(
     integrations=[
         DjangoIntegration(
             cache_spans=True, 
-            # cache_spans_add_item_size=True,
+            cache_spans_add_item_size=True,
         ), 
     ],
 )
