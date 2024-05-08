@@ -154,7 +154,7 @@ from sentry_sdk.integrations.django import DjangoIntegration
 sentry_sdk.init(
     dsn=os.environ.get("SENTRY_DSN"),
     enable_tracing=True,
-    debug=True,
+    debug=False,
     integrations=[
         DjangoIntegration(
             cache_spans=True, 
