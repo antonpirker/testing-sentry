@@ -1,11 +1,15 @@
 Django
-
+gunicorn  # application server
 psycopg  # connection to Postgres database
 
-memcache
-pymemcache
-redis
+memcache  # caching
+pymemcache  # caching
+redis  # caching
 
-ipdb
+ipdb  # debugging
+
+locust  # load testing
+memory_profiler  # memory profiling
+matplotlib  # plotting the memory profile
 
 -e ../../../code/sentry-python  # sdk in a sibling folder to this projects folder
