@@ -1,4 +1,4 @@
-Django<3.2
+Django
 
 psycopg  # connection to Postgres database
 

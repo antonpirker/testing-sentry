@@ -127,24 +127,24 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Setup Caching
 # See https://docs.djangoproject.com/en/5.0/topics/cache/ for possible setups
-CACHES = {
-    "default": {
-        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
-        "LOCATION": "unique-snowflake",
-    }
-}
+# CACHES = {
+#     "default": {
+#         "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+#         "LOCATION": "unique-snowflake",
+#     }
+# }
 # CACHES = {
 #     "default": {
 #         "BACKEND": "django.core.cache.backends.memcached.PyMemcacheCache",
 #         "LOCATION": "127.0.0.1:11211",
 #     }
 # }
-# CACHES = {
-#     "default": {
-#         "BACKEND": "django.core.cache.backends.redis.RedisCache",
-#         "LOCATION": "redis://127.0.0.1:6379",
-#     }
-# }
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379",
+    }
+}
 
 # Sentry
 import os
