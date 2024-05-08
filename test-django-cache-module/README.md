@@ -40,3 +40,5 @@ cd testing-sentry/test-django-cache-module
 - **Generate the Locust report**: Within the Locust web UI, navigate to the "Download Data" tab, 
   then select "Download Report." The HTML report opens in a new tab. Click the 
   "Download the Report" link at the top right of the page to download the report HTML file.
+- Put the test results in the `/results/` folder (und a nicely named subfolder)
+- Thanks! Have a nice day!
