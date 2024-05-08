@@ -10,6 +10,10 @@ source .venv/bin/activate
 # Install (or update) requirements
 python -m pip install -r requirements.txt
 
+pkill redis-server || true
+rm -rf dump.rdb
+redis-server --daemonize yes
+
 # run migrations
 cd mysite && ./manage.py migrate && cd ..
 

@@ -5,10 +5,11 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 LEN = 15
+COUNT = 100
 
 def index(request):
     context = {
-        "items": [str(hash(str(x)))*LEN for x in random.sample(range(1, 100), 20)],
+        "items": [str(hash(str(x)))*LEN for x in random.sample(range(1, COUNT*5), COUNT)],
     }
 
     # Low level Django caching API
