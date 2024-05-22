@@ -40,7 +40,11 @@ def main():
                 print("miss!")
                 # here create the cache item (we did this above...)
                 print(f"Setting {key}")
-                r.setex(key, 5, item)
+                r.set(key+"set", item)
+                r.setex(key+"setex", 5, item)
+                r.get(key+"get")
+                r.mget([key+"mget1", key+"mget2", key+"mget3", ])
+
                 value = item
 
 
