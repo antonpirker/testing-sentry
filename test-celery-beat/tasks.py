@@ -1,4 +1,4 @@
-import os 
+import os
 import time
 import random
 
@@ -11,25 +11,26 @@ from sentry_sdk.integrations.celery import CeleryIntegration
 
 app = Celery("tasks", broker='redis://localhost:6379/0')
 app.conf.beat_schedule = {
-    # 'task_propagate_6': {
-    #     'task': 'tasks.task_a',
-    #     'schedule': crontab(minute='*/1'),
-    #     'args': ('Task A from beat',),
-    # },
-    'task_b': {
-        'task': 'tasks.task_b',
+    'task_a_beat': {
+        'task': 'tasks.task_a',
         'schedule': crontab(minute='*/1'),
-        'args': ('Task B from beat',),
+        'args': ('Task A from beat',),
     },
+    # 'task_b_beat': {
+    #     'task': 'tasks.task_b',
+    #     'schedule': crontab(minute='*/1'),
+    #     'args': ('Task B from beat',),
+    # },
 }
 app.conf.timezone = 'UTC'
 
 def before_send_transaction(event, hint):
     print(event)
+    return event
 
 exclude_beat_tasks=[]
 
-# @signals.beat_init.connect   # omit this line if you're running beat directly within your worker process
+@signals.beat_init.connect   # omit this line if you're running beat directly within your worker process
 @signals.celeryd_init.connect
 def connect_sentry(**kwargs):
     sentry_settings = {
@@ -51,11 +52,11 @@ def connect_sentry(**kwargs):
 @app.task
 def task_a(msg):
     print("[task-a] That's my message to the world: %s" % msg)
+    task_b.delay("Task B started from Task A")
 
 
 @app.task
 def task_b(msg):
     print("[task-b] Hello there %s" % msg)
-    task_a.delay("Task A from Task B")
     # time.sleep(10)
-    # raise Exception("Oh no! Abort! Alarm alarm!")
+    raise Exception("Oh no! Abort! Alarm alarm!")
