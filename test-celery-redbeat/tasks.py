@@ -14,26 +14,34 @@ def init_sentry(**_kwargs):
         dsn=os.getenv("SENTRY_DSN", None),
         environment='development',
         release='unknown',
-        integrations=[CeleryIntegration()],
+        integrations=[CeleryIntegration(monitor_beat_tasks=True)],
         # Set traces_sample_rate to 1.0 to capture 100%
         # of transactions for performance monitoring.
         # We recommend adjusting this value in production,
-        traces_sample_rate=0.005,
+        traces_sample_rate=1.0,
         debug=True,
     )
 
 
 @app.task
-@monitor(monitor_slug='my_celery_task')
-def my_celery_task():
-    print('Hello World from my_celery_task!')
+@monitor(monitor_slug='task_a_redbeat')
+def task_a():
+    print('Hello World from task_a!')
+    task_b.delay()
 
 
+@app.task
+def task_b():
+    print('Hello World from task_b!')
+    raise Exception("Error in TASK B")
+
+
+# Redbeat Configuration
 app.conf.redbeat_redis_url = 'redis://localhost:6379/1'
 app.conf.beat_scheduler = 'redbeat.RedBeatScheduler'
 app.conf.beat_schedule = {
-    'my-celery-task': {
-        'task': 'tasks.my_celery_task',
-        'schedule': crontab(minute='*'),
+    'task_a_redbeat': {
+        'task': 'tasks.task_a',
+        'schedule': crontab(minute='*/1'),
     },
 }

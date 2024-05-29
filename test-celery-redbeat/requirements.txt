@@ -2,6 +2,6 @@ celery==5.2.6
 celery-redbeat==2.0.0
 redis
 
--e ../../code/sentry-python 
+-e ../../../code/sentry-python 
 
 ipdb
