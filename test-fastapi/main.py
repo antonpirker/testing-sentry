@@ -21,6 +21,14 @@ async def test_middleware(request, call_next):
     return await call_next(request)
 
 
-@app.get("/test")
+@app.get("/error")
 def endpoint():
     raise ValueError("help! an error!")
+
+
+@app.get("/")
+def endpoint():
+    return {
+        "hello": "world!",
+        "errors-are-here": "http://localhost:5000/error",
+    }
