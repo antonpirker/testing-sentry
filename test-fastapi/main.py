@@ -5,12 +5,17 @@ import sentry_sdk
 from sentry_sdk.integrations.starlette import StarletteIntegration
 from sentry_sdk.integrations.fastapi import FastApiIntegration
 
+failed_request_status_codes = [range(400, 600)]
 sentry_sdk.init(
     dsn=os.environ.get("SENTRY_DSN"),
     environment=os.environ.get("ENV", "test"),
     traces_sample_rate=1.0,
     profiles_sample_rate=1.0,
-    # debug=True,
+    debug=True,
+    integrations=[
+        StarletteIntegration(failed_request_status_codes=failed_request_status_codes),
+        FastApiIntegration(failed_request_status_codes=failed_request_status_codes),
+    ],
 )
 
 
@@ -34,6 +39,11 @@ async def test_middleware(request, call_next):
 @app.get("/error")
 def endpoint(user = Depends(get_user)):
     raise ValueError("help! an error!")
+
+
+@app.post("/post")
+def main(user):
+    return user
 
 
 @app.get("/")
