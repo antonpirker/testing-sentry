@@ -2,4 +2,4 @@ aiohttp
 
 ipdb
 
--e ../../code/sentry-python 
+-e ../../../code/sentry-python 

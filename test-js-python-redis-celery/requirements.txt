@@ -5,7 +5,7 @@ uvicorn
 celery
 redis
 
--e ../../code/sentry-python 
+-e ../../../code/sentry-python 
 #-e ../../tmp/trace-decorator/sentry-python
 
 ipdb

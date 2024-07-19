@@ -9,5 +9,5 @@ ipdb
 strawberry-graphql
 strawberry-graphql-django
 
--e ../../code/sentry-python  # sdk in a sibling folder to this projects folder
+-e ../../../code/sentry-python  # sdk in a sibling folder to this projects folder
 # sentry-sdk==1.34.0

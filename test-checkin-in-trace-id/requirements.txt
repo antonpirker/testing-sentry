@@ -4,4 +4,4 @@ requests
 
 celery[redis]
 
--e ../../code/sentry-python
+-e ../../../code/sentry-python
