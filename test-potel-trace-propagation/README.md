@@ -10,3 +10,5 @@ All parts of this distributed system have a `./run.sh` to start them.
 - `frontend` is an Express JS app using Sentry with POtel running on port `3000`.
 - `backend` is a Python Flask app using Sentry with POtel running on port `5000`.
 - `webservice` is a Go Gin app using Sentry **without** POtel running on port `9000`.
+
+All those services expect a `SENTRY_DSN` environment variable to be set.

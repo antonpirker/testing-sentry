@@ -1,6 +1,7 @@
 package main
 
 import (
+	"os"
 	"fmt"
 	"net/http"
 	sentry "github.com/getsentry/sentry-go"
@@ -10,7 +11,7 @@ import (
 
 func main() {
 	if err := sentry.Init(sentry.ClientOptions{
-		Dsn: "https://f1f3cf970c53209eb9db77fbc0414236@o447951.ingest.us.sentry.io/4507606077210624", // sentry-go-gin
+		Dsn: os.Getenv("SENTRY_DSN"),
 		EnableTracing: true,
 		// Set TracesSampleRate to 1.0 to capture 100%
 		// of transactions for tracing.
