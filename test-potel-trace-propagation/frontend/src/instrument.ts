@@ -5,7 +5,7 @@ const { SentrySpanProcessor, SentryPropagator, SentrySampler } = require('@sentr
 
 const sentryClient = Sentry.init({
   dsn: process.env.SENTRY_DSN,
-  environment: 'qa', // dynamic sampling bias to keep transactions
+  environment: 'potel', // dynamic sampling bias to keep transactions
   debug: true,
   includeLocalVariables: true,
   tunnel: `http://localhost:3031/`, // proxy server

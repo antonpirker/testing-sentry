@@ -7,7 +7,7 @@ import sentry_sdk
 
 sentry_sdk.init(
     dsn=os.getenv("SENTRY_DSN", None),
-    environment="development",
+    environment="potel",
     release="unknown",
     traces_sample_rate=1.0,
     enable_db_query_source=True,
