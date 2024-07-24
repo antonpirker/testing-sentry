@@ -4,10 +4,10 @@ const Sentry = require('@sentry/node');
 const { SentrySpanProcessor, SentryPropagator, SentrySampler } = require('@sentry/opentelemetry');
 
 const sentryClient = Sentry.init({
-  environment: 'qa', // dynamic sampling bias to keep transactions
   dsn: process.env.SENTRY_DSN,
+  environment: 'qa', // dynamic sampling bias to keep transactions
+  debug: true,
   includeLocalVariables: true,
-  debug: !!process.env.DEBUG,
   tunnel: `http://localhost:3031/`, // proxy server
   tracesSampleRate: 1,
   skipOpenTelemetrySetup: true,

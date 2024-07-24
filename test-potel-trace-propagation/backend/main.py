@@ -13,6 +13,9 @@ sentry_sdk.init(
     enable_db_query_source=True,
     db_query_source_threshold_ms=0,
     debug=True,
+    _experiments={
+        "otel_powered_performance": True
+    },
 )
 
 app = Flask(__name__)
