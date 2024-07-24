@@ -2,6 +2,8 @@ flask
 blinker
 markupsafe
 
+requests
+
 gunicorn
 
 -e  ../../../../code/sentry-python[opentelemetry-experimental]

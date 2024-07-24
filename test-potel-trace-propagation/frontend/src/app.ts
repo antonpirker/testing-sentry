@@ -17,11 +17,11 @@ app.get('/', async function (req, res) {
           let content = {
             content: "Express (frontend)"
           }
-      
+
           content["content"] += " -> " + response.data["content"];
-      
+
           res.json(content)
-      
+
         } catch (error) {
           if (axios.isAxiosError(error)) {
             // Handle axios-specific error
@@ -33,7 +33,7 @@ app.get('/', async function (req, res) {
             // Handle unknown error
             res.status(500).send('An unknown error occurred.');
           }  }
-      
+
       });
     });
   });

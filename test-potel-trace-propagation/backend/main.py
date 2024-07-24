@@ -1,9 +1,9 @@
 import os
-import random
-import time
+import requests
 
 from flask import Flask, request
 import sentry_sdk
+
 
 sentry_sdk.init(
     dsn=os.getenv("SENTRY_DSN", None),
@@ -18,6 +18,7 @@ sentry_sdk.init(
     },
 )
 
+
 app = Flask(__name__)
 
 
@@ -30,5 +31,13 @@ def index():
     print(request.environ.get("HTTP_BAGGAGE"))
     print("tracestate:")
     print(request.environ.get("HTTP_TRACESTATE"))
-    
-    return { "content": "Flask (backend)"}
+
+    url = "http://localhost:9000/"
+    r = requests.get(url)
+
+    content = {
+        "content": "Flask (backend)",
+    }
+    content["content"] += " -> " + r.json()["content"]
+
+    return content
