@@ -8,7 +8,6 @@ const sentryClient = Sentry.init({
   environment: 'potel', // dynamic sampling bias to keep transactions
   debug: true,
   includeLocalVariables: true,
-  tunnel: `http://localhost:3031/`, // proxy server
   tracesSampleRate: 1,
   skipOpenTelemetrySetup: true,
 });

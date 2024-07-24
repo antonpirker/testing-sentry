@@ -1,18 +1,46 @@
 import './instrument';
 
-// Other imports below
 import * as Sentry from '@sentry/node';
+import axios from 'axios';
 import express from 'express';
 
 const app = express();
-const port = 3030;
+const port = 3000;
 
-app.get('/test-success', function (req, res) {
-  res.send({ version: 'v1' });
+app.get('/', async function (req, res) {
+  Sentry.withActiveSpan(null, async () => {
+    Sentry.startSpan({ name: 'test-transaction', op: 'function' }, async () => {
+      Sentry.startSpan({ name: 'test-span' }, async () => {
+        const url = 'http://localhost:5000';
+        try {
+          const response = await axios.get(url);
+          let content = {
+            content: "Express (frontend)"
+          }
+      
+          content["content"] += " -> " + response.data["content"];
+      
+          res.json(content)
+      
+        } catch (error) {
+          if (axios.isAxiosError(error)) {
+            // Handle axios-specific error
+            res.status(error.response?.status || 500).send(`Error fetching data: ${error.message}`);
+          } else if (error instanceof Error) {
+            // Handle generic error
+            res.status(500).send(`Error fetching data: ${error.message}`);
+          } else {
+            // Handle unknown error
+            res.status(500).send('An unknown error occurred.');
+          }  }
+      
+      });
+    });
+  });
 });
 
-app.get('/test-param/:param', function (req, res) {
-  res.send({ paramWas: req.params.param });
+app.get("/debug-sentry", function mainHandler(req, res) {
+  throw new Error("My first Sentry error!");
 });
 
 app.get('/test-transaction', function (req, res) {
@@ -25,18 +53,6 @@ app.get('/test-transaction', function (req, res) {
 
     res.send({});
   });
-});
-
-app.get('/test-error', async function (req, res) {
-  const exceptionId = Sentry.captureException(new Error('This is an error'));
-
-  await Sentry.flush(2000);
-
-  res.send({ exceptionId });
-});
-
-app.get('/test-exception/:id', function (req, _res) {
-  throw new Error(`This is an exception with id ${req.params.id}`);
 });
 
 Sentry.setupExpressErrorHandler(app);

@@ -2,7 +2,7 @@ import os
 import random
 import time
 
-from flask import Flask
+from flask import Flask, request
 import sentry_sdk
 
 sentry_sdk.init(
@@ -22,18 +22,13 @@ app = Flask(__name__)
 
 
 @app.route("/")
-def stream_response():
-    num = random.randint(1, 100)
-    sentry_sdk.set_tag(f"tag_num", num)
-
-    def generate():
-        for _ in range(100):
-            yield f"{num}_{_}|"
-            if _ % 100 == 0:
-                time.sleep(0.1)
-                yield "\n"
-                print(num)
-
-        1 / 0
-
-    return generate(), {"Content-Type": "text/plain"}
+def index():
+    print("------")
+    print("sentry-trace:")
+    print(request.environ.get("HTTP_SENTRY_TRACE"))
+    print("baggage:")
+    print(request.environ.get("HTTP_BAGGAGE"))
+    print("tracestate:")
+    print(request.environ.get("HTTP_TRACESTATE"))
+    
+    return { "content": "Flask (backend)"}
