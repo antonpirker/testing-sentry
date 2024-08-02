@@ -37,7 +37,7 @@ async def error() -> dict[str, int]:
 
 @get("/books/{book_id:int}")
 async def get_book(book_id: int) -> dict[str, int]:
-    time.sleep(0.2)
+    time.sleep(0.005)
     return {"book_id": book_id}
 
 
