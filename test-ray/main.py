@@ -58,13 +58,12 @@ if __name__ == "__main__":
         def read(self):
             return self.n
 
-    # function tasks work
     with sentry_sdk.start_transaction(name="ray-test"):
         # counter is of type `ray._raylet.ObjectRef`
         # instead of the correct `ray._raylet.ActorHandle)`  
         # when sentry.init() is called with the RayIntegration
         counter = Counter.remote()
-        
+
         future = counter.increment.remote()
         result = ray.get(futures)
         print(f"Result: {result}")
