@@ -24,8 +24,7 @@ if __name__ == "__main__":
         runtime_env=dict(worker_process_setup_hook=init_sentry), 
     )
 
-    # function tasks work
-
+    # Does work: tasks as functions
     @ray.remote
     def my_cool_task(a, b, c):
         with sentry_sdk.start_span(description="big-processing"):
@@ -45,8 +44,7 @@ if __name__ == "__main__":
         print(f"Result: {result}")
 
 
-    # Actors (class based tasks) do not work   
-    
+    # Does NOT work: Actors (class based tasks) are not supported yet.
     @ray.remote
     class Counter(object):
         def __init__(self):
@@ -55,15 +53,20 @@ if __name__ == "__main__":
         def increment(self):
             self.n += 1
 
+        def decrement(self):
+            raise NotImplementedError("There is no decrement in a counter!")
+
         def read(self):
             return self.n
 
     with sentry_sdk.start_transaction(name="ray-test"):
-        # counter is of type `ray._raylet.ObjectRef`
-        # instead of the correct `ray._raylet.ActorHandle)`  
-        # when sentry.init() is called with the RayIntegration
         counter = Counter.remote()
 
-        future = counter.increment.remote()
+        # The errors are captured, but 
+        # tracing information is not sent to Sentry
+        futures = [
+            counter.increment.remote(), 
+            counter.decrement.remote(), 
+        ]
         result = ray.get(futures)
         print(f"Result: {result}")
