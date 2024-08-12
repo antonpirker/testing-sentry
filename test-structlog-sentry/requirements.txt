@@ -1,0 +1,5 @@
+structlog-sentry
+
+ipdb
+
+-e ../../../code/sentry-python  # sdk in a sibling folder to this projects folder
