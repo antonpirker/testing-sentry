@@ -19,7 +19,7 @@ sentry_sdk.init(
 app = FastAPI()
 
 
-def write_notification(email: str, message=""):
+async def write_notification(email: str, message=""):
     with sentry_sdk.start_span(op="write_notification", description=f"Notification for {email}"):
         time.sleep(0.1)
         print(f"Notification for {email}: {message}")
