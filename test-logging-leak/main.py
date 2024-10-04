@@ -32,11 +32,10 @@ async def main():
                 # "http://auth.docker/api/v2/store/payflow/notify/",
                 headers={"Authentication": "SECRET"},
             )
-            import ipdb; ipdb.set_trace()
             try:
                 resp.raise_for_status()
             except Exception as e:
-                import ipdb; ipdb.set_trace()
+                ...
 
             time.sleep(5)
 

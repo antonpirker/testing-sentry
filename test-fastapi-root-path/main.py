@@ -9,7 +9,6 @@ from sentry_sdk.integrations.fastapi import FastApiIntegration
 def sentry_traces_sampler(sampling_context):
     print(f"Traces sampler called with {sampling_context}")
     print(f'Traces sampler transaction name: "{sampling_context["transaction_context"]["name"]}"')
-    import ipdb; ipdb.set_trace()
     return 1
 
 def bla(sampling_context):
