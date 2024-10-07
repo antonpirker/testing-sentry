@@ -25,6 +25,7 @@ async def test_middleware(request, call_next):
 @app.get("/test1")
 def main1_endpoint():
     r = requests.get('http://localhost:5002/test2')
+    
     return {
         "iam": "main1",
         "received": r.json()
