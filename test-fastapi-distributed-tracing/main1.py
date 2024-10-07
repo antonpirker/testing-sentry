@@ -10,10 +10,9 @@ sentry_sdk.init(
     environment=os.environ.get("ENV", "main1"),
     release="main1@0.0.1",
     # Set rate to 1.0 to capture 100%
-    traces_sample_rate=0.2,
+    traces_sample_rate=1,
     debug=True,
 )
-
 
 app = FastAPI()
 

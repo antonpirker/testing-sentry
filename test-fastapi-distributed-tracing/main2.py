@@ -10,10 +10,9 @@ sentry_sdk.init(
     environment=os.environ.get("ENV", "main2"),
     release="main2@0.0.1",
     # Set rate to 1.0 to capture 100%
+    traces_sample_rate=1,
     debug=True,
-    traces_sample_rate=0,
 )
-
 
 app = FastAPI()
 
@@ -26,8 +25,9 @@ async def test_middleware(request, call_next):
 @app.get("/test2")
 def main2_endpoint(request: Request):
     print("main2")
+
     return {
         "iam": "main2",
-        "incoming-headers": dict(request.headers),
+        "received-headers-from-main1": dict(request.headers),
     }
 
