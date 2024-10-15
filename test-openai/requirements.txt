@@ -1,0 +1,5 @@
+openai
+
+-e  ../../../code/sentry-python
+
+ipdb
