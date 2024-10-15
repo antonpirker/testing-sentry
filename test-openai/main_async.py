@@ -11,7 +11,7 @@ from sentry_sdk.integrations.openai import OpenAIIntegration
 @ai_track("My async OpenAI pipeline")
 async def my_pipeline(client):    
     with sentry_sdk.start_transaction(name="openai-async"):
-        # Sync create message
+        # Async create message
         message = await client.chat.completions.create(
             messages=[
                 {
@@ -23,6 +23,15 @@ async def my_pipeline(client):
         )
         print("Message:")
         print(message.dict())
+
+        # Async embeddings
+        result = await client.embeddings.create(
+            input="Your text goes here", 
+            model="text-embedding-3-small",
+        )
+        embedding = result.data[0].embedding
+        print("Embedding:")
+        print(len(embedding))
 
         # Async streams are only in beta in OpenAI
         # # Async create streaming message

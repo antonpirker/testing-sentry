@@ -23,6 +23,14 @@ def my_pipeline(client):
         print("Message:")
         print(message.dict())
 
+        # Sync embeddings
+        embedding = client.embeddings.create(
+            input="Your text goes here", 
+            model="text-embedding-3-small",
+        ).data[0].embedding
+        print("Embedding:")
+        print(len(embedding))
+
         # Sentry does not instrument streaming OpenAI API calls
         # # Sync create streaming message
         # stream = client.chat.completions.create(
