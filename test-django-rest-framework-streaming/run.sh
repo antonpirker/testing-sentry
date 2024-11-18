@@ -14,4 +14,6 @@ python -m pip install -r requirements.txt
 # ./manage.py migrate
 
 # Run Django application on localhost:8000
-./manage.py runserver 0.0.0.0:8000
+# ./manage.py runserver 0.0.0.0:8000
+# uvicorn mysite.asgi:application
+gunicorn mysite.wsgi:application
