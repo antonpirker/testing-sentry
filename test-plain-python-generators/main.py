@@ -16,7 +16,7 @@ def main():
         debug=True,
     )
 
-    with sentry_sdk.start_span(op="function", name="main"):
+    with sentry_sdk.start_transaction(op="function", name="main"):
         print(list(generator()))
 
 
