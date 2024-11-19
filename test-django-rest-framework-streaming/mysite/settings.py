@@ -127,9 +127,20 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Setting up Sentry
 import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+from sentry_sdk.integrations.threading import ThreadingIntegration
 
 sentry_sdk.init(
     dsn=os.environ.get("SENTRY_DSN"),
-    traces_sample_rate=1.0, 
+    traces_sample_rate=1.0,
+    environment="gunicorn",
+    integrations=[DjangoIntegration(
+        middleware_spans=False,
+        signals_spans=False,
+        cache_spans=False,
+    )],
+    disabled_integrations=[
+        ThreadingIntegration(),
+    ],
     debug=True,
 )
