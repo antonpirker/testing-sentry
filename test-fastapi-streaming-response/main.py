@@ -1,6 +1,7 @@
 import os
 
 import sentry_sdk
+from sentry_sdk.integrations.starlette import StarletteIntegration
 
 from fastapi import FastAPI
 from fastapi.responses import StreamingResponse
@@ -9,6 +10,9 @@ from fastapi.responses import StreamingResponse
 sentry_sdk.init(
     dsn=os.environ.get("SENTRY_DSN"),
     traces_sample_rate=1.0,
+    integrations=[
+        StarletteIntegration(middleware_spans=False),
+    ],
     debug=True,
 )
 
