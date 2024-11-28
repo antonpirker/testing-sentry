@@ -1,0 +1,11 @@
+
+gunicorn
+gevent
+
+opentelemetry-distro
+
+sentry-sdk
+
+# -e  ../../../code/sentry-python
+
+ipdb
