@@ -3,6 +3,7 @@ gunicorn
 gevent
 
 opentelemetry-distro
+opentelemetry-exporter-otlp-proto-http
 
 sentry-sdk
 
