@@ -22,5 +22,5 @@ redis-server --daemonize yes
 # cd mysite && ./manage.py runserver 0.0.0.0:8000 && cd ..
 
 # Run Django application on localhost:8000 (PRODUCTION)
-# cd mysite && mprof run --multiprocess --output "../mprofile_$(date +%Y%m%d%H%M%S).dat" gunicorn wsgi && cd ..
-cd mysite && gunicorn --log-level 'debug' wsgi && cd ..
+cd mysite && mprof run --multiprocess --output "../mprofile_$(date +%Y%m%d%H%M%S).dat" gunicorn wsgi && cd ..
+# cd mysite && gunicorn --log-level 'debug' wsgi && cd ..

@@ -155,9 +155,8 @@ sentry_sdk.init(
     dsn=os.environ.get("SENTRY_DSN"),
     integrations=[DjangoIntegration(
         transaction_style="url",
-                    middleware_spans=True,
-                    signals_spans=True,
-                    cache_spans=True,
+        signals_spans=False,
+        cache_spans=True,
     )],
     traces_sample_rate=1.0,
     send_default_pii=False,
