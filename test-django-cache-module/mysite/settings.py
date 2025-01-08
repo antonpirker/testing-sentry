@@ -156,7 +156,7 @@ sentry_sdk.init(
     integrations=[DjangoIntegration(
         transaction_style="url",
         signals_spans=False,
-        cache_spans=True,
+        cache_spans=False,
     )],
     traces_sample_rate=1.0,
     send_default_pii=False,
