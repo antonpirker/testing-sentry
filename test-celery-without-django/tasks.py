@@ -26,3 +26,10 @@ def add(x, y):
     import logging
     logging.warning("In add task")
     return x + y
+
+
+@app.task
+def message(msg):
+    import logging
+    logging.warning("In msg task(%s)", msg)
+    return msg

@@ -2,7 +2,7 @@ import os
 
 import sentry_sdk
 
-from tasks import add
+from tasks import message
 
 
 def main():
@@ -16,9 +16,16 @@ def main():
 
     # Enqueueing a task to be processed by Celery
     with sentry_sdk.start_transaction(name="calling-a-celery-task"):
-        result = add.delay(4, 4)
-        print(f"Task ID: {result.id}")
+        result = message.apply_async(
+            args=("This should be connected.", ),
+        )
+        print(f"Task ID 1: {result.id}")
 
+        result = message.apply_async(
+            args=("This should NOT be connected.", ),
+            headers={"sentry-propagate-traces": False},
+        )
+        print(f"Task ID 2: {result.id}")
 
 if __name__ == "__main__":
     main()
