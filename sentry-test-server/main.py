@@ -5,6 +5,7 @@ from fastapi.responses import JSONResponse
 
 from utils import format_envelope_item
 
+envelope_store = []
 
 app = FastAPI()
 

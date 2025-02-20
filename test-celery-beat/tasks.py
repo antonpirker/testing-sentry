@@ -1,6 +1,7 @@
 import os
 import time
 import random
+import logging
 
 from celery import Celery, signals
 from celery.schedules import crontab
@@ -49,10 +50,27 @@ def connect_sentry(**kwargs):
     sentry_sdk.init(**sentry_settings)
 
 
-@app.task
-def task_a(msg):
+@app.task(bind=True, max_retries=3, default_retry_delay=5)
+def task_a(self, msg):
     print("[task-a] That's my message to the world: %s" % msg)
-    task_b.delay("Task B started from Task A")
+
+    # simulate some spans that are created during the task is processing
+    with sentry_sdk.start_span(op="function", name="parent-span"):
+        with sentry_sdk.start_span(op="function", name="child-span"):
+            # simulate some errors during the task is processing
+            for i in range(5):
+                try:
+                    raise RuntimeError("I am dying")
+                except Exception as exc:
+                    sentry_sdk.capture_exception(exc)
+
+            # retry the task once
+            retry_count = self.request.retries
+            if retry_count == 0:
+                logging.warn("Will retry the task")
+                self.retry()
+
+    logging.warn("The task is finished")
 
 
 @app.task
