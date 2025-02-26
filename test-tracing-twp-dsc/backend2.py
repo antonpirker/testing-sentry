@@ -4,6 +4,9 @@ from fastapi import FastAPI, Request
 
 from utils import format_baggage
 
+
+# *** SENTRY INITIALIZATION ***
+
 import sentry_sdk
 sentry_sdk.init(
     dsn=os.environ.get("SENTRY_DSN_BACKEND2"),

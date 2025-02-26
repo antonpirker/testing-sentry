@@ -10,8 +10,9 @@ document.body.innerHTML = `
 `;
 
 
-// Initialize Sentry
+// *** SENTRY INITIALIZATION ***
 // (Sentry bundle from CDN is loaded in index.html)
+
 Sentry.init({
   dsn: "https://cdf89e7156034172a513e112d3ac10f7@o447951.ingest.us.sentry.io/4505029409374208", // "sentry-javascript" project in Sentry.io
   integrations: [
