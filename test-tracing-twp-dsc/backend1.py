@@ -1,9 +1,10 @@
 import os
-import time
+
+import aiohttp
 
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
-import requests
+
 import sentry_sdk
 
 sentry_sdk.init(
@@ -39,14 +40,14 @@ async def backend1_endpoint(request: Request):
     print("Incoming request (from frontend):")
     print(f"- sentry-trace: {request.headers.get('sentry-trace')}")
     print(f"- baggage: {request.headers.get('baggage')}")
-    
-    time.sleep(0.2)
-    r = requests.get('http://localhost:8002/test2')
-    print("Outgoing request (to backend2):")
-    print(f"- sentry-trace: {r.request.headers.get('sentry-trace')}")
-    print(f"- baggage: {r.request.headers.get('baggage')}")
-    
-    return {
-        "iam": "backend1",
-        "received": r.json()
-    }
+
+    async with aiohttp.ClientSession() as session:
+        async with session.get('http://localhost:8002/test2') as response:
+            print("Outgoing request (to backend2):")
+            print(f"- sentry-trace: {response.request_info.headers.get('sentry-trace')}")
+            print(f"- baggage: {response.request_info.headers.get('baggage')}")
+
+            return {
+                "iam": "backend1",
+                "received": await response.json()
+            }

@@ -1,7 +1,7 @@
 fastapi
 uvicorn
 
-requests 
+aiohttp 
 
 ipdb
 honcho

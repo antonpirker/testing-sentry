@@ -33,7 +33,7 @@ document.getElementById('testButton').addEventListener('click', async () => {
   try {
     const result = await Sentry.startSpan(
       { op: "function", name: "Making request to Backend" },
-      async () => {    
+      async () => {
         // Make the HTTP request
         const response = await fetch('http://localhost:8001/test1');
         const data = await response.json();

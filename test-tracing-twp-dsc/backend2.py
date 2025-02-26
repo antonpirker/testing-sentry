@@ -1,5 +1,4 @@
 import os
-import time
 
 from fastapi import FastAPI, Request
 
@@ -28,7 +27,6 @@ async def backend2_endpoint(request: Request):
     print(f"- sentry-trace: {request.headers.get('sentry-trace')}")
     print(f"- baggage: {request.headers.get('baggage')}")
 
-    time.sleep(0.2)
     return {
         "iam": "backend2",
         "received-headers-from-backend1": dict(request.headers),
