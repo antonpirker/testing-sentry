@@ -7,6 +7,8 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from utils import format_baggage
 
+def traces_sampler(sampling_context):
+    return 0.111
 
 # *** SENTRY INITIALIZATION ***
 
@@ -15,7 +17,8 @@ sentry_sdk.init(
     dsn=os.environ.get("SENTRY_DSN_BACKEND1"),
     environment=os.environ.get("SENTRY_ENVIRONMENT"),
     release="backend1@0.0.1",
-    traces_sample_rate=1.0,
+    traces_sample_rate=1,
+    traces_sampler=traces_sampler,
     debug=True,
 )
 

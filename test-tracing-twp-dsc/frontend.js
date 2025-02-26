@@ -21,7 +21,7 @@ Sentry.init({
       instrumentPageLoad: false,
     }),
   ],
-  tracesSampleRate: 1.0, // Capture 100% of transactions for testing
+  tracesSampleRate: 0.7, // Capture 100% of transactions for testing
   tracePropagationTargets: ["localhost:8001", "localhost:8002"],
   debug: true,
 });
@@ -32,28 +32,30 @@ document.getElementById('testButton').addEventListener('click', async () => {
   const resultDiv = document.getElementById('result');
 
   try {
-    const result = await Sentry.startSpan(
-      { op: "function", name: "Making request to Backend" },
-      async () => {
-        // Make the HTTP request
-        const response = await fetch('http://localhost:8001/test1');
-        const data = await response.json();
+    Sentry.startNewTrace(() => {
+      Sentry.startSpan(
+        { op: "function", name: "Making request to Backend" },
+        async () => {
+          // Make the HTTP request
+          const response = await fetch('http://localhost:8001/test1');
+          const data = await response.json();
 
-        resultDiv.innerHTML = `
-          <h2>Response from Backend</h2>
-          <pre style="
-            text-align: left;
-            background: #f5f5f5;
-            padding: 10px;
-            border-radius: 4px;
-            font-family: monospace;
-            white-space: pre-wrap;
-            margin: 20px auto;
-            max-width: 800px;
-          ">${JSON.stringify(data, null, 2)}
-          </pre>`;
-      }
-    );
+          resultDiv.innerHTML = `
+            <h2>Response from Backend</h2>
+            <pre style="
+              text-align: left;
+              background: #f5f5f5;
+              padding: 10px;
+              border-radius: 4px;
+              font-family: monospace;
+              white-space: pre-wrap;
+              margin: 20px auto;
+              max-width: 800px;
+            ">${JSON.stringify(data, null, 2)}
+            </pre>`;
+        }
+      );
+    });
   } catch (error) {
     resultDiv.textContent = `Error: ${error.message}`;
   }
