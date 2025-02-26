@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+
+requests 
+
+ipdb
+honcho
+
+-e  ../../../code/sentry-python
