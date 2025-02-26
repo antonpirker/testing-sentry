@@ -1,9 +1,9 @@
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
 import os
+import time
 
+from fastapi import FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
 import requests
-
 import sentry_sdk
 
 sentry_sdk.init(
@@ -31,15 +31,20 @@ app.add_middleware(
 
 @app.middleware("http")
 async def test_middleware(request, call_next):
-    print("middleware")
     return await call_next(request)
 
 
 @app.get("/test1")
-def backend1_endpoint():
-    print("backend1")
+async def backend1_endpoint(request: Request):
+    print("Incoming request (from frontend):")
+    print(f"- sentry-trace: {request.headers.get('sentry-trace')}")
+    print(f"- baggage: {request.headers.get('baggage')}")
     
+    time.sleep(0.2)
     r = requests.get('http://localhost:8002/test2')
+    print("Outgoing request (to backend2):")
+    print(f"- sentry-trace: {r.request.headers.get('sentry-trace')}")
+    print(f"- baggage: {r.request.headers.get('baggage')}")
     
     return {
         "iam": "backend1",

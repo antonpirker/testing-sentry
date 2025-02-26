@@ -1,10 +1,9 @@
-from fastapi import FastAPI
-from fastapi import Request
-
 import os
+import time
+
+from fastapi import FastAPI, Request
 
 import sentry_sdk
-
 
 sentry_sdk.init(
     dsn=os.environ.get("SENTRY_DSN_BACKEND2"),
@@ -20,14 +19,16 @@ app = FastAPI()
 
 @app.middleware("http")
 async def test_middleware(request, call_next):
-    print("middleware")
     return await call_next(request)
 
 
 @app.get("/test2")
-def backend2_endpoint(request: Request):
-    print("backend2")
+async def backend2_endpoint(request: Request):
+    print("Incoming request (from backend1):")
+    print(f"- sentry-trace: {request.headers.get('sentry-trace')}")
+    print(f"- baggage: {request.headers.get('baggage')}")
 
+    time.sleep(0.2)
     return {
         "iam": "backend2",
         "received-headers-from-backend1": dict(request.headers),
