@@ -29,8 +29,8 @@ app = FastAPI()
 # Add CORS middleware configuration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allows all origins
     allow_credentials=True,
+    allow_origins=["*"],  # Allows all origins
     allow_methods=["*"],  # Allows all methods
     allow_headers=["*"],  # Allows all headers
     expose_headers=["sentry-trace", "baggage"]  # Expose both sentry-trace and baggage headers

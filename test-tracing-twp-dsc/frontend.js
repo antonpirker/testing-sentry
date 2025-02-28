@@ -21,7 +21,7 @@ Sentry.init({
       instrumentPageLoad: false,
     }),
   ],
-  tracesSampleRate: 0.9, // Capture 100% of transactions for testing
+  tracesSampleRate: 0.9,
   tracePropagationTargets: ["localhost:8001", "localhost:8002"],
   debug: true,
 });

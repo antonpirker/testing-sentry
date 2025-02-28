@@ -6,7 +6,7 @@ A simple example setup for testing distributed tracing with Sentry. Just call `.
 ```mermaid
 sequenceDiagram
   actor Frontend (localhost#colon;8000)
-  actor Backend1 (localhost#colon;8001)
+  actor Backend1 (localhost#colon;8001) 
   actor Backend2 (localhost#colon;8002)
 
   Frontend (localhost#colon;8000) ->> Backend1 (localhost#colon;8001): Baggage(sample_rate=0.9, sampled=true)
