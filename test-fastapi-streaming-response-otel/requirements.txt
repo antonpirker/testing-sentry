@@ -1,0 +1,4 @@
+
+-e  ../../../code/sentry-python
+
+ipdb
