@@ -12,7 +12,7 @@ sentry_sdk.init(
     environment=os.environ.get("ENV", "test"),
     traces_sample_rate=1.0,
     profiles_sample_rate=1.0,
-    # debug=True,
+    debug=True,
 )
 
 

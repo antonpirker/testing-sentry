@@ -34,14 +34,21 @@ class RequestLoggerMiddleware(BaseHTTPMiddleware):
         self.logger.info(f"Request close {duration=}")
         return response
 
-if os.environ.get("SENTRY"):
-    sentry_sdk.init()
+
+sentry_sdk.init(
+    dsn=os.environ.get("SENTRY_DSN"),
+    environment=os.environ.get("ENV", "test"),
+    traces_sample_rate=1.0,
+    profiles_sample_rate=1.0,
+    debug=True,
+)
+
 
 logging.basicConfig(level=logging.INFO)
 
 app = FastAPI(
     middleware=[
-        Middleware(RequestLoggerMiddleware, "app.request"),
+        Middleware(RequestLoggerMiddleware, "app.request", dispatch=None),
     ],
 )
 
