@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI, Depends, HTTPException
 import os
 
 import sentry_sdk
@@ -51,4 +51,5 @@ def endpoint():
     return {
         "hello": "world!",
         "errors-are-here": "http://localhost:5000/error",
+        "http-exception": "http://localhost:5000/http-exception",
     }
