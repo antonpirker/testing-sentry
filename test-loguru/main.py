@@ -1,19 +1,18 @@
-import sys
-import logging
-
+import os
 from loguru import logger as loguru_logger
-# loguru_logger.remove()
-# loguru_logger.add(sys.stdout, backtrace=True, diagnose=True)  # Caution, may leak sensitive data in prod
-
 
 import sentry_sdk
-import sentry_sdk.integrations.loguru
+from sentry_sdk.integrations.loguru import LoguruIntegration
+
 sentry_sdk.init(
-    dsn="https://229ebb4a2d1043fc93de7290365200ec@o447951.ingest.sentry.io/4505079351279616",
+    dsn=os.environ.get("SENTRY_DSN"),
     integrations=[
-        sentry_sdk.integrations.loguru.LoguruIntegration(),
+        LoguruIntegration(
+            level="TRACE",
+            event_level="ERROR",
+        ),
     ],
-    traces_sample_rate=1.0, 
+    traces_sample_rate=1.0,
     debug=True,
 )
 
@@ -25,22 +24,21 @@ def my_function(x, y, z):
 
 
 def main():
-    loguru_logger.debug("Guru: I am ignored")
-    loguru_logger.info("Guru: I am a breadcrumb")
-    loguru_logger.error("Guru: I am an event", extra=dict(bar=43))
+    loguru_logger.trace("{}: I am a {level_str} event", "Guru", level_str="TRACE")
+    loguru_logger.debug("{}: I am a {level_str} event", "Guru", level_str="DEBUG")
+    loguru_logger.info("{}: I am a {level_str} event", "Guru", level_str="INFO")
+    loguru_logger.success("{}: I am a {level_str} event", "Guru", level_str="SUCCESS")
+    loguru_logger.warning("{}: I am a {level_str} event", "Guru", level_str="WARNING")
+    loguru_logger.error("{}: I am a {level_str} event", "Guru", level_str="ERROR")
+    loguru_logger.critical("{}: I am a {level_str} event", "Guru", level_str="CRITICAL")
+
+    new_level = loguru_logger.level("SNAKY", no=38, color="<yellow>", icon="🐍")
+    loguru_logger.log("SNAKY", "{}: I am a {level_str} event", "Guru", level_str="SNAKY")
 
     try:
         1 / 0
     except ZeroDivisionError:
-        loguru_logger.exception("Guru: An exception XXX happened")
-    
-
-    # logging.debug("I am ignored")
-    # logging.info("I am a breadcrumb")
-    # logging.error("I am an event", extra=dict(bar=43))
-    # logging.exception("An exception happened")    
-
-    # my_function()
+        loguru_logger.exception("{}: An exception happened!", "Guru")
 
 
 if __name__ == "__main__":
