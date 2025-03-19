@@ -1,4 +1,5 @@
 import os
+import time
 
 from pyspark.sql import SparkSession
 
@@ -26,7 +27,6 @@ sentry_sdk.init(
 # Create a Spark session (this runs on the driver)
 spark = SparkSession.builder \
     .appName("SparkSentryTest") \
-    .master("local[2]") \
     .config("spark.python.worker.reuse", "true") \
     .config("spark.python.use.daemon", "true") \
     .config("spark.python.daemon.module", "sentry_daemon") \
@@ -40,24 +40,36 @@ spark.sparkContext.addPyFile(sentry_daemon_path)
 try:
     # Create batches of data to process
     batches = [
-        range(1, 5),
-        range(5, 10), 
-        range(10, 15)
+        range(1, 15),
+        range(15, 30),
+        range(30, 45),
+        range(45, 60),
+        range(60, 75),
+        range(75, 90),
+        range(90, 105),
+        range(105, 120),
+        range(120, 135),
+        range(135, 150),
     ]
 
     for batch in batches:
         rdd = spark.sparkContext.parallelize(batch)
 
         print("\n=== Running successful tasks (on workers) ===")
+        start_time = time.time()
         results = rdd.map(successful_task).collect()
+        duration = time.time() - start_time
+        print(f"Batch processing time: {duration:.2f} seconds")
         for result in results:
-            print(f"Result(successful_task): {result}")
+            print(f"Result (successful_task): {result}")
 
         print("\n=== Running tasks with errors (on workers) ===")
+        start_time = time.time()
         results = rdd.map(failing_task).collect()
+        duration = time.time() - start_time
+        print(f"Batch processing time: {duration:.2f} seconds")
         for result in results:
-            print(f"Result(failing_task): {result}")
-    
+            print(f"Result (failing_task): {result}")
 finally:
     # Always stop the Spark session
     spark.stop()
