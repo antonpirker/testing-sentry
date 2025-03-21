@@ -55,13 +55,13 @@ try:
     for batch in batches:
         rdd = spark.sparkContext.parallelize(batch)
 
-        print("\n=== Running successful tasks (on workers) ===")
-        start_time = time.time()
-        results = rdd.map(successful_task).collect()
-        duration = time.time() - start_time
-        print(f"Batch processing time: {duration:.2f} seconds")
-        for result in results:
-            print(f"Result (successful_task): {result}")
+        # print("\n=== Running successful tasks (on workers) ===")
+        # start_time = time.time()
+        # results = rdd.map(successful_task).collect()
+        # duration = time.time() - start_time
+        # print(f"Batch processing time: {duration:.2f} seconds")
+        # for result in results:
+        #     print(f"Result (successful_task): {result}")
 
         print("\n=== Running tasks with errors (on workers) ===")
         start_time = time.time()
