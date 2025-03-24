@@ -1,6 +1,27 @@
+from django.http import JsonResponse
 from django.shortcuts import render
 
+
 import sentry_sdk
+
+
+def api(request):
+    data = {
+        "message": "New JSON response",
+        "polls": [
+            {
+                "id": 1,
+                "question": "Do you like Summer?",
+                "votes": 100
+            },
+            {
+                "id": 2,
+                "question": "Do you like Winter?",
+                "votes": 200
+            }
+        ]
+    }
+    return JsonResponse(data)
 
 
 def index(request):

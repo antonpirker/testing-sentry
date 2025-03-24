@@ -19,5 +19,6 @@ schema = strawberry.Schema(Query)
 
 urlpatterns = [
     path("", views.index, name="index"),
+    path("api/", views.api, name="api"),
     path("graphql/", GraphQLView.as_view(schema=schema)),
 ]

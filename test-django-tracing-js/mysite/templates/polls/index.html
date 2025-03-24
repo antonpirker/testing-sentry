@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{ additional_meta|safe }}
     <title>Polls</title>
+
+    <!-- Configure Sentry -->
+    <script>
+        // Configure sentryOnLoad before adding the Loader Script
+        window.sentryOnLoad = function () {
+        //   alert('sentryOnLoad');
+        };
+      </script>
+    <script src='https://js.sentry-cdn.com/33f3f99d7064495b95ccacfb9225bbbf.min.js' crossorigin="anonymous"></script>
+
     <!-- Import Vue.js from CDN -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <style>
@@ -51,6 +61,9 @@
     <div id="app" class="app">
         <h2>{% verbatim %}{{ title }}{% endverbatim %}</h2>
 
+        <div v-if="loading">Loading polls...</div>
+        <div v-if="error" style="color: red;">{% verbatim %}{{ error }}{% endverbatim %}</div>
+
         <div class="poll-item" v-for="(poll, index) in polls" :key="index">
             <h3>{% verbatim %}{{ poll.question }}{% endverbatim %}</h3>
             <p>{% verbatim %}{{ poll.description }}{% endverbatim %}</p>
@@ -75,18 +88,9 @@
             setup() {
                 // Reactive state
                 const title = ref('Vue.js Polls App');
-                const polls = ref([
-                    {
-                        question: 'What is your favorite programming language?',
-                        description: 'Choose the language you enjoy coding with the most.',
-                        votes: 0
-                    },
-                    {
-                        question: 'Do you prefer frontend or backend?',
-                        description: 'Let us know which side of development you prefer.',
-                        votes: 0
-                    }
-                ]);
+                const polls = ref([]);
+                const loading = ref(false);
+                const error = ref(null);
 
                 const newPoll = ref({
                     question: '',
@@ -94,8 +98,45 @@
                     votes: 0
                 });
 
+                // Fetch polls from the API
+                async function fetchPolls() {
+                    loading.value = true;
+                    error.value = null;
+
+                    try {
+                        const response = await fetch('http://localhost:8000/polls/api');
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! Status: ${response.status}`);
+                        }
+                        const data = await response.json();
+                        polls.value = data.polls || [];
+                    } catch (err) {
+                        console.error('Error fetching polls:', err);
+                        error.value = 'Failed to load polls. Please try again later.';
+                        // Fallback to sample data in case of error
+                        polls.value = [
+                            {
+                                question: 'What is your favorite programming language?',
+                                description: 'Choose the language you enjoy coding with the most.',
+                                votes: 0
+                            },
+                            {
+                                question: 'Do you prefer frontend or backend?',
+                                description: 'Let us know which side of development you prefer.',
+                                votes: 0
+                            }
+                        ];
+                    } finally {
+                        loading.value = false;
+                    }
+                }
+
+                // Call fetchPolls when component is mounted
+                fetchPolls();
+
                 // Methods
                 function voteForPoll(index) {
+
                     polls.value[index].votes++;
                 }
 
@@ -120,6 +161,8 @@
                     title,
                     polls,
                     newPoll,
+                    loading,
+                    error,
                     voteForPoll,
                     addPoll
                 };
