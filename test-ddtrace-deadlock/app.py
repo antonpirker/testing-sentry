@@ -23,7 +23,7 @@ sentry_sdk.init(
 
 app = Flask(__name__)
 
-logging.info('test 11')
+logging.info('Flask app initialized')
 
 
 @sentry_sdk.trace
@@ -41,6 +41,7 @@ def fibonacci(n):
 
 @app.route("/")
 def index():
+    logging.info('Flask index route called')
     with sentry_sdk.start_span(name="test"):
         fibonacci(10)
         return {"message": "Hello, World!"}
@@ -48,4 +49,5 @@ def index():
 
 @app.route('/favicon.ico')
 def favicon():
+    logging.info('Flask favicon route called')
     return '', 204
