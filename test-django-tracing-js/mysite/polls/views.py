@@ -6,6 +6,8 @@ import sentry_sdk
 
 
 def api(request):
+    print(f"API request headers: {request.headers}")
+
     data = {
         "message": "New JSON response",
         "polls": [

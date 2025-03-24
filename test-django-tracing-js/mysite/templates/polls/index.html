@@ -10,7 +10,16 @@
     <script>
         // Configure sentryOnLoad before adding the Loader Script
         window.sentryOnLoad = function () {
-        //   alert('sentryOnLoad');
+            console.log("~~~~~ sentryOnLoad ~~~~~");
+            Sentry.init({
+                release: "0.0.1",
+                environment: "anton-test",
+                tracesSampleRate: 1.0,
+                debug: true,
+            });
+
+            // Initialize Vue app after Sentry is ready
+            initVueApp();
         };
       </script>
     <script src='https://js.sentry-cdn.com/33f3f99d7064495b95ccacfb9225bbbf.min.js' crossorigin="anonymous"></script>
@@ -84,90 +93,93 @@
         // Create Vue app
         const { createApp, ref } = Vue;
 
-        createApp({
-            setup() {
-                // Reactive state
-                const title = ref('Vue.js Polls App');
-                const polls = ref([]);
-                const loading = ref(false);
-                const error = ref(null);
+        // Function to initialize Vue app
+        function initVueApp() {
+            createApp({
+                setup() {
+                    // Reactive state
+                    const title = ref('Vue.js Polls App');
+                    const polls = ref([]);
+                    const loading = ref(false);
+                    const error = ref(null);
 
-                const newPoll = ref({
-                    question: '',
-                    description: '',
-                    votes: 0
-                });
-
-                // Fetch polls from the API
-                async function fetchPolls() {
-                    loading.value = true;
-                    error.value = null;
-
-                    try {
-                        const response = await fetch('http://localhost:8000/polls/api');
-                        if (!response.ok) {
-                            throw new Error(`HTTP error! Status: ${response.status}`);
-                        }
-                        const data = await response.json();
-                        polls.value = data.polls || [];
-                    } catch (err) {
-                        console.error('Error fetching polls:', err);
-                        error.value = 'Failed to load polls. Please try again later.';
-                        // Fallback to sample data in case of error
-                        polls.value = [
-                            {
-                                question: 'What is your favorite programming language?',
-                                description: 'Choose the language you enjoy coding with the most.',
-                                votes: 0
-                            },
-                            {
-                                question: 'Do you prefer frontend or backend?',
-                                description: 'Let us know which side of development you prefer.',
-                                votes: 0
-                            }
-                        ];
-                    } finally {
-                        loading.value = false;
-                    }
-                }
-
-                // Call fetchPolls when component is mounted
-                fetchPolls();
-
-                // Methods
-                function voteForPoll(index) {
-
-                    polls.value[index].votes++;
-                }
-
-                function addPoll() {
-                    if (newPoll.value.question.trim() === '') {
-                        alert('Please enter a question');
-                        return;
-                    }
-
-                    polls.value.push({
-                        question: newPoll.value.question,
-                        description: newPoll.value.description,
+                    const newPoll = ref({
+                        question: '',
+                        description: '',
                         votes: 0
                     });
 
-                    // Reset form
-                    newPoll.value.question = '';
-                    newPoll.value.description = '';
-                }
+                    // Fetch polls from the API
+                    async function fetchPolls() {
+                        loading.value = true;
+                        error.value = null;
 
-                return {
-                    title,
-                    polls,
-                    newPoll,
-                    loading,
-                    error,
-                    voteForPoll,
-                    addPoll
-                };
-            }
-        }).mount('#app');
+                        try {
+                            console.log("~~~~~ fetch ~~~~~");
+                            const response = await fetch('http://localhost:8000/polls/api/');
+                            if (!response.ok) {
+                                throw new Error(`HTTP error! Status: ${response.status}`);
+                            }
+                            const data = await response.json();
+                            polls.value = data.polls || [];
+                        } catch (err) {
+                            console.error('Error fetching polls:', err);
+                            error.value = 'Failed to load polls. Please try again later.';
+                            // Fallback to sample data in case of error
+                            polls.value = [
+                                {
+                                    question: 'What is your favorite programming language?',
+                                    description: 'Choose the language you enjoy coding with the most.',
+                                    votes: 0
+                                },
+                                {
+                                    question: 'Do you prefer frontend or backend?',
+                                    description: 'Let us know which side of development you prefer.',
+                                    votes: 0
+                                }
+                            ];
+                        } finally {
+                            loading.value = false;
+                        }
+                    }
+
+                    // Call fetchPolls when component is mounted
+                    fetchPolls();
+
+                    // Methods
+                    function voteForPoll(index) {
+                        polls.value[index].votes++;
+                    }
+
+                    function addPoll() {
+                        if (newPoll.value.question.trim() === '') {
+                            alert('Please enter a question');
+                            return;
+                        }
+
+                        polls.value.push({
+                            question: newPoll.value.question,
+                            description: newPoll.value.description,
+                            votes: 0
+                        });
+
+                        // Reset form
+                        newPoll.value.question = '';
+                        newPoll.value.description = '';
+                    }
+
+                    return {
+                        title,
+                        polls,
+                        newPoll,
+                        loading,
+                        error,
+                        voteForPoll,
+                        addPoll
+                    };
+                }
+            }).mount('#app');
+        }
     </script>
 </body>
 </html>
