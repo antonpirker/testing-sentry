@@ -23,6 +23,10 @@ def api(request):
             }
         ]
     }
+
+    # create an error
+    1/0
+
     return JsonResponse(data)
 
 
