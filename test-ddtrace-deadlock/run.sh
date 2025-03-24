@@ -8,4 +8,4 @@ if ! command -v uv &> /dev/null; then
     curl -LsSf https://astral.sh/uv/install.sh | sh
 fi
 
-uv run ddtrace-run python main.py
+uv run ddtrace-run --profiling flask run --host=0.0.0.0 --port=8000
