@@ -1,0 +1,15 @@
+[project]
+name = "test"
+version = "0"
+requires-python = ">=3.12"
+
+dependencies = [
+    "ipdb>=0.13.13",
+    "psycopg>=3.2.6",
+    "sentry-sdk",
+    "strawberry-graphql-django>=0.57.0",
+    "strawberry-graphql>=0.262.5",
+]
+
+[tool.uv.sources]
+sentry-sdk = { path = "../../sentry-python", editable = true }
