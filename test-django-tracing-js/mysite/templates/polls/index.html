@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{ additional_meta|safe }}
     <title>Polls</title>
+    <!-- Import Vue.js from CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -17,9 +19,112 @@
             text-align: center;
             padding: 20px;
         }
+        .app {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .poll-item {
+            background-color: white;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
     <h1>{{ message }}</h1>
+
+    <!-- Vue app container -->
+    <div id="app" class="app">
+        <h2>{% verbatim %}{{ title }}{% endverbatim %}</h2>
+
+        <div class="poll-item" v-for="(poll, index) in polls" :key="index">
+            <h3>{% verbatim %}{{ poll.question }}{% endverbatim %}</h3>
+            <p>{% verbatim %}{{ poll.description }}{% endverbatim %}</p>
+            <button @click="voteForPoll(index)">Vote</button>
+            <p v-if="poll.votes > 0">Votes: {% verbatim %}{{ poll.votes }}{% endverbatim %}</p>
+        </div>
+
+        <div>
+            <h3>Add a new poll:</h3>
+            <input v-model="newPoll.question" placeholder="Question" style="width: 100%; margin-bottom: 10px; padding: 8px;">
+            <textarea v-model="newPoll.description" placeholder="Description" style="width: 100%; margin-bottom: 10px; padding: 8px; height: 80px;"></textarea>
+            <button @click="addPoll">Add Poll</button>
+        </div>
+    </div>
+
+    <!-- Vue app script -->
+    <script>
+        // Create Vue app
+        const { createApp, ref } = Vue;
+
+        createApp({
+            setup() {
+                // Reactive state
+                const title = ref('Vue.js Polls App');
+                const polls = ref([
+                    {
+                        question: 'What is your favorite programming language?',
+                        description: 'Choose the language you enjoy coding with the most.',
+                        votes: 0
+                    },
+                    {
+                        question: 'Do you prefer frontend or backend?',
+                        description: 'Let us know which side of development you prefer.',
+                        votes: 0
+                    }
+                ]);
+
+                const newPoll = ref({
+                    question: '',
+                    description: '',
+                    votes: 0
+                });
+
+                // Methods
+                function voteForPoll(index) {
+                    polls.value[index].votes++;
+                }
+
+                function addPoll() {
+                    if (newPoll.value.question.trim() === '') {
+                        alert('Please enter a question');
+                        return;
+                    }
+
+                    polls.value.push({
+                        question: newPoll.value.question,
+                        description: newPoll.value.description,
+                        votes: 0
+                    });
+
+                    // Reset form
+                    newPoll.value.question = '';
+                    newPoll.value.description = '';
+                }
+
+                return {
+                    title,
+                    polls,
+                    newPoll,
+                    voteForPoll,
+                    addPoll
+                };
+            }
+        }).mount('#app');
+    </script>
 </body>
 </html>
