@@ -7,6 +7,10 @@ dependencies = [
     "confluent-kafka>=2.9.0",
     "ipdb>=0.13.13",
     "sentry-sdk",
+    "opentelemetry-api",
+    "opentelemetry-sdk",
+    "opentelemetry-instrumentation-confluent-kafka",
+    "opentelemetry-exporter-otlp",
 ]
 
 [tool.uv.sources]

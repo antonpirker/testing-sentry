@@ -4,6 +4,11 @@ import json
 import time
 import signal
 import sys
+from opentelemetry import trace
+from otel_config import configure_opentelemetry_producer
+
+# Initialize OpenTelemetry
+tracer = configure_opentelemetry_producer()
 
 # Topic to be used
 TOPIC_NAME = "hello-world-topic"
@@ -29,15 +34,15 @@ def delivery_callback(err, msg):
 
 def main():
     """Simple Kafka producer"""
-    print("Kafka Producer Example")
-    print("---------------------")
+    print("Kafka Producer Example with OpenTelemetry Instrumentation")
+    print("--------------------------------------------------------")
 
     # Set up signal handling for graceful shutdown
     signal.signal(signal.SIGINT, signal_handler)
 
     # Producer configuration
     producer_conf = {
-        'bootstrap.servers': 'localhost:9092',  # Update with your Kafka broker address
+        'bootstrap.servers': 'localhost:9092',  # Connect to Kafka on localhost
         'client.id': socket.gethostname()
     }
 
@@ -49,28 +54,36 @@ def main():
 
         # Loop to send messages until interrupted
         while running and message_count < 5:
-            # Create message
-            message = {
-                "message": f"Hello, Kafka! Message #{message_count+1}",
-                "timestamp": time.time()
-            }
+            # Create a span for producing each message
+            with tracer.start_as_current_span(f"produce_message_{message_count+1}") as span:
+                # Add attributes to the span
+                span.set_attribute("message.count", message_count + 1)
 
-            # Produce message to topic
-            producer.produce(
-                TOPIC_NAME,
-                key=f"key-{message_count}",
-                value=json.dumps(message),
-                callback=delivery_callback
-            )
+                # Create message
+                message = {
+                    "message": f"Hello, Kafka! Message #{message_count+1}",
+                    "timestamp": time.time()
+                }
 
-            print(f"Message #{message_count+1} queued for delivery")
-            message_count += 1
+                # Add more context to span
+                span.set_attribute("message.content", message["message"])
 
-            # Poll for callbacks to be executed
-            producer.poll(0)
+                # Produce message to topic
+                producer.produce(
+                    TOPIC_NAME,
+                    key=f"key-{message_count}",
+                    value=json.dumps(message),
+                    callback=delivery_callback
+                )
 
-            # Small delay between messages
-            time.sleep(0.5)
+                print(f"Message #{message_count+1} queued for delivery")
+                message_count += 1
+
+                # Poll for callbacks to be executed
+                producer.poll(0)
+
+                # Small delay between messages
+                time.sleep(0.5)
 
         # Wait for any outstanding messages to be delivered
         if message_count > 0:

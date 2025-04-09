@@ -7,14 +7,16 @@ echo "Press Ctrl+C to stop the container"
 echo
 
 # Using Confluent's Kafka image with ZooKeeper
-# First, create a network for Kafka and ZooKeeper
-docker network create kafka-net 2>/dev/null || true
+
+# Create a Docker network for both containers
+echo "Creating Docker network..."
+docker network create otel-net 2>/dev/null || true
 
 # Start ZooKeeper first
 echo "Starting ZooKeeper container..."
 docker run -d --rm \
-  --name zookeeper-test \
-  --network kafka-net \
+  --name otel-test-zookeeper \
+  --network otel-net \
   -p 2181:2181 \
   -e ZOOKEEPER_CLIENT_PORT=2181 \
   confluentinc/cp-zookeeper:latest
@@ -26,14 +28,15 @@ sleep 5
 # Then start Kafka, connecting to ZooKeeper
 echo "Starting Kafka container..."
 docker run --rm \
-  --name kafka-test \
-  --network kafka-net \
+  --name otel-test-kafka \
+  --network otel-net \
   -p 9092:9092 \
-  -e KAFKA_ZOOKEEPER_CONNECT=zookeeper-test:2181 \
+  -e KAFKA_ZOOKEEPER_CONNECT=otel-test-zookeeper:2181 \
+  -e KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092 \
   -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092 \
   -e KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1 \
   confluentinc/cp-kafka:latest
 
 # Cleanup when the Kafka container ends
 echo "Cleaning up containers..."
-docker stop zookeeper-test || true
+docker stop otel-test-zookeeper || true
