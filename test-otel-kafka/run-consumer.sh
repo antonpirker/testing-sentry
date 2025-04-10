@@ -10,7 +10,7 @@ fi
 
 # Set environment variables for OpenTelemetry
 export USE_OTLP=true
-export OTLP_ENDPOINT="http://localhost:5317"
+export OTLP_ENDPOINT="http://localhost:4317"
 
 # Run the consumer
 uv run python consumer.py
