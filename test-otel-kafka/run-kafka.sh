@@ -1,42 +1,31 @@
 #!/bin/bash
-# Script to start Kafka in Docker container
+# Script to start Kafka in KRaft mode
 
-echo "Starting Kafka with Docker..."
+echo "Starting Kafka in KRaft mode with Docker..."
 echo "This will run Kafka on localhost:9092"
 echo "Press Ctrl+C to stop the container"
 echo
 
-# Using Confluent's Kafka image with ZooKeeper
-
-# Create a Docker network for both containers
+# Create a Docker network
 echo "Creating Docker network..."
 docker network create otel-net 2>/dev/null || true
 
-# Start ZooKeeper first
-echo "Starting ZooKeeper container..."
-docker run -d --rm \
-  --name otel-test-zookeeper \
-  --network otel-net \
-  -p 2181:2181 \
-  -e ZOOKEEPER_CLIENT_PORT=2181 \
-  confluentinc/cp-zookeeper:latest
-
-# Give ZooKeeper a moment to start
-echo "Waiting for ZooKeeper to start..."
-sleep 5
-
-# Then start Kafka, connecting to ZooKeeper
-echo "Starting Kafka container..."
+# Start Kafka with KRaft mode
+echo "Starting Kafka container in KRaft mode..."
 docker run --rm \
   --name otel-test-kafka \
   --network otel-net \
   -p 9092:9092 \
-  -e KAFKA_ZOOKEEPER_CONNECT=otel-test-zookeeper:2181 \
-  -e KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092 \
-  -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092 \
-  -e KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1 \
-  confluentinc/cp-kafka:latest
-
-# Cleanup when the Kafka container ends
-echo "Cleaning up containers..."
-docker stop otel-test-zookeeper || true
+  -e KAFKA_CFG_NODE_ID=1 \
+  -e KAFKA_CFG_PROCESS_ROLES=broker,controller \
+  -e KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@localhost:9093 \
+  -e KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093 \
+  -e KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092 \
+  -e KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT \
+  -e KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER \
+  -e KAFKA_CFG_OFFSETS_TOPIC_REPLICATION_FACTOR=1 \
+  -e KAFKA_CFG_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=1 \
+  -e KAFKA_CFG_TRANSACTION_STATE_LOG_MIN_ISR=1 \
+  -e KAFKA_KRAFT_CLUSTER_ID=MkU3OEVBNTcwNTJENDM2Qk \
+  -e ALLOW_PLAINTEXT_LISTENER=yes \
+  bitnami/kafka:latest
