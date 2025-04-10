@@ -1,11 +1,11 @@
 # Kafka Hello World Example with OpenTelemetry
 
-This is a minimal example of using Apache Kafka with the confluent-kafka Python library, instrumented with OpenTelemetry for observability. Traces are sent to Jaeger or the OpenTelemetry Collector for visualization and analysis.
+This is a minimal example of using Apache Kafka with the confluent-kafka Python library, instrumented with OpenTelemetry for observability. Traces are sent to Jaeger for visualization and analysis.
 
 ## Prerequisites
 
 1. Python 3.13+ (as specified in pyproject.toml)
-2. Docker installed (for running Kafka, Jaeger, and the OpenTelemetry Collector)
+2. Docker installed (for running Kafka, Jaeger)
 3. Required Python packages are automatically installed by the scripts using uv
 
 ## Setup and Running
@@ -22,32 +22,15 @@ First, start Jaeger to collect and visualize traces:
 
 This starts Jaeger with its UI available at http://localhost:16686.
 
-### 2. Start the OpenTelemetry Collector
+### 2. Start Kafka
 
-If you want to use the OpenTelemetry Collector for additional processing:
-
-```bash
-./run-otel-collector.sh
-```
-
-This collector is configured to receive traces on port 5317 and forward them to Jaeger.
-
-### 3. Start Kafka
-
-Start Kafka and its required ZooKeeper instance:
+Start Kafka:
 
 ```bash
 ./run-kafka.sh
 ```
 
-This script:
-1. Creates a Docker network for all components
-2. Starts a ZooKeeper container
-3. Starts a Kafka container connected to ZooKeeper
-4. Makes Kafka available at localhost:9092
-5. Automatically cleans up when you stop Kafka (Ctrl+C)
-
-### 4. Run the Producer and Consumer
+### 3. Run the Producer and Consumer
 
 In separate terminals, run the consumer and producer:
 
@@ -86,9 +69,7 @@ The traces will show:
 - `producer.py`: Standalone producer that sends 5 messages with OpenTelemetry instrumentation
 - `consumer.py`: Standalone consumer that listens for messages with OpenTelemetry instrumentation
 - `otel_config.py`: OpenTelemetry configuration and setup
-- `otel-collector-config.yaml`: Configuration for the OpenTelemetry Collector
 - `run-jaeger.sh`: Script to start Jaeger in Docker
-- `run-otel-collector.sh`: Script to run the OpenTelemetry Collector
 - `run-kafka.sh`: Script to start Kafka and ZooKeeper in Docker
 - `run-consumer.sh`: Script to run the consumer
 - `run-producer.sh`: Script to run the producer

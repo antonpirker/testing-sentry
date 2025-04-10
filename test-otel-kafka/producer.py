@@ -1,11 +1,12 @@
-from confluent_kafka import Producer
-import socket
 import json
-import time
 import signal
-import sys
-from opentelemetry import trace
+import socket
+import time
+
 from otel_config import configure_opentelemetry_producer
+
+from confluent_kafka import Producer
+
 
 # Initialize OpenTelemetry
 tracer = configure_opentelemetry_producer()
@@ -83,7 +84,7 @@ def main():
                 producer.poll(0)
 
                 # Small delay between messages
-                time.sleep(0.5)
+                time.sleep(0.2)
 
         # Wait for any outstanding messages to be delivered
         if message_count > 0:

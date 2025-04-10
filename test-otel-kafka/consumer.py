@@ -1,9 +1,11 @@
-from confluent_kafka import Consumer
 import json
 import signal
-import sys
+
 from opentelemetry import trace
 from otel_config import configure_opentelemetry_consumer
+
+from confluent_kafka import Consumer
+
 
 # Initialize OpenTelemetry
 tracer = configure_opentelemetry_consumer()
