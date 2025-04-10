@@ -13,8 +13,10 @@ docker network create otel-net 2>/dev/null || true
 # Start Jaeger
 echo "Starting Jaeger container..."
 docker run --rm \
-  --name otel-test-jaeger \
+  --name test-otel-kafka-jaeger \
   --network otel-net \
+  --label com.docker.compose.project=test-otel-kafka \
+  --label com.docker.compose.service=jaeger \
   -p 16686:16686 \
   -p 4317:4317 \
   -p 4318:4318 \

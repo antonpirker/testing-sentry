@@ -92,7 +92,7 @@ After running the producer and consumer, you can view the generated traces in Ja
 
    ```bash
    # Create topic
-   docker exec -it otel-test-kafka kafka-topics \
+   docker exec -it test-otel-kafka-kafka kafka-topics \
      --create --topic hello-world-topic \
      --bootstrap-server localhost:9092 \
      --partitions 1 \

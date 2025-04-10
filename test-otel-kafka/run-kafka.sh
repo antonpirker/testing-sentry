@@ -13,8 +13,10 @@ docker network create otel-net 2>/dev/null || true
 # Start Kafka with KRaft mode
 echo "Starting Kafka container in KRaft mode..."
 docker run --rm \
-  --name otel-test-kafka \
+  --name test-otel-kafka-kafka \
   --network otel-net \
+  --label com.docker.compose.project=test-otel-kafka \
+  --label com.docker.compose.service=kafka \
   -p 9092:9092 \
   -e KAFKA_CFG_NODE_ID=1 \
   -e KAFKA_CFG_PROCESS_ROLES=broker,controller \
