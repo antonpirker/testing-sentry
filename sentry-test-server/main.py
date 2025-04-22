@@ -24,7 +24,7 @@ async def envelope(request: Request):
     print("HTTP Tracing Headers:")
     print(f"  sentry-trace: {request.headers.get('sentry-trace')}")
     print(f"  baggage: {request.headers.get('baggage')}")
-    
+
     raw_body = await request.body()
 
     try:
@@ -32,19 +32,19 @@ async def envelope(request: Request):
     except:
         # If decompression fails, assume it's plain text
         body = raw_body.decode('utf-8')
-    
+
     lines = body.split('\n')
-    
+
     print("Envelope Header:")
     envelope_header = json.loads(lines[0])
     print(f"  {envelope_header}")
-    
+
     current_line = 1
     while current_line < len(lines):
         if not lines[current_line].strip():
             current_line += 1
             continue
-            
+
         # Parse item header
         item_header = json.loads(lines[current_line])
         current_line += 1
@@ -60,5 +60,5 @@ async def envelope(request: Request):
             print(format_envelope_item(payload))
 
             current_line += 1
-    
+
     return JSONResponse(content={}, status_code=200)
