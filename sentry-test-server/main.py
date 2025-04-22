@@ -3,7 +3,7 @@ import gzip
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 
-from utils import format_envelope_item
+from utils import format_envelope_item, write_envelope_item_to_file
 
 envelope_store = []
 
@@ -15,7 +15,6 @@ async def root():
     return {
         "message": "Sentry Test Server. Use DSN http://123@localhost:9999/0 in your SDK."
     }
-
 
 @app.post("/api/0/envelope/")
 async def envelope(request: Request):
@@ -39,6 +38,8 @@ async def envelope(request: Request):
     envelope_header = json.loads(lines[0])
     print(f"  {envelope_header}")
 
+    version_from_envelope_header = envelope_header.get("trace", {}).get("release", None)
+
     current_line = 1
     while current_line < len(lines):
         if not lines[current_line].strip():
@@ -58,6 +59,8 @@ async def envelope(request: Request):
 
             print("Envelope Item Payload:")
             print(format_envelope_item(payload))
+
+            write_envelope_item_to_file(version_from_envelope_header, item_header, payload)
 
             current_line += 1
 
