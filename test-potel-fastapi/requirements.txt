@@ -1,9 +1,0 @@
-fastapi
-uvicorn
-
-requests 
-black
-ipdb
-
-# Sentry
--e ../../../code/sentry-python/[fastapi,asyncpg,rq]  # local dev version of sentry python sdk.
