@@ -8,11 +8,12 @@ from sentry_sdk import logger as sentry_logger
 from sentry_sdk.crons import monitor
 from sentry_sdk.types import MonitorConfig
 from sentry_sdk.feature_flags import add_feature_flag
+from sentry_sdk.consts import VERSION as SENTRY_SDK_VERSION
 
 sentry_sdk.init(
     dsn=os.environ.get("SENTRY_DSN"),
     environment=os.environ.get("ENV", "fastapi"),
-    release=os.environ.get("RELEASE", "fastapi@0.0.1a"),
+    release=SENTRY_SDK_VERSION,
     traces_sample_rate=1.0,
     profiles_sample_rate=1.0,
     debug=True,
