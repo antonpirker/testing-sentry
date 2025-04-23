@@ -1,4 +1,6 @@
 import json
+import os
+import shutil
 
 
 def format_envelope_item(envelope_item):
@@ -57,6 +59,10 @@ def format_error(event):
 
 
 def write_envelope_item_to_file(version_from_envelope_header, item_header, payload):
+    """
+    Creates a directory for the SDK version used and then saves the envelope item
+    as formatted JSON into the directory.
+    """
     print(f"Payload: {payload}")
     sdk_version = version_from_envelope_header
 
@@ -78,16 +84,25 @@ def write_envelope_item_to_file(version_from_envelope_header, item_header, paylo
                     except Exception as e:
                         print(f"XXX Error parsing payload: {e}")
 
-    filename = f"envelope-{sdk_version}-{item_header['type']}.json"
+    suffix = 0
+    filename = f"envelope-{item_header['type']}-{suffix}.json"
+    filepath = os.path.join(sdk_version, filename)
+    print(f"Writing envelope item to {filepath}")
 
-    print(f"Writing envelope item to {filename}")
+    os.makedirs(sdk_version, exist_ok=True)
+
     try:
         # Try to parse the payload as JSON first
         json_payload = json.loads(payload)
-        formatted_payload = json.dumps(json_payload, indent=2)
+        formatted_payload = json.dumps(json_payload, indent=2, sort_keys=True)
     except json.JSONDecodeError:
         # If it's not valid JSON, write it as is
         formatted_payload = payload
 
-    with open(filename, "w") as f:
+    while os.path.exists(filepath):
+        suffix += 1
+        filename = f"envelope-{item_header['type']}-{suffix}.json"
+        filepath = os.path.join(sdk_version, filename)
+
+    with open(filepath, "w") as f:
         f.write(formatted_payload)

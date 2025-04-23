@@ -6,7 +6,6 @@ from fastapi import FastAPI, Depends
 import sentry_sdk
 from sentry_sdk import logger as sentry_logger
 from sentry_sdk.crons import monitor
-from sentry_sdk.types import MonitorConfig
 from sentry_sdk.feature_flags import add_feature_flag
 from sentry_sdk.consts import VERSION as SENTRY_SDK_VERSION
 
@@ -53,7 +52,7 @@ async def test_middleware(request, call_next):
     return await call_next(request)
 
 
-monitor_config: MonitorConfig = {
+monitor_config = {
     "schedule": {"type": "crontab", "value": "0 0 * * *"},
     "timezone": "Europe/Vienna",
     # If an expected check-in doesn't come in `checkin_margin`
