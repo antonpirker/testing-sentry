@@ -9,9 +9,11 @@ from sentry_sdk.crons import monitor
 from sentry_sdk.feature_flags import add_feature_flag
 from sentry_sdk.consts import VERSION as SENTRY_SDK_VERSION
 
+DIR = os.path.basename(os.path.dirname(os.path.abspath(__file__)))
+
 sentry_sdk.init(
     dsn=os.environ.get("SENTRY_DSN"),
-    environment=f"fastapi-{SENTRY_SDK_VERSION}",
+    environment=f"{DIR}-{SENTRY_SDK_VERSION}",
     release=SENTRY_SDK_VERSION,
     traces_sample_rate=1.0,
     profiles_sample_rate=1.0,
