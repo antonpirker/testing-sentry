@@ -9,4 +9,5 @@ if ! command -v uv &> /dev/null; then
 fi
 
 # Run the script
+export SENTRY_SPOTLIGHT=1
 uv run uvicorn main:app --port 5000 --reload

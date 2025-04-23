@@ -11,7 +11,7 @@ from sentry_sdk.consts import VERSION as SENTRY_SDK_VERSION
 
 sentry_sdk.init(
     dsn=os.environ.get("SENTRY_DSN"),
-    environment=os.environ.get("ENV", "fastapi"),
+    environment=f"fastapi-{SENTRY_SDK_VERSION}",
     release=SENTRY_SDK_VERSION,
     traces_sample_rate=1.0,
     profiles_sample_rate=1.0,
@@ -19,6 +19,7 @@ sentry_sdk.init(
     _experiments={
         "enable_logs": True,
     },
+    spotlight="http://localhost:9999/api/0/envelope/",
 )
 
 
