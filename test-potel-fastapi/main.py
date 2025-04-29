@@ -6,8 +6,11 @@ from fastapi import FastAPI, Depends
 import sentry_sdk
 from sentry_sdk import logger as sentry_logger
 from sentry_sdk.crons import monitor
+from sentry_sdk.types import MonitorConfig
 from sentry_sdk.feature_flags import add_feature_flag
 from sentry_sdk.consts import VERSION as SENTRY_SDK_VERSION
+from sentry_sdk.integrations.fastapi import FastApiIntegration
+from sentry_sdk.integrations.starlette import StarletteIntegration
 
 DIR = os.path.basename(os.path.dirname(os.path.abspath(__file__)))
 
@@ -22,10 +25,22 @@ sentry_sdk.init(
         "enable_logs": True,
     },
     spotlight="http://localhost:9999/api/0/envelope/",
+    # Continuous Profiling (comment out profiles_sample_rate if you enable this)
+    # profile_session_sample_rate=1.0,
+    # profile_lifecycle="trace",
 )
 
 
 app = FastAPI()
+
+
+# @app.middleware("http")
+# async def test_custom_middleware(request, call_next):
+#     # here you can modify the request
+#     response = await call_next(request)
+#     # here you can modify the response
+#     return response
+
 
 def _fibonacci(n):
     print(f"fibonacci {n}")
@@ -49,13 +64,7 @@ def get_user():
     return user
 
 
-@app.middleware("http")
-async def test_middleware(request, call_next):
-    print("middleware")
-    return await call_next(request)
-
-
-monitor_config = {
+monitor_config: MonitorConfig = {
     "schedule": {"type": "crontab", "value": "0 0 * * *"},
     "timezone": "Europe/Vienna",
     # If an expected check-in doesn't come in `checkin_margin`
