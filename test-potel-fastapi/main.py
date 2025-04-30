@@ -1,5 +1,5 @@
 import os
-import time
+import asyncio
 
 from fastapi import FastAPI, Depends
 
@@ -42,20 +42,21 @@ app = FastAPI()
 #     return response
 
 
-def _fibonacci(n):
+async def _fibonacci(n):
     print(f"fibonacci {n}")
-    time.sleep(0.05)
+    await asyncio.sleep(0.05)
+
     if n < 0:
-        print("Incorrect input")
+        raise ValueError("Incorrect input: n must be non-negative")
     elif n == 0:
         return 0
     elif n == 1 or n == 2:
         return 1
     else:
-        return _fibonacci(n-1) + _fibonacci(n-2)
+        return await _fibonacci(n-1) + await _fibonacci(n-2)
 
 
-def get_user():
+async def get_user():
     user = {
       "id": "testuser",
       "username": "Test User",
@@ -81,9 +82,10 @@ monitor_config: MonitorConfig = {
     "recovery_threshold": 5,
 }
 
+
 @app.get("/error")
 @monitor(monitor_slug="test-cron", monitor_config=monitor_config)
-def error(user=Depends(get_user)):
+async def error(user=Depends(get_user)):
     # feature flag
     add_feature_flag("test-flag", True)
 
@@ -116,14 +118,14 @@ def error(user=Depends(get_user)):
             sentry_logger.warning("test log")
 
             # do some work, so we have a profile
-            _fibonacci(5)
+            await _fibonacci(5)
 
             # raise an error
             raise ValueError("help! an error!")
 
 
 @app.get("/")
-def index():
+async def index():
     return {
         "hello": "world!",
         "errors-are-here": "http://localhost:5000/error",
