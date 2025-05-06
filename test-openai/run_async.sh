@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 
+# exit on first error
 set -euo pipefail
 
-reset
+# Install uv if it's not installed
+if ! command -v uv &> /dev/null; then
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+fi
 
-python -m venv .venv
-source .venv/bin/activate
-
-pip install -r requirements.txt
-
-python main_async.py
+# Run the script
+export SENTRY_SPOTLIGHT=1
+uv run python main_async.py
