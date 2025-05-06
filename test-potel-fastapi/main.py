@@ -110,9 +110,14 @@ async def error(user=Depends(get_user)):
             # context
             sentry_sdk.set_context("test-context", {"text-context-user": user})
 
-            # attachment
-            scope = sentry_sdk.get_current_scope()
-            scope.add_attachment(bytes=b"Hello World", filename="hello.txt")
+            # attachments (2.x)
+            # scope = sentry_sdk.get_current_scope()
+            # scope.add_attachment(bytes=b"Hello Error World", filename="hello-on-error.txt")
+            # scope.add_attachment(bytes=b"Hello Transaction World", filename="hello-on-transaction.txt", add_to_transactions=True)
+
+            # attachments (3.x)
+            sentry_sdk.add_attachment(bytes=b"Hello Error World", filename="hello-on-error.txt")
+            sentry_sdk.add_attachment(bytes=b"Hello Transaction World", filename="hello-on-transaction.txt", add_to_transactions=True)
 
             # logs
             sentry_logger.warning("test log")
