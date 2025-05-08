@@ -108,12 +108,6 @@ def my_pipeline(client):
         raise ValueError("help! an error!")
 
 
-def before_send_transaction(transaction, hint):
-    print("before_send_transaction")
-    import ipdb; ipdb.set_trace()
-    return transaction
-
-
 def main():
     sentry_sdk.init(
         dsn=os.environ.get("SENTRY_DSN"),
@@ -133,7 +127,6 @@ def main():
         # profile_session_sample_rate=1.0,
         # profile_lifecycle="trace",
         send_default_pii=True,
-        before_send_transaction=before_send_transaction,
     )
 
     client = OpenAI(
