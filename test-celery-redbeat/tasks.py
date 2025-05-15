@@ -1,6 +1,5 @@
-import os 
-from celery import Celery
-from celery.signals import celeryd_init
+import os
+from celery import Celery, signals
 from celery.schedules import crontab
 import sentry_sdk
 from sentry_sdk.crons.decorator import monitor
@@ -8,17 +7,17 @@ from sentry_sdk.integrations.celery import CeleryIntegration
 
 app = Celery(__name__, broker='redis://localhost:6379/0')
 
-@celeryd_init.connect
+
+@signals.beat_init.connect
+@signals.celeryd_init.connect
 def init_sentry(**_kwargs):
     sentry_sdk.init(
         dsn=os.getenv("SENTRY_DSN", None),
-        environment='development',
-        release='unknown',
+        send_default_pii=True,
+        # environment='development',
+        # release='unknown',
         integrations=[CeleryIntegration(monitor_beat_tasks=True)],
-        # Set traces_sample_rate to 1.0 to capture 100%
-        # of transactions for performance monitoring.
-        # We recommend adjusting this value in production,
-        traces_sample_rate=1.0,
+        # traces_sample_rate=1.0,
         debug=True,
     )
 
@@ -27,7 +26,7 @@ def init_sentry(**_kwargs):
 @monitor(monitor_slug='task_a_redbeat')
 def task_a():
     print('Hello World from task_a!')
-    task_b.delay()
+    # task_b.delay()
 
 
 @app.task

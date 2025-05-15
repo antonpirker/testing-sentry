@@ -3,15 +3,13 @@
 # exit on first error
 set -euo pipefail
 
-reset
-
-# create and activate virtual environment
-python -m venv .venv
-source .venv/bin/activate
-
-# Install (or update) requirements
-pip install -r requirements.txt
+# Install uv if it's not installed
+if ! command -v uv &> /dev/null; then
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+fi
 
 redis-server --daemonize yes
 
-celery -A tasks.app beat --loglevel=DEBUG
+uv run celery -A tasks.app beat \
+    --scheduler redbeat.RedBeatScheduler \
+    --loglevel=INFO
