@@ -6,9 +6,10 @@ requires-python = ">=3.13"
 dependencies = [
     "ipdb>=0.13.13",
     "pytest-rerunfailures>=15.0",
-    "pytest-sentry>=0.3.3",
-    "sentry-sdk",
+    "pytest-sentry",
+    "sentry-sdk==3.0.0a1",
 ]
 
 [tool.uv.sources]
-sentry-sdk = { path = "../../sentry-python", editable = true }
+pytest-sentry = { path = "../../pytest-sentry", editable = true }
+# sentry-sdk = { path = "../../sentry-python", editable = true }

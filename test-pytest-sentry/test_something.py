@@ -1,8 +1,24 @@
 import random
+import time
+
+import pytest
+
+
+@pytest.fixture()
+def my_fixture():
+    time.sleep(random.random())
+
+
+def test_always_succeeds(my_fixture):
+    assert True
 
 
 def test_flaky():
-    if random.randint(0, 100) > 50:
-        assert 4 == 0, "4This is a flaky test"
+    if random.random() < 0.80:
+        assert False, "This is a flaky test"
 
-    assert 1 == 1
+    assert True
+
+
+def test_always_fails():
+    assert False
