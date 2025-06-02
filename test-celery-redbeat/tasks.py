@@ -23,7 +23,7 @@ def init_sentry(**_kwargs):
 
 
 @app.task
-@monitor(monitor_slug='task_a_redbeat')
+# @monitor(monitor_slug='task_a_redbeat')
 def task_a():
     print('Hello World from task_a!')
     # task_b.delay()

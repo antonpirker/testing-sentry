@@ -8,7 +8,7 @@ from sentry_sdk.integrations.openai import OpenAIIntegration
 
 
 @ai_track("My sync OpenAI pipeline")
-def my_pipeline(client):    
+def my_pipeline(client):
     with sentry_sdk.start_transaction(name="openai-sync"):
         # Sync create message
         message = client.chat.completions.create(
@@ -22,10 +22,11 @@ def my_pipeline(client):
         )
         print("Message:")
         print(message.dict())
+        import ipdb; ipdb.set_trace()
 
         # Sync embeddings
         embedding = client.embeddings.create(
-            input="Your text goes here", 
+            input="Your text goes here",
             model="text-embedding-3-small",
         ).data[0].embedding
         print("Embedding:")
@@ -56,7 +57,7 @@ def main():
         send_default_pii=True,
         debug=True,
         integrations=[
-            OpenAIIntegration(include_prompts=True), 
+            OpenAIIntegration(include_prompts=True),
         ],
     )
 
@@ -64,7 +65,7 @@ def main():
         api_key=os.environ.get("OPENAI_API_KEY"),
     )
 
-    my_pipeline(client)    
+    my_pipeline(client)
 
 
 if __name__ == "__main__":

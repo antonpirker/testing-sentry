@@ -10,10 +10,13 @@ def my_fixture():
 
 
 def test_always_succeeds(my_fixture):
+    time.sleep(random.random())
     assert True
 
 
 def test_flaky():
+    time.sleep(random.random())
+
     if random.random() < 0.80:
         assert False, "This is a flaky test"
 
@@ -21,4 +24,5 @@ def test_flaky():
 
 
 def test_always_fails():
+    time.sleep(random.random())
     assert False

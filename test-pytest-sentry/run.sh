@@ -12,8 +12,8 @@ fi
 export PYTEST_ADDOPTS="--reruns=5 -s"
 
 # Run the flaky test multiple times
-for i in $(seq 10)
+for i in $(seq 1)
 do
     echo "Run $i:"
-    uv run pytest
+    source .venv/bin/activate && pytest
 done
