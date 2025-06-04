@@ -7,7 +7,6 @@ from typing import Any
 from pydantic import BaseModel
 
 import sentry_sdk
-from sentry_sdk.integrations.openai_agents import SentryRunHooks
 from sentry_sdk.integrations.openai_agents import OpenAIAgentsIntegration
 
 import agents
@@ -81,8 +80,8 @@ multiply_agent = Agent(
     name="Multiply Agent",
     instructions="Multiply the number x by the number y and then return the final result.",
     tools=[multiply],
+    model="gpt-4.1-mini",
     output_type=FinalResult,
-    # hooks=CustomAgentHooks(display_name="Multiply Agent"),
 )
 
 start_agent = Agent(
@@ -91,7 +90,7 @@ start_agent = Agent(
     tools=[random_number],
     output_type=FinalResult,
     handoffs=[multiply_agent],
-    # hooks=CustomAgentHooks(display_name="Start Agent"),
+    model="gpt-4o-mini",
 )
 
 PROMPT = (
@@ -116,7 +115,7 @@ class WebSearchPlan(BaseModel):
 planner_agent = Agent(
     name="PlannerAgent",
     instructions=PROMPT,
-    model="gpt-4o",
+    model="gpt-4.1-nano",
     output_type=WebSearchPlan,
 )
 
@@ -135,16 +134,14 @@ async def main() -> None:
     #     debug=True,
     )
 
-    with sentry_sdk.start_transaction(name="main"):
-        # await Runner.run(
-        #     planner_agent,
-        #     input="Whats the best snowboard?",
-        # )
-        await Runner.run(
-            start_agent,
-            input=f"Generate a random number between 0 and {10}.",
-            hooks=SentryRunHooks(),
-        )
+    await Runner.run(
+        planner_agent,
+        input="Whats the best snowboard?",
+    )
+    await Runner.run(
+        start_agent,
+        input=f"Generate a random number between 0 and {10}.",
+    )
 
     print("Done!")
 
