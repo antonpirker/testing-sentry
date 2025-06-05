@@ -10,7 +10,7 @@ import sentry_sdk
 from sentry_sdk.integrations.openai_agents import OpenAIAgentsIntegration
 
 import agents
-from agents import Agent, Runner, function_tool
+from agents import Agent, Runner, function_tool, ModelSettings
 
 
 # class CustomAgentHooks(AgentHooks):
@@ -91,6 +91,13 @@ start_agent = Agent(
     output_type=FinalResult,
     handoffs=[multiply_agent],
     model="gpt-4o-mini",
+    model_settings=ModelSettings(
+        temperature=0.1,
+        top_p=0.2,
+        frequency_penalty=0.3,
+        presence_penalty=0.4,
+        max_tokens=100,
+    )
 )
 
 PROMPT = (
@@ -134,10 +141,10 @@ async def main() -> None:
     #     debug=True,
     )
 
-    await Runner.run(
-        planner_agent,
-        input="Whats the best snowboard?",
-    )
+    # await Runner.run(
+    #     planner_agent,
+    #     input="Whats the best snowboard?",
+    # )
     await Runner.run(
         start_agent,
         input=f"Generate a random number between 0 and {10}.",
