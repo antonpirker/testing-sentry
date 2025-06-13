@@ -2,58 +2,13 @@ import asyncio
 import os
 import random
 import time
-from typing import Any
 
 from pydantic import BaseModel
 
 import sentry_sdk
 from sentry_sdk.integrations.openai_agents import OpenAIAgentsIntegration
 
-import agents
 from agents import Agent, Runner, function_tool, ModelSettings
-
-
-# class CustomAgentHooks(AgentHooks):
-#     def __init__(self, display_name: str):
-#         self.event_counter = 0
-#         self.display_name = display_name
-#         self.current_transaction = None
-#         self.current_span = None
-
-#     async def on_start(self, context: RunContextWrapper, agent: Agent) -> None:
-#         import ipdb; ipdb.set_trace()
-#         self.event_counter += 1
-#         print(f"### ({self.display_name}) {self.event_counter}: Agent {agent.name} started")
-
-#     async def on_end(self, context: RunContextWrapper, agent: Agent, output: Any) -> None:
-#         import ipdb; ipdb.set_trace()
-#         self.event_counter += 1
-#         print(
-#             f"### ({self.display_name}) {self.event_counter}: Agent {agent.name} ended with output {output}"
-#         )
-
-#     async def on_handoff(self, context: RunContextWrapper, agent: Agent, source: Agent) -> None:
-#         import ipdb; ipdb.set_trace()
-#         self.event_counter += 1
-#         print(
-#             f"### ({self.display_name}) {self.event_counter}: Agent {source.name} handed off to {agent.name}"
-#         )
-
-#     async def on_tool_start(self, context: RunContextWrapper, agent: Agent, tool: Tool) -> None:
-#         import ipdb; ipdb.set_trace()
-#         self.event_counter += 1
-#         print(
-#             f"### ({self.display_name}) {self.event_counter}: Agent {agent.name} started tool {tool.name}"
-#         )
-
-#     async def on_tool_end(
-#         self, context: RunContextWrapper, agent: Agent, tool: Tool, result: str
-#     ) -> None:
-#         import ipdb; ipdb.set_trace()
-#         self.event_counter += 1
-#         print(
-#             f"### ({self.display_name}) {self.event_counter}: Agent {agent.name} ended tool {tool.name} with result {result}"
-#         )
 
 
 @function_tool
@@ -84,9 +39,9 @@ multiply_agent = Agent(
     output_type=FinalResult,
 )
 
-start_agent = Agent(
-    name="Start Agent",
-    instructions="Generate a random number. If it's even, hand off to multiply agent to multiply by 2. If it's odd, hand off to the multiply agent to multiply by 3.",
+random_number_agent = Agent(
+    name="Random Number Agent",
+    instructions="Generate a random number. If it's even, hand off to multiply agent to multiply by 2. If it's odd, hand off to the multiply agent to multiply by 30.",
     tools=[random_number],
     output_type=FinalResult,
     handoffs=[multiply_agent],
@@ -145,8 +100,12 @@ async def main() -> None:
     #     planner_agent,
     #     input="Whats the best snowboard?",
     # )
+    user    = {"id": "22", "email": "user22@test.com"}
+    sentry_sdk.set_user(user)
+    sentry_sdk.set_tag("my_custom_tag", "value_one")
+
     await Runner.run(
-        start_agent,
+        random_number_agent,
         input=f"Generate a random number between 0 and {10}.",
     )
 

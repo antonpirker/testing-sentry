@@ -298,30 +298,33 @@ wheels = [
 
 [[package]]
 name = "pytest-sentry"
-version = "0.4.0"
-source = { registry = "https://pypi.org/simple" }
+version = "0.4.1"
+source = { editable = "../../pytest-sentry" }
 dependencies = [
     { name = "pytest" },
     { name = "sentry-sdk" },
     { name = "wrapt" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/96/b2/92973572617b79eee7be8d5fba3044301781ed0b1828d2d207e54d5afd30/pytest_sentry-0.4.0.tar.gz", hash = "sha256:325137b113fda2ad03c697baa9b9fb50e74e3b2a1523f6ad944aadd78c1e7ff9", size = 6493 }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/21/55/4c49a0c1d1e9ad914115776ed702f125e88135114ea87fefbe79fb7c0b14/pytest_sentry-0.4.0-py3-none-any.whl", hash = "sha256:e9a67cd3e2d40d81ef0bdeeb9b8fe0df86cba898e6572ded6197b7e21beb7605", size = 5272 },
+
+[package.metadata]
+requires-dist = [
+    { name = "pytest" },
+    { name = "sentry-sdk", specifier = ">=3.0.0a1" },
+    { name = "wrapt" },
 ]
 
 [[package]]
 name = "sentry-sdk"
-version = "3.0.0a1"
+version = "3.0.0a2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "certifi" },
     { name = "opentelemetry-sdk" },
     { name = "urllib3" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/3f/18/57799d5116b96bed8567f7ceec9b0cc33cfd00a9e4c93c3a4c5dfb02e4be/sentry_sdk-3.0.0a1.tar.gz", hash = "sha256:e26c7029543cad82a670a79741da72b5e8c5c72382b1cf3c96dc7b4c7cecf4b3", size = 306470 }
+sdist = { url = "https://files.pythonhosted.org/packages/65/65/0723147c7be4b3201dd2e0b80621a1b01c16a08fd765e84466b2700a81ca/sentry_sdk-3.0.0a2.tar.gz", hash = "sha256:7d2f960bf3a15eb0e875b0f7c1d972a614d3757d94939bc27683a2edb2157070", size = 309227 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/48/cb/06fee4df24090fc3fb9d74b658139018f24800b5a4510acbf04437e4c1e5/sentry_sdk-3.0.0a1-py2.py3-none-any.whl", hash = "sha256:d224282b1c14d5466a7e5fe648998f6e2e58c0718234cad4e97735e3b0481064", size = 328310 },
+    { url = "https://files.pythonhosted.org/packages/7f/b0/ec693525edad354665209695b945847db82c20ddb14d3498569a67ec9c25/sentry_sdk-3.0.0a2-py2.py3-none-any.whl", hash = "sha256:293945ed536c24c9ba7f909c9897f28fa1871f0758436f3edcdcad0c026f6783", size = 330704 },
 ]
 
 [[package]]
@@ -353,8 +356,8 @@ dependencies = [
 requires-dist = [
     { name = "ipdb", specifier = ">=0.13.13" },
     { name = "pytest-rerunfailures", specifier = ">=15.0" },
-    { name = "pytest-sentry" },
-    { name = "sentry-sdk", specifier = "==3.0.0a1" },
+    { name = "pytest-sentry", editable = "../../pytest-sentry" },
+    { name = "sentry-sdk", specifier = "==3.0.0a2" },
 ]
 
 [[package]]

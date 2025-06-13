@@ -7,7 +7,6 @@ dependencies = [
     "ipdb>=0.13.13",
     "sentry-sdk",
     "openai-agents>0.0.16",
-    "simpleeval>=0.9.13",
 ]
 
 [tool.uv.sources]

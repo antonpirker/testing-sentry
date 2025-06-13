@@ -7,9 +7,9 @@ dependencies = [
     "ipdb>=0.13.13",
     "pytest-rerunfailures>=15.0",
     "pytest-sentry",
-    "sentry-sdk==3.0.0a1",
+    "sentry-sdk==3.0.0a2",
 ]
 
 [tool.uv.sources]
-# pytest-sentry = { path = "../../pytest-sentry", editable = true }
+pytest-sentry = { path = "../../pytest-sentry", editable = true }
 # sentry-sdk = { path = "../../sentry-python", editable = true }
