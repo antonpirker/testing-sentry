@@ -27,6 +27,18 @@ def multiply(x: int, y: int) -> int:
     return x * y
 
 
+@function_tool
+def magic_tool() -> int:
+    """A magic tool that always returns 123"""
+    return 123
+
+
+@function_tool
+def query_database(query: str) -> str:
+    """A tool to query a database"""
+    return "hello"
+
+
 class FinalResult(BaseModel):
     number: int
 
@@ -42,7 +54,7 @@ multiply_agent = Agent(
 random_number_agent = Agent(
     name="Random Number Agent",
     instructions="Generate a random number. If it's even, hand off to multiply agent to multiply by 2. If it's odd, hand off to the multiply agent to multiply by 30.",
-    tools=[random_number],
+    tools=[random_number, magic_tool, query_database],
     output_type=FinalResult,
     handoffs=[multiply_agent],
     model="gpt-4o-mini",
@@ -54,6 +66,8 @@ random_number_agent = Agent(
         max_tokens=100,
     )
 )
+
+
 
 PROMPT = (
     "You are a helpful research assistant. Given a query, come up with a set of web searches "
