@@ -22,7 +22,6 @@ def my_pipeline(client):
         )
         print("Message:")
         print(message.dict())
-        import ipdb; ipdb.set_trace()
 
         # Sync embeddings
         embedding = client.embeddings.create(

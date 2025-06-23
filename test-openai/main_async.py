@@ -9,7 +9,7 @@ from sentry_sdk.integrations.openai import OpenAIIntegration
 
 
 @ai_track("My async OpenAI pipeline")
-async def my_pipeline(client):    
+async def my_pipeline(client):
     with sentry_sdk.start_transaction(name="openai-async"):
         # Async create message
         message = await client.chat.completions.create(
@@ -26,7 +26,7 @@ async def my_pipeline(client):
 
         # Async embeddings
         result = await client.embeddings.create(
-            input="Your text goes here", 
+            input="Your text goes here",
             model="text-embedding-3-small",
         )
         embedding = result.data[0].embedding
@@ -58,7 +58,7 @@ async def main():
         send_default_pii=True,
         debug=True,
         integrations=[
-            OpenAIIntegration(include_prompts=True), 
+            OpenAIIntegration(include_prompts=True),
         ],
     )
 
@@ -66,7 +66,7 @@ async def main():
         api_key=os.environ.get("OPENAI_API_KEY"),
     )
 
-    await my_pipeline(client)    
+    await my_pipeline(client)
 
 
 asyncio.run(main())
