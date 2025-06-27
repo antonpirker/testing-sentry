@@ -1,7 +1,10 @@
 import random
 import time
+import logging
 
 import pytest
+
+logger = logging.getLogger(__name__)
 
 
 @pytest.fixture()
@@ -26,3 +29,9 @@ def test_flaky():
 def test_always_fails():
     time.sleep(random.random())
     assert False
+
+
+def test_logger_exception():
+    logger.exception("This is a test exception")
+
+    assert True
