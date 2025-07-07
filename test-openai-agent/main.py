@@ -11,12 +11,12 @@ from sentry_sdk.integrations.openai_agents import OpenAIAgentsIntegration
 import agents
 
 
-@agents.function_tool
+@agents.function_tool()
 def random_number(max: int) -> int:
     """
     Generate a random number up to the provided maximum.
     """
-    # 1/0
+    1/0
     time.sleep(0.34)
     return random.randint(0, max)
 
