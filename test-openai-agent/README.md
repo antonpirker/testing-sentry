@@ -1,7 +1,7 @@
 
 ## Prerequisites
 
-You need to have Python installed.
+You need to have Python and `curl` installed.
 
 ## Configure
 
@@ -11,7 +11,7 @@ Set the following environment variables:
 
 ## Run
 
-Just call this:
+Just call this to run three agents (one doing a handoff and by calling it twice also uses cached tokens, and one doing reasoning):
 ```bash
 ./run.sh
 ```
