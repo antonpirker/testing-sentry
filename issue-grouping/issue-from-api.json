@@ -1,40 +1,44 @@
 {
-    "event_id": "8c753ebe0bed4e8fa644d7214967f1c0",
+    "event_id": "dffe1df793184711810b7c5a43817e6a",
     "project": 1,
-    "release": "backend@ba3fd4bced1d54956931246a86864fc179d5148b",
+    "release": "backend@a0e728ad25828c4a0ce3bcae089137dae950ddf9",
     "dist": null,
     "platform": "python",
     "message": "Failed to run comparison query",
-    "datetime": "2025-07-02T16:43:04+00:00",
+    "datetime": "2025-07-06T17:12:50+00:00",
     "tags": [
       ["environment", "prod"],
       ["handled", "yes"],
       ["level", "error"],
       ["logger", "sentry.incidents.utils.process_update_helpers"],
       ["mechanism", "logging"],
-      ["project_id", "4506860265668608"],
+      ["project_id", "60915"],
       ["query.has_or_condition", "False"],
-      ["query.query_string", "(event.type:error) AND (issue:BOOST-INBOX-4K)"],
+      ["query.query_string", "(event.type:error) AND (issue:SILVERFIN-2PK5)"],
       ["query.use_aggregate_conditions", "False"],
-      ["query_subscription_id", "60/7285b974098011efb28c12598142fbc4"],
+      ["query_subscription_id", "20/101212aa098111efbc95824069e09687"],
       ["querybuilder.name", "ErrorsQueryBuilder"],
       ["runtime", "CPython 3.13.1"],
       ["runtime.name", "CPython"],
-      ["release", "backend@ba3fd4bced1d54956931246a86864fc179d5148b"],
+      ["release", "backend@a0e728ad25828c4a0ce3bcae089137dae950ddf9"],
       ["sentry_region", "us"],
       [
         "server_name",
-        "getsentry-consumer-events-subscriptions-production-canary-6xvcj"
+        "getsentry-consumer-events-subscriptions-production-545fbc7fss82"
       ],
-      ["silo_mode", "REGION"]
+      ["silo_mode", "REGION"],
+      ["transaction", "query_subscription_consumer_process_message"]
     ],
     "_dsc": {
       "environment": "prod",
       "public_key": "16427b2f210046b585ee51fd8a1ac54f",
-      "release": "backend@ba3fd4bced1d54956931246a86864fc179d5148b",
+      "release": "backend@a0e728ad25828c4a0ce3bcae089137dae950ddf9",
       "replay_id": null,
-      "trace_id": "0eec73737a594dd19cb1b5df2669208f",
-      "transaction": null
+      "sample_rand": "0.002753",
+      "sample_rate": "0.01",
+      "sampled": true,
+      "trace_id": "7b30008d879242a5afe5d23cd050c4d0",
+      "transaction": "query_subscription_consumer_process_message"
     },
     "_meta": {
       "breadcrumbs": {
@@ -46,59 +50,72 @@
               }
             }
           },
+          "10": {
+            "data": {
+              "http.query": {
+                "": { "rem": [["@password:filter", "s", 0, 10]], "len": 122 }
+              }
+            }
+          },
+          "12": {
+            "data": {
+              "http.query": {
+                "": { "rem": [["@password:filter", "s", 0, 10]], "len": 122 }
+              }
+            }
+          },
+          "14": {
+            "data": {
+              "http.query": {
+                "": { "rem": [["@password:filter", "s", 0, 10]], "len": 122 }
+              }
+            }
+          },
           "16": {
-            "message": {
-              "": { "rem": [["!limit", "x", 1021, 1024]], "len": 1308 }
+            "data": {
+              "http.query": {
+                "": { "rem": [["@password:filter", "s", 0, 10]], "len": 122 }
+              }
+            }
+          },
+          "18": {
+            "data": {
+              "http.query": {
+                "": { "rem": [["@password:filter", "s", 0, 10]], "len": 122 }
+              }
+            }
+          },
+          "20": {
+            "data": {
+              "http.query": {
+                "": { "rem": [["@password:filter", "s", 0, 10]], "len": 122 }
+              }
             }
           },
           "3": {
             "data": {
-              "redis.key": {
-                "": { "rem": [["@creditcard:filter", "s", 27, 37]], "len": 56 }
+              "http.query": {
+                "": { "rem": [["@password:filter", "s", 0, 10]], "len": 122 }
               }
-            },
-            "message": {
-              "": { "rem": [["@creditcard:filter", "s", 32, 42]], "len": 62 }
             }
           },
-          "4": {
-            "data": {
-              "redis.key": {
-                "": { "rem": [["@creditcard:filter", "s", 27, 37]], "len": 75 }
-              }
-            },
+          "36": {
             "message": {
-              "": { "rem": [["@creditcard:filter", "s", 32, 42]], "len": 81 }
+              "": { "rem": [["!limit", "x", 1021, 1024]], "len": 1308 }
             }
           },
           "5": {
             "data": {
-              "redis.key": {
-                "": { "rem": [["@creditcard:filter", "s", 27, 37]], "len": 77 }
+              "http.query": {
+                "": { "rem": [["@password:filter", "s", 0, 10]], "len": 122 }
               }
-            },
-            "message": {
-              "": { "rem": [["@creditcard:filter", "s", 32, 42]], "len": 83 }
-            }
-          },
-          "6": {
-            "data": {
-              "redis.key": {
-                "": { "rem": [["@creditcard:filter", "s", 27, 37]], "len": 75 }
-              }
-            },
-            "message": {
-              "": { "rem": [["@creditcard:filter", "s", 32, 42]], "len": 81 }
             }
           },
           "7": {
             "data": {
-              "redis.key": {
-                "": { "rem": [["@creditcard:filter", "s", 27, 37]], "len": 77 }
+              "http.query": {
+                "": { "rem": [["@password:filter", "s", 0, 10]], "len": 122 }
               }
-            },
-            "message": {
-              "": { "rem": [["@creditcard:filter", "s", 32, 42]], "len": 83 }
             }
           }
         }
@@ -108,64 +125,14 @@
           "0": {
             "stacktrace": {
               "frames": {
-                "12": {
-                  "vars": {
-                    "project_ids": {
-                      "0": {
-                        "": {
-                          "rem": [["@creditcard:filter", "s", 0, 10]],
-                          "len": 16
-                        }
-                      }
-                    }
-                  }
-                },
-                "13": {
-                  "vars": {
-                    "project_ids": {
-                      "0": {
-                        "": {
-                          "rem": [["@creditcard:filter", "s", 0, 10]],
-                          "len": 16
-                        }
-                      }
-                    }
-                  }
-                },
                 "2": {
                   "vars": {
                     "preparation_data": {
                       "authkey": {
                         "": {
                           "rem": [["@password:filter", "s", 0, 10]],
-                          "len": 96
+                          "len": 83
                         }
-                      }
-                    }
-                  }
-                },
-                "7": {
-                  "vars": {
-                    "message_value": {
-                      "": {
-                        "rem": [["@creditcard:filter", "s", 225, 235]],
-                        "len": 495
-                      }
-                    },
-                    "value": {
-                      "": {
-                        "rem": [["@creditcard:filter", "s", 322, 332]],
-                        "len": 765
-                      }
-                    }
-                  }
-                },
-                "8": {
-                  "vars": {
-                    "message_value": {
-                      "": {
-                        "rem": [["@creditcard:filter", "s", 225, 235]],
-                        "len": 495
                       }
                     }
                   }
@@ -176,128 +143,14 @@
           "1": {
             "stacktrace": {
               "frames": {
-                "12": {
-                  "vars": {
-                    "project_ids": {
-                      "0": {
-                        "": {
-                          "rem": [["@creditcard:filter", "s", 0, 10]],
-                          "len": 16
-                        }
-                      }
-                    }
-                  }
-                },
-                "13": {
-                  "vars": {
-                    "project_ids": {
-                      "0": {
-                        "": {
-                          "rem": [["@creditcard:filter", "s", 0, 10]],
-                          "len": 16
-                        }
-                      }
-                    }
-                  }
-                },
                 "2": {
                   "vars": {
                     "preparation_data": {
                       "authkey": {
                         "": {
                           "rem": [["@password:filter", "s", 0, 10]],
-                          "len": 96
+                          "len": 83
                         }
-                      }
-                    }
-                  }
-                },
-                "20": {
-                  "vars": {
-                    "project_ids": {
-                      "0": {
-                        "": {
-                          "rem": [["@creditcard:filter", "s", 0, 10]],
-                          "len": 16
-                        }
-                      }
-                    }
-                  }
-                },
-                "21": {
-                  "vars": {
-                    "params": {
-                      "project_id": {
-                        "0": {
-                          "": {
-                            "rem": [["@creditcard:filter", "s", 0, 10]],
-                            "len": 16
-                          }
-                        }
-                      }
-                    },
-                    "project_ids": {
-                      "0": {
-                        "": {
-                          "rem": [["@creditcard:filter", "s", 0, 10]],
-                          "len": 16
-                        }
-                      }
-                    }
-                  }
-                },
-                "22": {
-                  "vars": {
-                    "kwargs": {
-                      "params": {
-                        "project_id": {
-                          "0": {
-                            "": {
-                              "rem": [["@creditcard:filter", "s", 0, 10]],
-                              "len": 16
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                "23": {
-                  "vars": {
-                    "params": {
-                      "project_id": {
-                        "0": {
-                          "": {
-                            "rem": [["@creditcard:filter", "s", 0, 10]],
-                            "len": 16
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                "7": {
-                  "vars": {
-                    "message_value": {
-                      "": {
-                        "rem": [["@creditcard:filter", "s", 225, 235]],
-                        "len": 495
-                      }
-                    },
-                    "value": {
-                      "": {
-                        "rem": [["@creditcard:filter", "s", 322, 332]],
-                        "len": 765
-                      }
-                    }
-                  }
-                },
-                "8": {
-                  "vars": {
-                    "message_value": {
-                      "": {
-                        "rem": [["@creditcard:filter", "s", 225, 235]],
-                        "len": 495
                       }
                     }
                   }
@@ -308,11 +161,11 @@
         }
       }
     },
-    "_metrics": { "bytes.ingested.event": 89280, "bytes.stored.event": 105141 },
+    "_metrics": { "bytes.ingested.event": 97649, "bytes.stored.event": 113701 },
     "breadcrumbs": {
       "values": [
         {
-          "timestamp": 1751474058.849376,
+          "timestamp": 1751789808.405887,
           "type": "http",
           "category": "httplib",
           "level": "info",
@@ -322,11 +175,13 @@
             "http.query": "recursive=true",
             "http.response.status_code": 200,
             "reason": "OK",
+            "thread.id": "135186541258432",
+            "thread.name": "Thread-3 (_run)",
             "url": "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/"
           }
         },
         {
-          "timestamp": 1751474058.853293,
+          "timestamp": 1751789808.408101,
           "type": "http",
           "category": "httplib",
           "level": "info",
@@ -336,139 +191,436 @@
             "http.query": "[Filtered]",
             "http.response.status_code": 200,
             "reason": "OK",
+            "thread.id": "135186541258432",
+            "thread.name": "Thread-3 (_run)",
             "url": "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/getsentry-web@internal-sentry.iam.gserviceaccount.com/token"
           }
         },
         {
-          "timestamp": 1751474584.379244,
+          "timestamp": 1751793122.745805,
+          "type": "http",
+          "category": "httplib",
+          "level": "info",
+          "data": {
+            "http.fragment": "",
+            "http.method": "GET",
+            "http.query": "recursive=true",
+            "http.response.status_code": 200,
+            "reason": "OK",
+            "thread.id": "135185437816512",
+            "thread.name": "Thread-28 (_run)",
+            "url": "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/getsentry-web@internal-sentry.iam.gserviceaccount.com/"
+          }
+        },
+        {
+          "timestamp": 1751793122.748015,
+          "type": "http",
+          "category": "httplib",
+          "level": "info",
+          "data": {
+            "http.fragment": "",
+            "http.method": "GET",
+            "http.query": "[Filtered]",
+            "http.response.status_code": 200,
+            "reason": "OK",
+            "thread.id": "135185437816512",
+            "thread.name": "Thread-28 (_run)",
+            "url": "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/getsentry-web@internal-sentry.iam.gserviceaccount.com/token"
+          }
+        },
+        {
+          "timestamp": 1751795303.572569,
+          "type": "http",
+          "category": "httplib",
+          "level": "info",
+          "data": {
+            "http.fragment": "",
+            "http.method": "GET",
+            "http.query": "recursive=true",
+            "http.response.status_code": 200,
+            "reason": "OK",
+            "thread.id": "135185437816512",
+            "thread.name": "Thread-41 (_run)",
+            "url": "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/getsentry-web@internal-sentry.iam.gserviceaccount.com/"
+          }
+        },
+        {
+          "timestamp": 1751795303.575099,
+          "type": "http",
+          "category": "httplib",
+          "level": "info",
+          "data": {
+            "http.fragment": "",
+            "http.method": "GET",
+            "http.query": "[Filtered]",
+            "http.response.status_code": 200,
+            "reason": "OK",
+            "thread.id": "135185437816512",
+            "thread.name": "Thread-41 (_run)",
+            "url": "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/getsentry-web@internal-sentry.iam.gserviceaccount.com/token"
+          }
+        },
+        {
+          "timestamp": 1751798673.128469,
+          "type": "http",
+          "category": "httplib",
+          "level": "info",
+          "data": {
+            "http.fragment": "",
+            "http.method": "GET",
+            "http.query": "recursive=true",
+            "http.response.status_code": 200,
+            "reason": "OK",
+            "thread.id": "135185051915968",
+            "thread.name": "Thread-85 (_run)",
+            "url": "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/getsentry-web@internal-sentry.iam.gserviceaccount.com/"
+          }
+        },
+        {
+          "timestamp": 1751798673.131431,
+          "type": "http",
+          "category": "httplib",
+          "level": "info",
+          "data": {
+            "http.fragment": "",
+            "http.method": "GET",
+            "http.query": "[Filtered]",
+            "http.response.status_code": 200,
+            "reason": "OK",
+            "thread.id": "135185051915968",
+            "thread.name": "Thread-85 (_run)",
+            "url": "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/getsentry-web@internal-sentry.iam.gserviceaccount.com/token"
+          }
+        },
+        {
+          "timestamp": 1751799661.592548,
+          "type": "log",
+          "category": "sentry.snuba.query_subscriptions.run",
+          "level": "error",
+          "message": "Unexpected error while handling message in QuerySubscriptionStrategy. Skipping message.",
+          "data": {
+            "offset": 2177303854,
+            "partition": 2,
+            "value": "{\"version\": 3, \"payload\": {\"subscription_id\": \"0/145cd6260b3111f0a5df561234142798\", \"request\": {\"query\": \"MATCH (events) SELECT count() AS `count` WHERE type = 'error' AND project_id IN array(500213) AND environment = 'production'\", \"tenant_ids\": {\"referrer\": \"subscriptions_executor\", \"organization_id\": 1}}, \"result\": {\"data\": [{\"count\": 0}], \"meta\": [{\"name\": \"count\", \"type\": \"UInt64\"}]}, \"timestamp\": \"2025-07-06T11:00:00\", \"entity\": \"events\"}}"
+          }
+        },
+        {
+          "timestamp": 1751801930.423664,
+          "type": "http",
+          "category": "httplib",
+          "level": "info",
+          "data": {
+            "http.fragment": "",
+            "http.method": "GET",
+            "http.query": "recursive=true",
+            "http.response.status_code": 200,
+            "reason": "OK",
+            "thread.id": "135184565401280",
+            "thread.name": "Thread-119 (_run)",
+            "url": "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/getsentry-web@internal-sentry.iam.gserviceaccount.com/"
+          }
+        },
+        {
+          "timestamp": 1751801930.42619,
+          "type": "http",
+          "category": "httplib",
+          "level": "info",
+          "data": {
+            "http.fragment": "",
+            "http.method": "GET",
+            "http.query": "[Filtered]",
+            "http.response.status_code": 200,
+            "reason": "OK",
+            "thread.id": "135184565401280",
+            "thread.name": "Thread-119 (_run)",
+            "url": "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/getsentry-web@internal-sentry.iam.gserviceaccount.com/token"
+          }
+        },
+        {
+          "timestamp": 1751805364.135842,
+          "type": "http",
+          "category": "httplib",
+          "level": "info",
+          "data": {
+            "http.fragment": "",
+            "http.method": "GET",
+            "http.query": "recursive=true",
+            "http.response.status_code": 200,
+            "reason": "OK",
+            "thread.id": "135185060308672",
+            "thread.name": "Thread-139 (_run)",
+            "url": "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/getsentry-web@internal-sentry.iam.gserviceaccount.com/"
+          }
+        },
+        {
+          "timestamp": 1751805364.138004,
+          "type": "http",
+          "category": "httplib",
+          "level": "info",
+          "data": {
+            "http.fragment": "",
+            "http.method": "GET",
+            "http.query": "[Filtered]",
+            "http.response.status_code": 200,
+            "reason": "OK",
+            "thread.id": "135185060308672",
+            "thread.name": "Thread-139 (_run)",
+            "url": "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/getsentry-web@internal-sentry.iam.gserviceaccount.com/token"
+          }
+        },
+        {
+          "timestamp": 1751808652.268622,
+          "type": "http",
+          "category": "httplib",
+          "level": "info",
+          "data": {
+            "http.fragment": "",
+            "http.method": "GET",
+            "http.query": "recursive=true",
+            "http.response.status_code": 200,
+            "reason": "OK",
+            "thread.id": "135184565401280",
+            "thread.name": "Thread-168 (_run)",
+            "url": "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/getsentry-web@internal-sentry.iam.gserviceaccount.com/"
+          }
+        },
+        {
+          "timestamp": 1751808652.270678,
+          "type": "http",
+          "category": "httplib",
+          "level": "info",
+          "data": {
+            "http.fragment": "",
+            "http.method": "GET",
+            "http.query": "[Filtered]",
+            "http.response.status_code": 200,
+            "reason": "OK",
+            "thread.id": "135184565401280",
+            "thread.name": "Thread-168 (_run)",
+            "url": "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/getsentry-web@internal-sentry.iam.gserviceaccount.com/token"
+          }
+        },
+        {
+          "timestamp": 1751812253.038871,
+          "type": "http",
+          "category": "httplib",
+          "level": "info",
+          "data": {
+            "http.fragment": "",
+            "http.method": "GET",
+            "http.query": "recursive=true",
+            "http.response.status_code": 200,
+            "reason": "OK",
+            "thread.id": "135185051915968",
+            "thread.name": "Thread-192 (_run)",
+            "url": "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/getsentry-web@internal-sentry.iam.gserviceaccount.com/"
+          }
+        },
+        {
+          "timestamp": 1751812253.041667,
+          "type": "http",
+          "category": "httplib",
+          "level": "info",
+          "data": {
+            "http.fragment": "",
+            "http.method": "GET",
+            "http.query": "[Filtered]",
+            "http.response.status_code": 200,
+            "reason": "OK",
+            "thread.id": "135185051915968",
+            "thread.name": "Thread-192 (_run)",
+            "url": "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/getsentry-web@internal-sentry.iam.gserviceaccount.com/token"
+          }
+        },
+        {
+          "timestamp": 1751815461.531598,
+          "type": "http",
+          "category": "httplib",
+          "level": "info",
+          "data": {
+            "http.fragment": "",
+            "http.method": "GET",
+            "http.query": "recursive=true",
+            "http.response.status_code": 200,
+            "reason": "OK",
+            "thread.id": "135184565401280",
+            "thread.name": "Thread-218 (_run)",
+            "url": "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/getsentry-web@internal-sentry.iam.gserviceaccount.com/"
+          }
+        },
+        {
+          "timestamp": 1751815461.53374,
+          "type": "http",
+          "category": "httplib",
+          "level": "info",
+          "data": {
+            "http.fragment": "",
+            "http.method": "GET",
+            "http.query": "[Filtered]",
+            "http.response.status_code": 200,
+            "reason": "OK",
+            "thread.id": "135184565401280",
+            "thread.name": "Thread-218 (_run)",
+            "url": "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/getsentry-web@internal-sentry.iam.gserviceaccount.com/token"
+          }
+        },
+        {
+          "timestamp": 1751819076.940283,
+          "type": "http",
+          "category": "httplib",
+          "level": "info",
+          "data": {
+            "http.fragment": "",
+            "http.method": "GET",
+            "http.query": "recursive=true",
+            "http.response.status_code": 200,
+            "reason": "OK",
+            "thread.id": "135184565401280",
+            "thread.name": "Thread-242 (_run)",
+            "url": "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/getsentry-web@internal-sentry.iam.gserviceaccount.com/"
+          }
+        },
+        {
+          "timestamp": 1751819076.942701,
+          "type": "http",
+          "category": "httplib",
+          "level": "info",
+          "data": {
+            "http.fragment": "",
+            "http.method": "GET",
+            "http.query": "[Filtered]",
+            "http.response.status_code": 200,
+            "reason": "OK",
+            "thread.id": "135184565401280",
+            "thread.name": "Thread-242 (_run)",
+            "url": "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/getsentry-web@internal-sentry.iam.gserviceaccount.com/token"
+          }
+        },
+        {
+          "timestamp": 1751821970.669532,
+          "type": "default",
+          "category": "query",
+          "level": "info",
+          "message": "SELECT \"sentry_querysubscription\".\"id\", \"sentry_querysubscription\".\"project_id\", \"sentry_querysubscription\".\"snuba_query_id\", \"sentry_querysubscription\".\"type\", \"sentry_querysubscription\".\"status\", \"sentry_querysubscription\".\"subscription_id\", \"sentry_querysubscription\".\"date_added\", \"sentry_querysubscription\".\"date_updated\", \"sentry_querysubscription\".\"query_extra\" FROM \"sentry_querysubscription\" WHERE \"sentry_querysubscription\".\"subscription_id\" = %s LIMIT 21"
+        },
+        {
+          "timestamp": 1751821970.673561,
           "type": "default",
           "category": "query",
           "level": "info",
           "message": "SELECT \"sentry_snubaquery\".\"id\", \"sentry_snubaquery\".\"environment_id\", \"sentry_snubaquery\".\"type\", \"sentry_snubaquery\".\"dataset\", \"sentry_snubaquery\".\"query\", \"sentry_snubaquery\".\"aggregate\", \"sentry_snubaquery\".\"time_window\", \"sentry_snubaquery\".\"resolution\", \"sentry_snubaquery\".\"date_added\" FROM \"sentry_snubaquery\" WHERE \"sentry_snubaquery\".\"id\" = %s LIMIT 21"
         },
         {
-          "timestamp": 1751474584.390324,
+          "timestamp": 1751821970.676737,
+          "type": "default",
+          "category": "query",
+          "level": "info",
+          "message": "SELECT \"sentry_alertrule\".\"id\", \"sentry_alertrule\".\"organization_id\", \"sentry_alertrule\".\"snuba_query_id\", \"sentry_alertrule\".\"user_id\", \"sentry_alertrule\".\"team_id\", \"sentry_alertrule\".\"name\", \"sentry_alertrule\".\"status\", \"sentry_alertrule\".\"threshold_type\", \"sentry_alertrule\".\"resolve_threshold\", \"sentry_alertrule\".\"threshold_period\", \"sentry_alertrule\".\"comparison_delta\", \"sentry_alertrule\".\"date_modified\", \"sentry_alertrule\".\"date_added\", \"sentry_alertrule\".\"monitor_type\", \"sentry_alertrule\".\"description\", \"sentry_alertrule\".\"detection_type\", \"sentry_alertrule\".\"sensitivity\", \"sentry_alertrule\".\"seasonality\" FROM \"sentry_alertrule\" INNER JOIN \"sentry_snubaquery\" ON (\"sentry_alertrule\".\"snuba_query_id\" = \"sentry_snubaquery\".\"id\") INNER JOIN \"sentry_querysubscription\" ON (\"sentry_snubaquery\".\"id\" = \"sentry_querysubscription\".\"snuba_query_id\") WHERE (NOT (\"sentry_alertrule\".\"status\" = %s) AND \"sentry_querysubscription\".\"id\" = %s) LIMIT 21"
+        },
+        {
+          "timestamp": 1751821970.681399,
+          "type": "default",
+          "category": "query",
+          "level": "info",
+          "message": "SELECT \"sentry_alertruletrigger\".\"id\", \"sentry_alertruletrigger\".\"alert_rule_id\", \"sentry_alertruletrigger\".\"label\", \"sentry_alertruletrigger\".\"threshold_type\", \"sentry_alertruletrigger\".\"alert_threshold\", \"sentry_alertruletrigger\".\"resolve_threshold\", \"sentry_alertruletrigger\".\"date_added\" FROM \"sentry_alertruletrigger\" WHERE \"sentry_alertruletrigger\".\"alert_rule_id\" = %s"
+        },
+        {
+          "timestamp": 1751821970.684975,
           "type": "redis",
           "category": "redis",
           "level": "info",
-          "message": "GET '{alert_rule:226731:project:[Filtered]}:last_update'",
+          "message": "GET '{alert_rule:234627:project:60915}:last_update'",
           "data": {
             "db.operation": "GET",
             "redis.command": "GET",
             "redis.is_cluster": true,
-            "redis.key": "{alert_rule:226731:project:[Filtered]}:last_update"
+            "redis.key": "{alert_rule:234627:project:60915}:last_update"
           }
         },
         {
-          "timestamp": 1751474584.391736,
+          "timestamp": 1751821970.68602,
           "type": "redis",
           "category": "redis",
           "level": "info",
-          "message": "GET '{alert_rule:226731:project:[Filtered]}:trigger:573883:alert_triggered'",
+          "message": "GET '{alert_rule:234627:project:60915}:trigger:625930:alert_triggered'",
           "data": {
             "db.operation": "GET",
             "redis.command": "GET",
             "redis.is_cluster": true,
-            "redis.key": "{alert_rule:226731:project:[Filtered]}:trigger:573883:alert_triggered"
+            "redis.key": "{alert_rule:234627:project:60915}:trigger:625930:alert_triggered"
           }
         },
         {
-          "timestamp": 1751474584.393068,
+          "timestamp": 1751821970.687049,
           "type": "redis",
           "category": "redis",
           "level": "info",
-          "message": "GET '{alert_rule:226731:project:[Filtered]}:trigger:573883:resolve_triggered'",
+          "message": "GET '{alert_rule:234627:project:60915}:trigger:625930:resolve_triggered'",
           "data": {
             "db.operation": "GET",
             "redis.command": "GET",
             "redis.is_cluster": true,
-            "redis.key": "{alert_rule:226731:project:[Filtered]}:trigger:573883:resolve_triggered"
+            "redis.key": "{alert_rule:234627:project:60915}:trigger:625930:resolve_triggered"
           }
         },
         {
-          "timestamp": 1751474584.394259,
-          "type": "redis",
-          "category": "redis",
-          "level": "info",
-          "message": "GET '{alert_rule:226731:project:[Filtered]}:trigger:573882:alert_triggered'",
-          "data": {
-            "db.operation": "GET",
-            "redis.command": "GET",
-            "redis.is_cluster": true,
-            "redis.key": "{alert_rule:226731:project:[Filtered]}:trigger:573882:alert_triggered"
-          }
-        },
-        {
-          "timestamp": 1751474584.395457,
-          "type": "redis",
-          "category": "redis",
-          "level": "info",
-          "message": "GET '{alert_rule:226731:project:[Filtered]}:trigger:573882:resolve_triggered'",
-          "data": {
-            "db.operation": "GET",
-            "redis.command": "GET",
-            "redis.is_cluster": true,
-            "redis.key": "{alert_rule:226731:project:[Filtered]}:trigger:573882:resolve_triggered"
-          }
-        },
-        {
-          "timestamp": 1751474584.397444,
+          "timestamp": 1751821970.687495,
           "type": "default",
           "category": "query",
           "level": "info",
           "message": "SELECT \"sentry_project\".\"id\", \"sentry_project\".\"slug\", \"sentry_project\".\"name\", \"sentry_project\".\"forced_color\", \"sentry_project\".\"organization_id\", \"sentry_project\".\"public\", \"sentry_project\".\"date_added\", \"sentry_project\".\"status\", \"sentry_project\".\"first_event\", \"sentry_project\".\"template_id\", \"sentry_project\".\"external_id\", \"sentry_project\".\"flags\", \"sentry_project\".\"platform\" FROM \"sentry_project\" WHERE \"sentry_project\".\"id\" = %s LIMIT 21"
         },
         {
-          "timestamp": 1751474584.399783,
+          "timestamp": 1751821970.689191,
           "type": "default",
           "category": "query",
           "level": "info",
           "message": "SELECT \"sentry_organization\".\"id\", \"sentry_organization\".\"name\", \"sentry_organization\".\"slug\", \"sentry_organization\".\"status\", \"sentry_organization\".\"date_added\", \"sentry_organization\".\"default_role\", \"sentry_organization\".\"is_test\", \"sentry_organization\".\"flags\" FROM \"sentry_organization\" WHERE \"sentry_organization\".\"id\" = %s LIMIT 21"
         },
         {
-          "timestamp": 1751474584.403598,
+          "timestamp": 1751821970.691549,
           "type": "default",
           "category": "query",
           "level": "info",
           "message": "SELECT \"sentry_snubaqueryeventtype\".\"id\", \"sentry_snubaqueryeventtype\".\"snuba_query_id\", \"sentry_snubaqueryeventtype\".\"type\" FROM \"sentry_snubaqueryeventtype\" WHERE \"sentry_snubaqueryeventtype\".\"snuba_query_id\" = %s"
         },
         {
-          "timestamp": 1751474584.406217,
+          "timestamp": 1751821970.693196,
           "type": "default",
           "category": "query",
           "level": "info",
           "message": "SELECT \"sentry_environment\".\"id\", \"sentry_environment\".\"organization_id\", \"sentry_environment\".\"name\", \"sentry_environment\".\"date_added\" FROM \"sentry_environment\" WHERE \"sentry_environment\".\"id\" = %s LIMIT 21"
         },
         {
-          "timestamp": 1751474584.4088,
+          "timestamp": 1751821970.694868,
           "type": "default",
           "category": "query",
           "level": "info",
           "message": "SELECT \"sentry_project\".\"id\", \"sentry_project\".\"slug\", \"sentry_project\".\"name\", \"sentry_project\".\"forced_color\", \"sentry_project\".\"organization_id\", \"sentry_project\".\"public\", \"sentry_project\".\"date_added\", \"sentry_project\".\"status\", \"sentry_project\".\"first_event\", \"sentry_project\".\"template_id\", \"sentry_project\".\"external_id\", \"sentry_project\".\"flags\", \"sentry_project\".\"platform\" FROM \"sentry_project\" WHERE \"sentry_project\".\"id\" IN (%s)"
         },
         {
-          "timestamp": 1751474584.41127,
+          "timestamp": 1751821970.696694,
           "type": "default",
           "category": "query",
           "level": "info",
           "message": "SELECT \"sentry_organization\".\"id\", \"sentry_organization\".\"name\", \"sentry_organization\".\"slug\", \"sentry_organization\".\"status\", \"sentry_organization\".\"date_added\", \"sentry_organization\".\"default_role\", \"sentry_organization\".\"is_test\", \"sentry_organization\".\"flags\" FROM \"sentry_organization\" WHERE \"sentry_organization\".\"id\" = %s ORDER BY \"sentry_organization\".\"id\" ASC LIMIT 1"
         },
         {
-          "timestamp": 1751474584.413527,
+          "timestamp": 1751821970.6983,
           "type": "default",
           "category": "query",
           "level": "info",
           "message": "SELECT \"sentry_environment\".\"id\", \"sentry_environment\".\"organization_id\", \"sentry_environment\".\"name\", \"sentry_environment\".\"date_added\" FROM \"sentry_environment\" WHERE (\"sentry_environment\".\"name\" = %s AND \"sentry_environment\".\"organization_id\" = %s)"
         },
         {
-          "timestamp": 1751474584.418313,
+          "timestamp": 1751821970.701208,
           "type": "default",
           "category": "query",
           "level": "info",
           "message": "SELECT \"sentry_organization\".\"id\", \"sentry_organization\".\"name\", \"sentry_organization\".\"slug\", \"sentry_organization\".\"status\", \"sentry_organization\".\"date_added\", \"sentry_organization\".\"default_role\", \"sentry_organization\".\"is_test\", \"sentry_organization\".\"flags\" FROM \"sentry_organization\" WHERE \"sentry_organization\".\"id\" = %s LIMIT 21"
         },
         {
-          "timestamp": 1751474584.422643,
+          "timestamp": 1751821970.703583,
           "type": "default",
           "category": "query",
           "level": "info",
@@ -479,6 +631,10 @@
     "contexts": {
       "flags": {
         "values": [
+          {
+            "flag": "option.transaction-events.force-disable-internal-project",
+            "result": false
+          },
           { "flag": "feature.organizations:incidents", "result": true },
           {
             "flag": "feature.organizations:workflow-engine-metric-alert-processing",
@@ -504,13 +660,19 @@
         "type": "runtime"
       },
       "trace": {
-        "trace_id": "0eec73737a594dd19cb1b5df2669208f",
-        "span_id": "8bf7018203c5ca03",
+        "trace_id": "7b30008d879242a5afe5d23cd050c4d0",
+        "span_id": "84525f200ccb025f",
+        "parent_span_id": "bc040f9510cb9668",
+        "op": "process_message",
         "status": "unknown",
+        "client_sample_rate": 0.01,
+        "origin": "manual",
+        "sampled": true,
+        "data": { "thread.name": "MainThread", "thread.id": "135188823239552" },
         "type": "trace"
       }
     },
-    "culprit": "sentry.search.events.datasets.discover in _issue_filter_converter",
+    "culprit": "query_subscription_consumer_process_message",
     "environment": "prod",
     "exception": {
       "values": [
@@ -536,7 +698,7 @@
                   "__name__": "'__main__'",
                   "__package__": "None",
                   "__spec__": "None",
-                  "spawn_main": "<function spawn_main at 0x7dafa73009a0>"
+                  "spawn_main": "<function spawn_main at 0x7af4198149a0>"
                 },
                 "data": { "client_in_app": true }
               },
@@ -712,22 +874,22 @@
                 ],
                 "in_app": false,
                 "vars": {
-                  "completed": "49",
-                  "get": "<bound method SimpleQueue.get of <multiprocessing.queues.SimpleQueue object at 0x7dafa7109010>>",
+                  "completed": "3875",
+                  "get": "<bound method SimpleQueue.get of <multiprocessing.queues.SimpleQueue object at 0x7af41961d010>>",
                   "initargs": [],
-                  "initializer": "functools.partial(<function parallel_worker_initializer at 0x7dafa6e8dee0>, functools.partial(<function _initialize_arroyo_subprocess at 0x7dafa51df880>, initializer=None, tags={'consumer_group': 'sentry-events-subscription-results-consumers'}))",
-                  "inqueue": "<multiprocessing.queues.SimpleQueue object at 0x7dafa7109010>",
+                  "initializer": "functools.partial(<function parallel_worker_initializer at 0x7af4193a5d00>, functools.partial(<function _initialize_arroyo_subprocess at 0x7af4176f3f60>, initializer=None, tags={'consumer_group': 'sentry-events-subscription-results-consumers'}))",
+                  "inqueue": "<multiprocessing.queues.SimpleQueue object at 0x7af41961d010>",
                   "maxtasks": "None",
-                  "outqueue": "<multiprocessing.queues.SimpleQueue object at 0x7dafa732a850>",
-                  "put": "<bound method SimpleQueue.put of <multiprocessing.queues.SimpleQueue object at 0x7dafa732a850>>",
+                  "outqueue": "<multiprocessing.queues.SimpleQueue object at 0x7af41983e850>",
+                  "put": "<bound method SimpleQueue.put of <multiprocessing.queues.SimpleQueue object at 0x7af41983e850>>",
                   "task": [
-                    "405",
+                    "31130",
                     "0",
-                    "<function parallel_run_task_worker_apply at 0x7dafa6efbe20>",
+                    "<function parallel_run_task_worker_apply at 0x7af418533ba0>",
                     [
-                      "functools.partial(<function process_message at 0x7daf20673ec0>, <Dataset.Events: 'events'>, 'events-subscription-results', 'events-subscription-results')",
-                      "<MessageBatch: 100 items, 52687 bytes>",
-                      "SharedMemory('psm_7d98df1d', size=16777216)"
+                      "functools.partial(<function process_message at 0x7af39355b240>, <Dataset.Events: 'events'>, 'events-subscription-results', 'events-subscription-results')",
+                      "<MessageBatch: 100 items, 81586 bytes>",
+                      "SharedMemory('psm_ed9d3bc1', size=16777216)"
                     ],
                     {}
                   ],
@@ -758,14 +920,14 @@
                 ],
                 "in_app": false,
                 "vars": {
-                  "function": "functools.partial(<function process_message at 0x7daf20673ec0>, <Dataset.Events: 'events'>, 'events-subscription-results', 'events-subscription-results')",
-                  "input_batch": "<MessageBatch: 100 items, 52687 bytes>",
-                  "message": "Message({Partition(topic=Topic(name='events-subscription-results'), index=14): 2147953216})",
-                  "next_index_to_process": "70",
-                  "output_block": "SharedMemory('psm_7d98df1d', size=16777216)",
-                  "payload": "Message({Partition(topic=Topic(name='events-subscription-results'), index=15): 2145299440})",
+                  "function": "functools.partial(<function process_message at 0x7af39355b240>, <Dataset.Events: 'events'>, 'events-subscription-results', 'events-subscription-results')",
+                  "input_batch": "<MessageBatch: 100 items, 81586 bytes>",
+                  "message": "Message({Partition(topic=Topic(name='events-subscription-results'), index=3): 2182899205})",
+                  "next_index_to_process": "14",
+                  "output_block": "SharedMemory('psm_ed9d3bc1', size=16777216)",
+                  "payload": "Message({Partition(topic=Topic(name='events-subscription-results'), index=2): 2177955319})",
                   "start_index": "0",
-                  "valid_messages_transformed": "<MessageBatch: 70 items, 0 bytes>"
+                  "valid_messages_transformed": "<MessageBatch: 14 items, 0 bytes>"
                 },
                 "data": { "client_in_app": false }
               },
@@ -793,15 +955,15 @@
                 "in_app": true,
                 "vars": {
                   "dataset": "<Dataset.Events: 'events'>",
-                  "handle_message": "<function handle_message at 0x7daf2a3eb9c0>",
+                  "handle_message": "<function handle_message at 0x7af3a4aebc40>",
                   "logical_topic": "'events-subscription-results'",
-                  "message": "Message({Partition(topic=Topic(name='events-subscription-results'), index=14): 2147953216})",
-                  "message_value": "b'{\"version\": 3, \"payload\": {\"subscription_id\": \"60/7285b974098011efb28c12598142fbc4\", \"request\": {\"query\": \"MATCH (events) SELECT count() AS `count` WHERE (type = \\'error\\' AND group_id = 5059481984) AND project_id IN array([Filtered]) AND environment = \\'production\\'\", \"tenant_ids\": {\"referrer\": \"subscriptions_executor\", \"organization_id\": 1}}, \"result\": {\"data\": [{\"count\": 0}], \"meta\": [{\"name\": \"count\", \"type\": \"UInt64\"}]}, \"timestamp\": \"2025-07-02T16:42:00\", \"entity\": \"events\"}}'",
+                  "message": "Message({Partition(topic=Topic(name='events-subscription-results'), index=3): 2182899205})",
+                  "message_value": "b'{\"version\": 3, \"payload\": {\"subscription_id\": \"20/101212aa098111efbc95824069e09687\", \"request\": {\"query\": \"MATCH (events) SELECT count() AS `count` WHERE (type = \\'error\\' AND group_id = 4805447414) AND project_id IN array(60915) AND environment = \\'production\\'\", \"tenant_ids\": {\"referrer\": \"subscriptions_executor\", \"organization_id\": 1}}, \"result\": {\"data\": [{\"count\": 0}], \"meta\": [{\"name\": \"count\", \"type\": \"UInt64\"}]}, \"timestamp\": \"2025-07-06T17:12:00\", \"entity\": \"events\"}}'",
                   "metrics": "<module 'sentry.utils.metrics' from '/usr/src/sentry/src/sentry/utils/metrics.py'>",
-                  "offset": "2147953215",
-                  "partition": "14",
+                  "offset": "2182899204",
+                  "partition": "3",
                   "topic": "'events-subscription-results'",
-                  "value": "BrokerValue(_BrokerValue__payload=KafkaPayload(key=b'60/7285b974098011efb28c12598142fbc4', value=b'{\"version\": 3, \"payload\": {\"subscription_id\": \"60/7285b974098011efb28c12598142fbc4\", \"request\": {\"query\": \"MATCH (events) SELECT count() AS `count` WHERE (type = \\'error\\' AND group_id = 5059481984) AND project_id IN array([Filtered]) AND environment = \\'production\\'\", \"tenant_ids\": {\"referrer\": \"subscriptions_executor\", \"organization_id\": 1}}, \"result\": {\"data\": [{\"count\": 0}], \"meta\": [{\"name\": \"count\", \"type\": \"UInt64\"}]}, \"timestamp\": \"2025-07-02T16:42:00\", \"entity\": \"events\"}}', headers=[]), partition=Partition(topic=Topic(name='events-subscription-results'), index=14), offset=2147953215, timestamp=datetime.datetime(2025, 7, 2, 16, 43, 0, 874000))"
+                  "value": "BrokerValue(_BrokerValue__payload=KafkaPayload(key=b'20/101212aa098111efbc95824069e09687', value=b'{\"version\": 3, \"payload\": {\"subscription_id\": \"20/101212aa098111efbc95824069e09687\", \"request\": {\"query\": \"MATCH (events) SELECT count() AS `count` WHERE (type = \\'error\\' AND group_id = 4805447414) AND project_id IN array(60915) AND environment = \\'production\\'\", \"tenant_ids\": {\"referrer\": \"subscriptions_executor\", \"organization_id\": 1}}, \"result\": {\"data\": [{\"count\": 0}], \"meta\": [{\"name\": \"count\", \"type\": \"UInt64\"}]}, \"timestamp\": \"2025-07-06T17:12:00\", \"entity\": \"events\"}}', headers=[]), partition=Partition(topic=Topic(name='events-subscription-results'), index=3), offset=2182899204, timestamp=datetime.datetime(2025, 7, 6, 17, 12, 50, 12000))"
                 },
                 "data": { "client_in_app": true }
               },
@@ -812,10 +974,10 @@
                 "abs_path": "/usr/src/sentry/src/sentry/snuba/query_subscriptions/consumer.py",
                 "lineno": 176,
                 "pre_context": [
-                  "            span.set_attribute(\"subscription_resolution\", subscription.snuba_query.resolution)",
-                  "            span.set_attribute(\"message_offset\", message_offset)",
-                  "            span.set_attribute(\"message_partition\", message_partition)",
-                  "            span.set_attribute(\"message_value\", message_value)",
+                  "            span.set_data(\"subscription_resolution\", subscription.snuba_query.resolution)",
+                  "            span.set_data(\"message_offset\", message_offset)",
+                  "            span.set_data(\"message_partition\", message_partition)",
+                  "            span.set_data(\"message_value\", message_value)",
                   ""
                 ],
                 "context_line": "            callback(contents, subscription)",
@@ -828,23 +990,23 @@
                 ],
                 "in_app": true,
                 "vars": {
-                  "callback": "<function handle_snuba_query_update at 0x7daf2a3eba60>",
+                  "callback": "<function handle_snuba_query_update at 0x7af3a4aebce0>",
                   "contents": {
                     "entity": "'events'",
-                    "subscription_id": "'60/7285b974098011efb28c12598142fbc4'",
-                    "timestamp": "datetime.datetime(2025, 7, 2, 16, 42, tzinfo=datetime.timezone.utc)",
+                    "subscription_id": "'20/101212aa098111efbc95824069e09687'",
+                    "timestamp": "datetime.datetime(2025, 7, 6, 17, 12, tzinfo=datetime.timezone.utc)",
                     "values": {
                       "data": ["{\"count\":\"0\"}"],
                       "meta": ["{\"name\":\"'count'\",\"type\":\"'UInt64'\"}"]
                     }
                   },
                   "dataset": "'events'",
-                  "jsoncodec": "<sentry_kafka_schemas.codecs.json.JsonCodec object at 0x7daf20675010>",
-                  "message_offset": "2147953215",
-                  "message_partition": "14",
-                  "message_value": "b'{\"version\": 3, \"payload\": {\"subscription_id\": \"60/7285b974098011efb28c12598142fbc4\", \"request\": {\"query\": \"MATCH (events) SELECT count() AS `count` WHERE (type = \\'error\\' AND group_id = 5059481984) AND project_id IN array([Filtered]) AND environment = \\'production\\'\", \"tenant_ids\": {\"referrer\": \"subscriptions_executor\", \"organization_id\": 1}}, \"result\": {\"data\": [{\"count\": 0}], \"meta\": [{\"name\": \"count\", \"type\": \"UInt64\"}]}, \"timestamp\": \"2025-07-02T16:42:00\", \"entity\": \"events\"}}'",
-                  "scope": "<PotelScope id=0x7daf206c23f0 name=None type=ScopeType.ISOLATION>",
-                  "subscription": "<QuerySubscription at 0x7daf185d8a50: id=191608>",
+                  "jsoncodec": "<sentry_kafka_schemas.codecs.json.JsonCodec object at 0x7af393a23a10>",
+                  "message_offset": "2182899204",
+                  "message_partition": "3",
+                  "message_value": "b'{\"version\": 3, \"payload\": {\"subscription_id\": \"20/101212aa098111efbc95824069e09687\", \"request\": {\"query\": \"MATCH (events) SELECT count() AS `count` WHERE (type = \\'error\\' AND group_id = 4805447414) AND project_id IN array(60915) AND environment = \\'production\\'\", \"tenant_ids\": {\"referrer\": \"subscriptions_executor\", \"organization_id\": 1}}, \"result\": {\"data\": [{\"count\": 0}], \"meta\": [{\"name\": \"count\", \"type\": \"UInt64\"}]}, \"timestamp\": \"2025-07-06T17:12:00\", \"entity\": \"events\"}}'",
+                  "scope": "<Scope id=0x7af364514c80 name=None type=ScopeType.ISOLATION>",
+                  "subscription": "<QuerySubscription at 0x7af36434d1d0: id=197215>",
                   "topic": "'events-subscription-results'"
                 },
                 "data": { "client_in_app": true }
@@ -873,11 +1035,11 @@
                 "in_app": true,
                 "vars": {
                   "SubscriptionProcessor": "<class 'sentry.incidents.subscription_processor.SubscriptionProcessor'>",
-                  "subscription": "<QuerySubscription at 0x7daf185d8a50: id=191608>",
+                  "subscription": "<QuerySubscription at 0x7af36434d1d0: id=197215>",
                   "subscription_update": {
                     "entity": "'events'",
-                    "subscription_id": "'60/7285b974098011efb28c12598142fbc4'",
-                    "timestamp": "datetime.datetime(2025, 7, 2, 16, 42, tzinfo=datetime.timezone.utc)",
+                    "subscription_id": "'20/101212aa098111efbc95824069e09687'",
+                    "timestamp": "datetime.datetime(2025, 7, 6, 17, 12, tzinfo=datetime.timezone.utc)",
                     "values": {
                       "data": ["{\"count\":\"0\"}"],
                       "meta": ["{\"name\":\"'count'\",\"type\":\"'UInt64'\"}"]
@@ -914,12 +1076,12 @@
                   "detector": "None",
                   "has_anomaly_detection": "True",
                   "has_metric_alert_processing": "False",
-                  "organization": "<Organization at 0x7daf185d9130: id=1192616, owner_id=None, name='Boost Studios', slug='rabbithole'>",
-                  "self": "<sentry.incidents.subscription_processor.SubscriptionProcessor object at 0x7daf181ec0f0>",
+                  "organization": "<Organization at 0x7af34c7cec10: id=28699, owner_id=None, name='Silverfin', slug='silverfin'>",
+                  "self": "<sentry.incidents.subscription_processor.SubscriptionProcessor object at 0x7af364284f50>",
                   "subscription_update": {
                     "entity": "'events'",
-                    "subscription_id": "'60/7285b974098011efb28c12598142fbc4'",
-                    "timestamp": "datetime.datetime(2025, 7, 2, 16, 42, tzinfo=datetime.timezone.utc)",
+                    "subscription_id": "'20/101212aa098111efbc95824069e09687'",
+                    "timestamp": "datetime.datetime(2025, 7, 6, 17, 12, tzinfo=datetime.timezone.utc)",
                     "values": {
                       "data": ["{\"count\":\"0\"}"],
                       "meta": ["{\"name\":\"'count'\",\"type\":\"'UInt64'\"}"]
@@ -952,11 +1114,11 @@
                 "in_app": true,
                 "vars": {
                   "comparison_delta": "604800",
-                  "self": "<sentry.incidents.subscription_processor.SubscriptionProcessor object at 0x7daf181ec0f0>",
+                  "self": "<sentry.incidents.subscription_processor.SubscriptionProcessor object at 0x7af364284f50>",
                   "subscription_update": {
                     "entity": "'events'",
-                    "subscription_id": "'60/7285b974098011efb28c12598142fbc4'",
-                    "timestamp": "datetime.datetime(2025, 7, 2, 16, 42, tzinfo=datetime.timezone.utc)",
+                    "subscription_id": "'20/101212aa098111efbc95824069e09687'",
+                    "timestamp": "datetime.datetime(2025, 7, 6, 17, 12, tzinfo=datetime.timezone.utc)",
                     "values": {
                       "data": ["{\"count\":\"0\"}"],
                       "meta": ["{\"name\":\"'count'\",\"type\":\"'UInt64'\"}"]
@@ -989,18 +1151,18 @@
                 "in_app": true,
                 "vars": {
                   "aggregation_value": "0",
-                  "alert_rule_id": "226731",
+                  "alert_rule_id": "234627",
                   "comparison_delta": "604800",
                   "delta": "datetime.timedelta(days=7)",
-                  "end": "datetime.datetime(2025, 6, 25, 16, 42, tzinfo=datetime.timezone.utc)",
-                  "organization_id": "1192616",
-                  "project_ids": ["[Filtered]"],
-                  "snuba_query": "<SnubaQuery at 0x7daf1857fa70: id=248822>",
-                  "start": "datetime.datetime(2025, 6, 25, 15, 42, tzinfo=datetime.timezone.utc)",
+                  "end": "datetime.datetime(2025, 6, 29, 17, 12, tzinfo=datetime.timezone.utc)",
+                  "organization_id": "28699",
+                  "project_ids": ["60915"],
+                  "snuba_query": "<SnubaQuery at 0x7af3646bf930: id=256718>",
+                  "start": "datetime.datetime(2025, 6, 29, 16, 12, tzinfo=datetime.timezone.utc)",
                   "subscription_update": {
                     "entity": "'events'",
-                    "subscription_id": "'60/7285b974098011efb28c12598142fbc4'",
-                    "timestamp": "datetime.datetime(2025, 7, 2, 16, 42, tzinfo=datetime.timezone.utc)",
+                    "subscription_id": "'20/101212aa098111efbc95824069e09687'",
+                    "timestamp": "datetime.datetime(2025, 7, 6, 17, 12, tzinfo=datetime.timezone.utc)",
                     "values": {
                       "data": ["{\"count\":\"0\"}"],
                       "meta": ["{\"name\":\"'count'\",\"type\":\"'UInt64'\"}"]
@@ -1032,18 +1194,18 @@
                 ],
                 "in_app": true,
                 "vars": {
-                  "alert_rule_id": "226731",
+                  "alert_rule_id": "234627",
                   "comparison_aggregate": "None",
-                  "end": "datetime.datetime(2025, 6, 25, 16, 42, tzinfo=datetime.timezone.utc)",
+                  "end": "datetime.datetime(2025, 6, 29, 17, 12, tzinfo=datetime.timezone.utc)",
                   "entity_subscription": "EventsEntitySubscription(query_type=<Type.ERROR: 0>, dataset=<Dataset.Events: 'events'>)",
-                  "organization_id": "1192616",
-                  "project_ids": ["[Filtered]"],
-                  "snuba_query": "<SnubaQuery at 0x7daf1857fa70: id=248822>",
-                  "start": "datetime.datetime(2025, 6, 25, 15, 42, tzinfo=datetime.timezone.utc)",
+                  "organization_id": "28699",
+                  "project_ids": ["60915"],
+                  "snuba_query": "<SnubaQuery at 0x7af3646bf930: id=256718>",
+                  "start": "datetime.datetime(2025, 6, 29, 16, 12, tzinfo=datetime.timezone.utc)",
                   "subscription_update": {
                     "entity": "'events'",
-                    "subscription_id": "'60/7285b974098011efb28c12598142fbc4'",
-                    "timestamp": "datetime.datetime(2025, 7, 2, 16, 42, tzinfo=datetime.timezone.utc)",
+                    "subscription_id": "'20/101212aa098111efbc95824069e09687'",
+                    "timestamp": "datetime.datetime(2025, 7, 6, 17, 12, tzinfo=datetime.timezone.utc)",
                     "values": {
                       "data": ["{\"count\":\"0\"}"],
                       "meta": ["{\"name\":\"'count'\",\"type\":\"'UInt64'\"}"]
@@ -1079,9 +1241,9 @@
                   "exc_info": "True",
                   "kwargs": {
                     "extra": {
-                      "alert_rule_id": "226731",
-                      "organization_id": "1192616",
-                      "subscription_id": "'60/7285b974098011efb28c12598142fbc4'"
+                      "alert_rule_id": "234627",
+                      "organization_id": "28699",
+                      "subscription_id": "'20/101212aa098111efbc95824069e09687'"
                     }
                   },
                   "msg": "'Failed to run comparison query'",
@@ -1116,9 +1278,9 @@
                   "kwargs": {
                     "exc_info": "True",
                     "extra": {
-                      "alert_rule_id": "226731",
-                      "organization_id": "1192616",
-                      "subscription_id": "'60/7285b974098011efb28c12598142fbc4'"
+                      "alert_rule_id": "234627",
+                      "organization_id": "28699",
+                      "subscription_id": "'20/101212aa098111efbc95824069e09687'"
                     }
                   },
                   "msg": "'Failed to run comparison query'",
@@ -1152,13 +1314,13 @@
                   "args": [],
                   "exc_info": [
                     "<class 'sentry.exceptions.InvalidSearchQuery'>",
-                    "InvalidSearchQuery(\"Invalid value '['BOOST-INBOX-4K']' for 'issue:' filter\")",
-                    "<traceback object at 0x7daf18479440>"
+                    "InvalidSearchQuery(\"Invalid value '['SILVERFIN-2PK5']' for 'issue:' filter\")",
+                    "<traceback object at 0x7af388210740>"
                   ],
                   "extra": {
-                    "alert_rule_id": "226731",
-                    "organization_id": "1192616",
-                    "subscription_id": "'60/7285b974098011efb28c12598142fbc4'"
+                    "alert_rule_id": "234627",
+                    "organization_id": "28699",
+                    "subscription_id": "'20/101212aa098111efbc95824069e09687'"
                   },
                   "fn": "'/usr/src/sentry/src/sentry/incidents/utils/process_update_helpers.py'",
                   "level": "40",
@@ -1283,15 +1445,15 @@
                 "in_app": true,
                 "vars": {
                   "general_group_filter_values": [],
-                  "group_short_ids": ["'BOOST-INBOX-4K'"],
+                  "group_short_ids": ["'SILVERFIN-2PK5'"],
                   "operator": "'='",
                   "search_filter": [
                     ["'issue'"],
                     "'='",
-                    ["'BOOST-INBOX-4K'", "False"]
+                    ["'SILVERFIN-2PK5'", "False"]
                   ],
-                  "self": "<sentry.search.events.datasets.discover.DiscoverDatasetConfig object at 0x7daf181b54f0>",
-                  "value": ["'BOOST-INBOX-4K'"]
+                  "self": "<sentry.search.events.datasets.discover.DiscoverDatasetConfig object at 0x7af3911348f0>",
+                  "value": ["'SILVERFIN-2PK5'"]
                 },
                 "data": { "client_in_app": true }
               },
@@ -1319,31 +1481,25 @@
                 "in_app": true,
                 "vars": {
                   "groups": [],
-                  "organization_id": "1192616",
-                  "parsed_short_id": ["'boost-inbox'", "147"],
-                  "project_short_id_lookup": { "boost-inbox": ["147"] },
-                  "self": "<sentry.db.models.manager.base.GroupManager object at 0x7daf39ff9d30>",
-                  "short_id": ["'boost-inbox'", "147"],
-                  "short_id_lookup": "<Q: (AND: ('project__slug', 'boost-inbox'), ('short_id__in', [147]))>",
-                  "short_id_raw": "'BOOST-INBOX-4K'",
-                  "short_ids": [["'boost-inbox'", "147"]],
-                  "short_ids_raw": ["'BOOST-INBOX-4K'"]
+                  "organization_id": "28699",
+                  "parsed_short_id": ["'silverfin'", "88677"],
+                  "project_short_id_lookup": { "silverfin": ["88677"] },
+                  "self": "<sentry.db.models.manager.base.GroupManager object at 0x7af3bc700ad0>",
+                  "short_id": ["'silverfin'", "88677"],
+                  "short_id_lookup": "<Q: (AND: ('project__slug', 'silverfin'), ('short_id__in', [88677]))>",
+                  "short_id_raw": "'SILVERFIN-2PK5'",
+                  "short_ids": [["'silverfin'", "88677"]],
+                  "short_ids_raw": ["'SILVERFIN-2PK5'"]
                 },
                 "data": { "client_in_app": true }
               }
             ]
           },
-          "mechanism": {
-            "type": "chained",
-            "handled": true,
-            "source": "__context__",
-            "exception_id": 1,
-            "parent_id": 0
-          }
+          "mechanism": { "type": "logging", "handled": true }
         },
         {
           "type": "InvalidSearchQuery",
-          "value": "Invalid value '['BOOST-INBOX-4K']' for 'issue:' filter",
+          "value": "Invalid value '['SILVERFIN-2PK5']' for 'issue:' filter",
           "module": "sentry.exceptions",
           "stacktrace": {
             "frames": [
@@ -1363,7 +1519,7 @@
                   "__name__": "'__main__'",
                   "__package__": "None",
                   "__spec__": "None",
-                  "spawn_main": "<function spawn_main at 0x7dafa73009a0>"
+                  "spawn_main": "<function spawn_main at 0x7af4198149a0>"
                 },
                 "data": { "client_in_app": true }
               },
@@ -1539,22 +1695,22 @@
                 ],
                 "in_app": false,
                 "vars": {
-                  "completed": "49",
-                  "get": "<bound method SimpleQueue.get of <multiprocessing.queues.SimpleQueue object at 0x7dafa7109010>>",
+                  "completed": "3875",
+                  "get": "<bound method SimpleQueue.get of <multiprocessing.queues.SimpleQueue object at 0x7af41961d010>>",
                   "initargs": [],
-                  "initializer": "functools.partial(<function parallel_worker_initializer at 0x7dafa6e8dee0>, functools.partial(<function _initialize_arroyo_subprocess at 0x7dafa51df880>, initializer=None, tags={'consumer_group': 'sentry-events-subscription-results-consumers'}))",
-                  "inqueue": "<multiprocessing.queues.SimpleQueue object at 0x7dafa7109010>",
+                  "initializer": "functools.partial(<function parallel_worker_initializer at 0x7af4193a5d00>, functools.partial(<function _initialize_arroyo_subprocess at 0x7af4176f3f60>, initializer=None, tags={'consumer_group': 'sentry-events-subscription-results-consumers'}))",
+                  "inqueue": "<multiprocessing.queues.SimpleQueue object at 0x7af41961d010>",
                   "maxtasks": "None",
-                  "outqueue": "<multiprocessing.queues.SimpleQueue object at 0x7dafa732a850>",
-                  "put": "<bound method SimpleQueue.put of <multiprocessing.queues.SimpleQueue object at 0x7dafa732a850>>",
+                  "outqueue": "<multiprocessing.queues.SimpleQueue object at 0x7af41983e850>",
+                  "put": "<bound method SimpleQueue.put of <multiprocessing.queues.SimpleQueue object at 0x7af41983e850>>",
                   "task": [
-                    "405",
+                    "31130",
                     "0",
-                    "<function parallel_run_task_worker_apply at 0x7dafa6efbe20>",
+                    "<function parallel_run_task_worker_apply at 0x7af418533ba0>",
                     [
-                      "functools.partial(<function process_message at 0x7daf20673ec0>, <Dataset.Events: 'events'>, 'events-subscription-results', 'events-subscription-results')",
-                      "<MessageBatch: 100 items, 52687 bytes>",
-                      "SharedMemory('psm_7d98df1d', size=16777216)"
+                      "functools.partial(<function process_message at 0x7af39355b240>, <Dataset.Events: 'events'>, 'events-subscription-results', 'events-subscription-results')",
+                      "<MessageBatch: 100 items, 81586 bytes>",
+                      "SharedMemory('psm_ed9d3bc1', size=16777216)"
                     ],
                     {}
                   ],
@@ -1585,14 +1741,14 @@
                 ],
                 "in_app": false,
                 "vars": {
-                  "function": "functools.partial(<function process_message at 0x7daf20673ec0>, <Dataset.Events: 'events'>, 'events-subscription-results', 'events-subscription-results')",
-                  "input_batch": "<MessageBatch: 100 items, 52687 bytes>",
-                  "message": "Message({Partition(topic=Topic(name='events-subscription-results'), index=14): 2147953216})",
-                  "next_index_to_process": "70",
-                  "output_block": "SharedMemory('psm_7d98df1d', size=16777216)",
-                  "payload": "Message({Partition(topic=Topic(name='events-subscription-results'), index=15): 2145299440})",
+                  "function": "functools.partial(<function process_message at 0x7af39355b240>, <Dataset.Events: 'events'>, 'events-subscription-results', 'events-subscription-results')",
+                  "input_batch": "<MessageBatch: 100 items, 81586 bytes>",
+                  "message": "Message({Partition(topic=Topic(name='events-subscription-results'), index=3): 2182899205})",
+                  "next_index_to_process": "14",
+                  "output_block": "SharedMemory('psm_ed9d3bc1', size=16777216)",
+                  "payload": "Message({Partition(topic=Topic(name='events-subscription-results'), index=2): 2177955319})",
                   "start_index": "0",
-                  "valid_messages_transformed": "<MessageBatch: 70 items, 0 bytes>"
+                  "valid_messages_transformed": "<MessageBatch: 14 items, 0 bytes>"
                 },
                 "data": { "client_in_app": false }
               },
@@ -1620,15 +1776,15 @@
                 "in_app": true,
                 "vars": {
                   "dataset": "<Dataset.Events: 'events'>",
-                  "handle_message": "<function handle_message at 0x7daf2a3eb9c0>",
+                  "handle_message": "<function handle_message at 0x7af3a4aebc40>",
                   "logical_topic": "'events-subscription-results'",
-                  "message": "Message({Partition(topic=Topic(name='events-subscription-results'), index=14): 2147953216})",
-                  "message_value": "b'{\"version\": 3, \"payload\": {\"subscription_id\": \"60/7285b974098011efb28c12598142fbc4\", \"request\": {\"query\": \"MATCH (events) SELECT count() AS `count` WHERE (type = \\'error\\' AND group_id = 5059481984) AND project_id IN array([Filtered]) AND environment = \\'production\\'\", \"tenant_ids\": {\"referrer\": \"subscriptions_executor\", \"organization_id\": 1}}, \"result\": {\"data\": [{\"count\": 0}], \"meta\": [{\"name\": \"count\", \"type\": \"UInt64\"}]}, \"timestamp\": \"2025-07-02T16:42:00\", \"entity\": \"events\"}}'",
+                  "message": "Message({Partition(topic=Topic(name='events-subscription-results'), index=3): 2182899205})",
+                  "message_value": "b'{\"version\": 3, \"payload\": {\"subscription_id\": \"20/101212aa098111efbc95824069e09687\", \"request\": {\"query\": \"MATCH (events) SELECT count() AS `count` WHERE (type = \\'error\\' AND group_id = 4805447414) AND project_id IN array(60915) AND environment = \\'production\\'\", \"tenant_ids\": {\"referrer\": \"subscriptions_executor\", \"organization_id\": 1}}, \"result\": {\"data\": [{\"count\": 0}], \"meta\": [{\"name\": \"count\", \"type\": \"UInt64\"}]}, \"timestamp\": \"2025-07-06T17:12:00\", \"entity\": \"events\"}}'",
                   "metrics": "<module 'sentry.utils.metrics' from '/usr/src/sentry/src/sentry/utils/metrics.py'>",
-                  "offset": "2147953215",
-                  "partition": "14",
+                  "offset": "2182899204",
+                  "partition": "3",
                   "topic": "'events-subscription-results'",
-                  "value": "BrokerValue(_BrokerValue__payload=KafkaPayload(key=b'60/7285b974098011efb28c12598142fbc4', value=b'{\"version\": 3, \"payload\": {\"subscription_id\": \"60/7285b974098011efb28c12598142fbc4\", \"request\": {\"query\": \"MATCH (events) SELECT count() AS `count` WHERE (type = \\'error\\' AND group_id = 5059481984) AND project_id IN array([Filtered]) AND environment = \\'production\\'\", \"tenant_ids\": {\"referrer\": \"subscriptions_executor\", \"organization_id\": 1}}, \"result\": {\"data\": [{\"count\": 0}], \"meta\": [{\"name\": \"count\", \"type\": \"UInt64\"}]}, \"timestamp\": \"2025-07-02T16:42:00\", \"entity\": \"events\"}}', headers=[]), partition=Partition(topic=Topic(name='events-subscription-results'), index=14), offset=2147953215, timestamp=datetime.datetime(2025, 7, 2, 16, 43, 0, 874000))"
+                  "value": "BrokerValue(_BrokerValue__payload=KafkaPayload(key=b'20/101212aa098111efbc95824069e09687', value=b'{\"version\": 3, \"payload\": {\"subscription_id\": \"20/101212aa098111efbc95824069e09687\", \"request\": {\"query\": \"MATCH (events) SELECT count() AS `count` WHERE (type = \\'error\\' AND group_id = 4805447414) AND project_id IN array(60915) AND environment = \\'production\\'\", \"tenant_ids\": {\"referrer\": \"subscriptions_executor\", \"organization_id\": 1}}, \"result\": {\"data\": [{\"count\": 0}], \"meta\": [{\"name\": \"count\", \"type\": \"UInt64\"}]}, \"timestamp\": \"2025-07-06T17:12:00\", \"entity\": \"events\"}}', headers=[]), partition=Partition(topic=Topic(name='events-subscription-results'), index=3), offset=2182899204, timestamp=datetime.datetime(2025, 7, 6, 17, 12, 50, 12000))"
                 },
                 "data": { "client_in_app": true }
               },
@@ -1639,10 +1795,10 @@
                 "abs_path": "/usr/src/sentry/src/sentry/snuba/query_subscriptions/consumer.py",
                 "lineno": 176,
                 "pre_context": [
-                  "            span.set_attribute(\"subscription_resolution\", subscription.snuba_query.resolution)",
-                  "            span.set_attribute(\"message_offset\", message_offset)",
-                  "            span.set_attribute(\"message_partition\", message_partition)",
-                  "            span.set_attribute(\"message_value\", message_value)",
+                  "            span.set_data(\"subscription_resolution\", subscription.snuba_query.resolution)",
+                  "            span.set_data(\"message_offset\", message_offset)",
+                  "            span.set_data(\"message_partition\", message_partition)",
+                  "            span.set_data(\"message_value\", message_value)",
                   ""
                 ],
                 "context_line": "            callback(contents, subscription)",
@@ -1655,23 +1811,23 @@
                 ],
                 "in_app": true,
                 "vars": {
-                  "callback": "<function handle_snuba_query_update at 0x7daf2a3eba60>",
+                  "callback": "<function handle_snuba_query_update at 0x7af3a4aebce0>",
                   "contents": {
                     "entity": "'events'",
-                    "subscription_id": "'60/7285b974098011efb28c12598142fbc4'",
-                    "timestamp": "datetime.datetime(2025, 7, 2, 16, 42, tzinfo=datetime.timezone.utc)",
+                    "subscription_id": "'20/101212aa098111efbc95824069e09687'",
+                    "timestamp": "datetime.datetime(2025, 7, 6, 17, 12, tzinfo=datetime.timezone.utc)",
                     "values": {
                       "data": ["{\"count\":\"0\"}"],
                       "meta": ["{\"name\":\"'count'\",\"type\":\"'UInt64'\"}"]
                     }
                   },
                   "dataset": "'events'",
-                  "jsoncodec": "<sentry_kafka_schemas.codecs.json.JsonCodec object at 0x7daf20675010>",
-                  "message_offset": "2147953215",
-                  "message_partition": "14",
-                  "message_value": "b'{\"version\": 3, \"payload\": {\"subscription_id\": \"60/7285b974098011efb28c12598142fbc4\", \"request\": {\"query\": \"MATCH (events) SELECT count() AS `count` WHERE (type = \\'error\\' AND group_id = 5059481984) AND project_id IN array([Filtered]) AND environment = \\'production\\'\", \"tenant_ids\": {\"referrer\": \"subscriptions_executor\", \"organization_id\": 1}}, \"result\": {\"data\": [{\"count\": 0}], \"meta\": [{\"name\": \"count\", \"type\": \"UInt64\"}]}, \"timestamp\": \"2025-07-02T16:42:00\", \"entity\": \"events\"}}'",
-                  "scope": "<PotelScope id=0x7daf206c23f0 name=None type=ScopeType.ISOLATION>",
-                  "subscription": "<QuerySubscription at 0x7daf185d8a50: id=191608>",
+                  "jsoncodec": "<sentry_kafka_schemas.codecs.json.JsonCodec object at 0x7af393a23a10>",
+                  "message_offset": "2182899204",
+                  "message_partition": "3",
+                  "message_value": "b'{\"version\": 3, \"payload\": {\"subscription_id\": \"20/101212aa098111efbc95824069e09687\", \"request\": {\"query\": \"MATCH (events) SELECT count() AS `count` WHERE (type = \\'error\\' AND group_id = 4805447414) AND project_id IN array(60915) AND environment = \\'production\\'\", \"tenant_ids\": {\"referrer\": \"subscriptions_executor\", \"organization_id\": 1}}, \"result\": {\"data\": [{\"count\": 0}], \"meta\": [{\"name\": \"count\", \"type\": \"UInt64\"}]}, \"timestamp\": \"2025-07-06T17:12:00\", \"entity\": \"events\"}}'",
+                  "scope": "<Scope id=0x7af364514c80 name=None type=ScopeType.ISOLATION>",
+                  "subscription": "<QuerySubscription at 0x7af36434d1d0: id=197215>",
                   "topic": "'events-subscription-results'"
                 },
                 "data": { "client_in_app": true }
@@ -1700,11 +1856,11 @@
                 "in_app": true,
                 "vars": {
                   "SubscriptionProcessor": "<class 'sentry.incidents.subscription_processor.SubscriptionProcessor'>",
-                  "subscription": "<QuerySubscription at 0x7daf185d8a50: id=191608>",
+                  "subscription": "<QuerySubscription at 0x7af36434d1d0: id=197215>",
                   "subscription_update": {
                     "entity": "'events'",
-                    "subscription_id": "'60/7285b974098011efb28c12598142fbc4'",
-                    "timestamp": "datetime.datetime(2025, 7, 2, 16, 42, tzinfo=datetime.timezone.utc)",
+                    "subscription_id": "'20/101212aa098111efbc95824069e09687'",
+                    "timestamp": "datetime.datetime(2025, 7, 6, 17, 12, tzinfo=datetime.timezone.utc)",
                     "values": {
                       "data": ["{\"count\":\"0\"}"],
                       "meta": ["{\"name\":\"'count'\",\"type\":\"'UInt64'\"}"]
@@ -1741,12 +1897,12 @@
                   "detector": "None",
                   "has_anomaly_detection": "True",
                   "has_metric_alert_processing": "False",
-                  "organization": "<Organization at 0x7daf185d9130: id=1192616, owner_id=None, name='Boost Studios', slug='rabbithole'>",
-                  "self": "<sentry.incidents.subscription_processor.SubscriptionProcessor object at 0x7daf181ec0f0>",
+                  "organization": "<Organization at 0x7af34c7cec10: id=28699, owner_id=None, name='Silverfin', slug='silverfin'>",
+                  "self": "<sentry.incidents.subscription_processor.SubscriptionProcessor object at 0x7af364284f50>",
                   "subscription_update": {
                     "entity": "'events'",
-                    "subscription_id": "'60/7285b974098011efb28c12598142fbc4'",
-                    "timestamp": "datetime.datetime(2025, 7, 2, 16, 42, tzinfo=datetime.timezone.utc)",
+                    "subscription_id": "'20/101212aa098111efbc95824069e09687'",
+                    "timestamp": "datetime.datetime(2025, 7, 6, 17, 12, tzinfo=datetime.timezone.utc)",
                     "values": {
                       "data": ["{\"count\":\"0\"}"],
                       "meta": ["{\"name\":\"'count'\",\"type\":\"'UInt64'\"}"]
@@ -1779,11 +1935,11 @@
                 "in_app": true,
                 "vars": {
                   "comparison_delta": "604800",
-                  "self": "<sentry.incidents.subscription_processor.SubscriptionProcessor object at 0x7daf181ec0f0>",
+                  "self": "<sentry.incidents.subscription_processor.SubscriptionProcessor object at 0x7af364284f50>",
                   "subscription_update": {
                     "entity": "'events'",
-                    "subscription_id": "'60/7285b974098011efb28c12598142fbc4'",
-                    "timestamp": "datetime.datetime(2025, 7, 2, 16, 42, tzinfo=datetime.timezone.utc)",
+                    "subscription_id": "'20/101212aa098111efbc95824069e09687'",
+                    "timestamp": "datetime.datetime(2025, 7, 6, 17, 12, tzinfo=datetime.timezone.utc)",
                     "values": {
                       "data": ["{\"count\":\"0\"}"],
                       "meta": ["{\"name\":\"'count'\",\"type\":\"'UInt64'\"}"]
@@ -1816,18 +1972,18 @@
                 "in_app": true,
                 "vars": {
                   "aggregation_value": "0",
-                  "alert_rule_id": "226731",
+                  "alert_rule_id": "234627",
                   "comparison_delta": "604800",
                   "delta": "datetime.timedelta(days=7)",
-                  "end": "datetime.datetime(2025, 6, 25, 16, 42, tzinfo=datetime.timezone.utc)",
-                  "organization_id": "1192616",
-                  "project_ids": ["[Filtered]"],
-                  "snuba_query": "<SnubaQuery at 0x7daf1857fa70: id=248822>",
-                  "start": "datetime.datetime(2025, 6, 25, 15, 42, tzinfo=datetime.timezone.utc)",
+                  "end": "datetime.datetime(2025, 6, 29, 17, 12, tzinfo=datetime.timezone.utc)",
+                  "organization_id": "28699",
+                  "project_ids": ["60915"],
+                  "snuba_query": "<SnubaQuery at 0x7af3646bf930: id=256718>",
+                  "start": "datetime.datetime(2025, 6, 29, 16, 12, tzinfo=datetime.timezone.utc)",
                   "subscription_update": {
                     "entity": "'events'",
-                    "subscription_id": "'60/7285b974098011efb28c12598142fbc4'",
-                    "timestamp": "datetime.datetime(2025, 7, 2, 16, 42, tzinfo=datetime.timezone.utc)",
+                    "subscription_id": "'20/101212aa098111efbc95824069e09687'",
+                    "timestamp": "datetime.datetime(2025, 7, 6, 17, 12, tzinfo=datetime.timezone.utc)",
                     "values": {
                       "data": ["{\"count\":\"0\"}"],
                       "meta": ["{\"name\":\"'count'\",\"type\":\"'UInt64'\"}"]
@@ -1859,18 +2015,18 @@
                 ],
                 "in_app": true,
                 "vars": {
-                  "alert_rule_id": "226731",
+                  "alert_rule_id": "234627",
                   "comparison_aggregate": "None",
-                  "end": "datetime.datetime(2025, 6, 25, 16, 42, tzinfo=datetime.timezone.utc)",
+                  "end": "datetime.datetime(2025, 6, 29, 17, 12, tzinfo=datetime.timezone.utc)",
                   "entity_subscription": "EventsEntitySubscription(query_type=<Type.ERROR: 0>, dataset=<Dataset.Events: 'events'>)",
-                  "organization_id": "1192616",
-                  "project_ids": ["[Filtered]"],
-                  "snuba_query": "<SnubaQuery at 0x7daf1857fa70: id=248822>",
-                  "start": "datetime.datetime(2025, 6, 25, 15, 42, tzinfo=datetime.timezone.utc)",
+                  "organization_id": "28699",
+                  "project_ids": ["60915"],
+                  "snuba_query": "<SnubaQuery at 0x7af3646bf930: id=256718>",
+                  "start": "datetime.datetime(2025, 6, 29, 16, 12, tzinfo=datetime.timezone.utc)",
                   "subscription_update": {
                     "entity": "'events'",
-                    "subscription_id": "'60/7285b974098011efb28c12598142fbc4'",
-                    "timestamp": "datetime.datetime(2025, 7, 2, 16, 42, tzinfo=datetime.timezone.utc)",
+                    "subscription_id": "'20/101212aa098111efbc95824069e09687'",
+                    "timestamp": "datetime.datetime(2025, 7, 6, 17, 12, tzinfo=datetime.timezone.utc)",
                     "values": {
                       "data": ["{\"count\":\"0\"}"],
                       "meta": ["{\"name\":\"'count'\",\"type\":\"'UInt64'\"}"]
@@ -1906,9 +2062,9 @@
                   "exc_info": "True",
                   "kwargs": {
                     "extra": {
-                      "alert_rule_id": "226731",
-                      "organization_id": "1192616",
-                      "subscription_id": "'60/7285b974098011efb28c12598142fbc4'"
+                      "alert_rule_id": "234627",
+                      "organization_id": "28699",
+                      "subscription_id": "'20/101212aa098111efbc95824069e09687'"
                     }
                   },
                   "msg": "'Failed to run comparison query'",
@@ -1943,9 +2099,9 @@
                   "kwargs": {
                     "exc_info": "True",
                     "extra": {
-                      "alert_rule_id": "226731",
-                      "organization_id": "1192616",
-                      "subscription_id": "'60/7285b974098011efb28c12598142fbc4'"
+                      "alert_rule_id": "234627",
+                      "organization_id": "28699",
+                      "subscription_id": "'20/101212aa098111efbc95824069e09687'"
                     }
                   },
                   "msg": "'Failed to run comparison query'",
@@ -1979,13 +2135,13 @@
                   "args": [],
                   "exc_info": [
                     "<class 'sentry.exceptions.InvalidSearchQuery'>",
-                    "InvalidSearchQuery(\"Invalid value '['BOOST-INBOX-4K']' for 'issue:' filter\")",
-                    "<traceback object at 0x7daf18479440>"
+                    "InvalidSearchQuery(\"Invalid value '['SILVERFIN-2PK5']' for 'issue:' filter\")",
+                    "<traceback object at 0x7af388210740>"
                   ],
                   "extra": {
-                    "alert_rule_id": "226731",
-                    "organization_id": "1192616",
-                    "subscription_id": "'60/7285b974098011efb28c12598142fbc4'"
+                    "alert_rule_id": "234627",
+                    "organization_id": "28699",
+                    "subscription_id": "'20/101212aa098111efbc95824069e09687'"
                   },
                   "fn": "'/usr/src/sentry/src/sentry/incidents/utils/process_update_helpers.py'",
                   "level": "40",
@@ -2109,18 +2265,18 @@
                 ],
                 "in_app": true,
                 "vars": {
-                  "alert_rule_id": "226731",
+                  "alert_rule_id": "234627",
                   "comparison_aggregate": "None",
-                  "end": "datetime.datetime(2025, 6, 25, 16, 42, tzinfo=datetime.timezone.utc)",
+                  "end": "datetime.datetime(2025, 6, 29, 17, 12, tzinfo=datetime.timezone.utc)",
                   "entity_subscription": "EventsEntitySubscription(query_type=<Type.ERROR: 0>, dataset=<Dataset.Events: 'events'>)",
-                  "organization_id": "1192616",
-                  "project_ids": ["[Filtered]"],
-                  "snuba_query": "<SnubaQuery at 0x7daf1857fa70: id=248822>",
-                  "start": "datetime.datetime(2025, 6, 25, 15, 42, tzinfo=datetime.timezone.utc)",
+                  "organization_id": "28699",
+                  "project_ids": ["60915"],
+                  "snuba_query": "<SnubaQuery at 0x7af3646bf930: id=256718>",
+                  "start": "datetime.datetime(2025, 6, 29, 16, 12, tzinfo=datetime.timezone.utc)",
                   "subscription_update": {
                     "entity": "'events'",
-                    "subscription_id": "'60/7285b974098011efb28c12598142fbc4'",
-                    "timestamp": "datetime.datetime(2025, 7, 2, 16, 42, tzinfo=datetime.timezone.utc)",
+                    "subscription_id": "'20/101212aa098111efbc95824069e09687'",
+                    "timestamp": "datetime.datetime(2025, 7, 6, 17, 12, tzinfo=datetime.timezone.utc)",
                     "values": {
                       "data": ["{\"count\":\"0\"}"],
                       "meta": ["{\"name\":\"'count'\",\"type\":\"'UInt64'\"}"]
@@ -2163,23 +2319,23 @@
                       "unresolved": ["'status'", "0"]
                     }
                   },
-                  "environment": "<Environment at 0x7daf18171a20: id=2570271, organization_id=1192616, name='production'>",
+                  "environment": "<Environment at 0x7af3645ff7e0: id=137010, organization_id=28699, name='production'>",
                   "params": {
-                    "end": "datetime.datetime(2025, 6, 25, 16, 42, tzinfo=datetime.timezone.utc)",
+                    "end": "datetime.datetime(2025, 6, 29, 17, 12, tzinfo=datetime.timezone.utc)",
                     "environment": "'production'",
-                    "organization_id": "1192616",
-                    "project_id": ["[Filtered]"],
-                    "start": "datetime.datetime(2025, 6, 25, 15, 42, tzinfo=datetime.timezone.utc)"
+                    "organization_id": "28699",
+                    "project_id": ["60915"],
+                    "start": "datetime.datetime(2025, 6, 29, 16, 12, tzinfo=datetime.timezone.utc)"
                   },
                   "parser_config_overrides": {
                     "blocked_keys": [
-                      "'time'",
-                      "'timestamp.to_day'",
                       "'end'",
                       "'timestamp'",
-                      "'timestamp.to_hour'",
                       "'start'",
-                      "'last_seen()'"
+                      "'time'",
+                      "'timestamp.to_day'",
+                      "'last_seen()'",
+                      "'timestamp.to_hour'"
                     ],
                     "is_filter_translation": {
                       "archived": ["'status'", "2"],
@@ -2190,8 +2346,8 @@
                       "unresolved": ["'status'", "0"]
                     }
                   },
-                  "project_ids": ["[Filtered]"],
-                  "query": "'(event.type:error) AND (issue:BOOST-INBOX-4K)'",
+                  "project_ids": ["60915"],
+                  "query": "'(event.type:error) AND (issue:SILVERFIN-2PK5)'",
                   "query_builder_cls": "<class 'sentry.search.events.builder.errors.ErrorsQueryBuilder'>",
                   "self": "EventsEntitySubscription(query_type=<Type.ERROR: 0>, dataset=<Dataset.Events: 'events'>)",
                   "skip_field_validation_for_entity_subscription_deletion": "False"
@@ -2224,21 +2380,21 @@
                   "__class__": "<class 'sentry.search.events.builder.errors.ErrorsQueryBuilderMixin'>",
                   "args": [],
                   "kwargs": {
-                    "config": "QueryBuilderConfig(auto_fields=False, auto_aggregations=False, use_aggregate_conditions=False, functions_acl=None, equation_config=None, skip_time_conditions=True, parser_config_overrides={'blocked_keys': {'time', 'timestamp.to_day', 'end', 'timestamp', 'timestamp.to_hour', 'start', 'last_seen()'}, 'is_filter_translation': {'resolved': ('status', 1), 'unresolved': ('status', 0), 'ignored': ('status', 2), 'archived': ('status', 2), 'muted': ('status', 2), 'reprocessing': ('status', 6)}}, has_metrics=False, transform_alias_to_input_format=False, use_metrics_layer=False, skip_tag_resolution=False, on_demand_metrics_enabled=False, on_demand_metrics_type=None, skip_field_validation_for_entity_subscription_deletion=False, allow_metric_aggregates=False, insights_metrics_override_metric_layer=False, use_entity_prefix_for_fields=True)",
+                    "config": "QueryBuilderConfig(auto_fields=False, auto_aggregations=False, use_aggregate_conditions=False, functions_acl=None, equation_config=None, skip_time_conditions=True, parser_config_overrides={'blocked_keys': {'end', 'timestamp', 'start', 'time', 'timestamp.to_day', 'last_seen()', 'timestamp.to_hour'}, 'is_filter_translation': {'resolved': ('status', 1), 'unresolved': ('status', 0), 'ignored': ('status', 2), 'archived': ('status', 2), 'muted': ('status', 2), 'reprocessing': ('status', 6)}}, has_metrics=False, transform_alias_to_input_format=False, use_metrics_layer=False, skip_tag_resolution=False, on_demand_metrics_enabled=False, on_demand_metrics_type=None, skip_field_validation_for_entity_subscription_deletion=False, allow_metric_aggregates=False, insights_metrics_override_metric_layer=False, use_entity_prefix_for_fields=True)",
                     "dataset": "<Dataset.Events: 'events'>",
                     "limit": "None",
                     "offset": "None",
                     "params": {
-                      "end": "datetime.datetime(2025, 6, 25, 16, 42, tzinfo=datetime.timezone.utc)",
+                      "end": "datetime.datetime(2025, 6, 29, 17, 12, tzinfo=datetime.timezone.utc)",
                       "environment": "'production'",
-                      "organization_id": "1192616",
-                      "project_id": ["[Filtered]"],
-                      "start": "datetime.datetime(2025, 6, 25, 15, 42, tzinfo=datetime.timezone.utc)"
+                      "organization_id": "28699",
+                      "project_id": ["60915"],
+                      "start": "datetime.datetime(2025, 6, 29, 16, 12, tzinfo=datetime.timezone.utc)"
                     },
-                    "query": "'(event.type:error) AND (issue:BOOST-INBOX-4K)'",
+                    "query": "'(event.type:error) AND (issue:SILVERFIN-2PK5)'",
                     "selected_columns": ["'count()'"]
                   },
-                  "self": "<sentry.search.events.builder.errors.ErrorsQueryBuilder object at 0x7daf18f5e5d0>"
+                  "self": "<sentry.search.events.builder.errors.ErrorsQueryBuilder object at 0x7af3882c6850>"
                 },
                 "data": { "client_in_app": true }
               },
@@ -2265,21 +2421,21 @@
                 ],
                 "in_app": true,
                 "vars": {
-                  "config": "QueryBuilderConfig(auto_fields=False, auto_aggregations=False, use_aggregate_conditions=False, functions_acl=None, equation_config=None, skip_time_conditions=True, parser_config_overrides={'blocked_keys': {'time', 'timestamp.to_day', 'end', 'timestamp', 'timestamp.to_hour', 'start', 'last_seen()'}, 'is_filter_translation': {'resolved': ('status', 1), 'unresolved': ('status', 0), 'ignored': ('status', 2), 'archived': ('status', 2), 'muted': ('status', 2), 'reprocessing': ('status', 6)}}, has_metrics=False, transform_alias_to_input_format=False, use_metrics_layer=False, skip_tag_resolution=False, on_demand_metrics_enabled=False, on_demand_metrics_type=None, skip_field_validation_for_entity_subscription_deletion=False, allow_metric_aggregates=False, insights_metrics_override_metric_layer=False, use_entity_prefix_for_fields=True)",
+                  "config": "QueryBuilderConfig(auto_fields=False, auto_aggregations=False, use_aggregate_conditions=False, functions_acl=None, equation_config=None, skip_time_conditions=True, parser_config_overrides={'blocked_keys': {'end', 'timestamp', 'start', 'time', 'timestamp.to_day', 'last_seen()', 'timestamp.to_hour'}, 'is_filter_translation': {'resolved': ('status', 1), 'unresolved': ('status', 0), 'ignored': ('status', 2), 'archived': ('status', 2), 'muted': ('status', 2), 'reprocessing': ('status', 6)}}, has_metrics=False, transform_alias_to_input_format=False, use_metrics_layer=False, skip_tag_resolution=False, on_demand_metrics_enabled=False, on_demand_metrics_type=None, skip_field_validation_for_entity_subscription_deletion=False, allow_metric_aggregates=False, insights_metrics_override_metric_layer=False, use_entity_prefix_for_fields=True)",
                   "dataset": "<Dataset.Events: 'events'>",
                   "equations": "None",
                   "groupby_columns": "None",
                   "orderby": "None",
                   "params": {
-                    "end": "datetime.datetime(2025, 6, 25, 16, 42, tzinfo=datetime.timezone.utc)",
+                    "end": "datetime.datetime(2025, 6, 29, 17, 12, tzinfo=datetime.timezone.utc)",
                     "environment": "'production'",
-                    "organization_id": "1192616",
-                    "project_id": ["[Filtered]"],
-                    "start": "datetime.datetime(2025, 6, 25, 15, 42, tzinfo=datetime.timezone.utc)"
+                    "organization_id": "28699",
+                    "project_id": ["60915"],
+                    "start": "datetime.datetime(2025, 6, 29, 16, 12, tzinfo=datetime.timezone.utc)"
                   },
-                  "query": "'(event.type:error) AND (issue:BOOST-INBOX-4K)'",
+                  "query": "'(event.type:error) AND (issue:SILVERFIN-2PK5)'",
                   "selected_columns": ["'count()'"],
-                  "self": "<sentry.search.events.builder.errors.ErrorsQueryBuilder object at 0x7daf18f5e5d0>",
+                  "self": "<sentry.search.events.builder.errors.ErrorsQueryBuilder object at 0x7af3882c6850>",
                   "snuba_params": "None"
                 },
                 "data": { "client_in_app": true }
@@ -2311,9 +2467,9 @@
                   "equations": "None",
                   "groupby_columns": "None",
                   "orderby": "None",
-                  "query": "'(event.type:error) AND (issue:BOOST-INBOX-4K)'",
+                  "query": "'(event.type:error) AND (issue:SILVERFIN-2PK5)'",
                   "selected_columns": ["'count()'"],
-                  "self": "<sentry.search.events.builder.errors.ErrorsQueryBuilder object at 0x7daf18f5e5d0>"
+                  "self": "<sentry.search.events.builder.errors.ErrorsQueryBuilder object at 0x7af3882c6850>"
                 },
                 "data": { "client_in_app": true }
               },
@@ -2343,9 +2499,9 @@
                   "equations": "None",
                   "groupby_columns": "None",
                   "orderby": "None",
-                  "query": "'(event.type:error) AND (issue:BOOST-INBOX-4K)'",
+                  "query": "'(event.type:error) AND (issue:SILVERFIN-2PK5)'",
                   "selected_columns": ["'count()'"],
-                  "self": "<sentry.search.events.builder.errors.ErrorsQueryBuilder object at 0x7daf18f5e5d0>"
+                  "self": "<sentry.search.events.builder.errors.ErrorsQueryBuilder object at 0x7af3882c6850>"
                 },
                 "data": { "client_in_app": true }
               },
@@ -2381,12 +2537,12 @@
                     "'AND'",
                     [
                       [
-                        "[\"SearchKey(name='issue')\",\"'='\",\"SearchValue(raw_value='BOOST-INBOX-4K', use_raw_value=False)\"]"
+                        "[\"SearchKey(name='issue')\",\"'='\",\"SearchValue(raw_value='SILVERFIN-2PK5', use_raw_value=False)\"]"
                       ]
                     ]
                   ],
-                  "query": "'(event.type:error) AND (issue:BOOST-INBOX-4K)'",
-                  "self": "<sentry.search.events.builder.errors.ErrorsQueryBuilder object at 0x7daf18f5e5d0>"
+                  "query": "'(event.type:error) AND (issue:SILVERFIN-2PK5)'",
+                  "self": "<sentry.search.events.builder.errors.ErrorsQueryBuilder object at 0x7af3882c6850>"
                 },
                 "data": { "client_in_app": true }
               },
@@ -2432,24 +2588,24 @@
                     ],
                     [
                       [
-                        "[\"SearchKey(name='issue')\",\"'='\",\"SearchValue(raw_value='BOOST-INBOX-4K', use_raw_value=False)\"]"
+                        "[\"SearchKey(name='issue')\",\"'='\",\"SearchValue(raw_value='SILVERFIN-2PK5', use_raw_value=False)\"]"
                       ]
                     ]
                   ],
                   "operator": "<class 'snuba_sdk.conditions.And'>",
                   "previous_term": [
-                    [["[\"'issue'\"]", "'='", "[\"'BOOST-INBOX-4K'\",\"False\"]"]]
+                    [["[\"'issue'\"]", "'='", "[\"'SILVERFIN-2PK5'\",\"False\"]"]]
                   ],
                   "rhs": [
                     [
                       [
-                        "[\"SearchKey(name='issue')\",\"'='\",\"SearchValue(raw_value='BOOST-INBOX-4K', use_raw_value=False)\"]"
+                        "[\"SearchKey(name='issue')\",\"'='\",\"SearchValue(raw_value='SILVERFIN-2PK5', use_raw_value=False)\"]"
                       ]
                     ]
                   ],
-                  "self": "<sentry.search.events.builder.errors.ErrorsQueryBuilder object at 0x7daf18f5e5d0>",
+                  "self": "<sentry.search.events.builder.errors.ErrorsQueryBuilder object at 0x7af3882c6850>",
                   "term": [
-                    [["[\"'issue'\"]", "'='", "[\"'BOOST-INBOX-4K'\",\"False\"]"]]
+                    [["[\"'issue'\"]", "'='", "[\"'SILVERFIN-2PK5'\",\"False\"]"]]
                   ],
                   "terms": [
                     [
@@ -2459,7 +2615,7 @@
                     ],
                     [
                       [
-                        "[\"SearchKey(name='issue')\",\"'='\",\"SearchValue(raw_value='BOOST-INBOX-4K', use_raw_value=False)\"]"
+                        "[\"SearchKey(name='issue')\",\"'='\",\"SearchValue(raw_value='SILVERFIN-2PK5', use_raw_value=False)\"]"
                       ]
                     ]
                   ]
@@ -2489,11 +2645,11 @@
                 ],
                 "in_app": true,
                 "vars": {
-                  "self": "<sentry.search.events.builder.errors.ErrorsQueryBuilder object at 0x7daf18f5e5d0>",
+                  "self": "<sentry.search.events.builder.errors.ErrorsQueryBuilder object at 0x7af3882c6850>",
                   "terms": [
                     [
                       [
-                        "[\"SearchKey(name='issue')\",\"'='\",\"SearchValue(raw_value='BOOST-INBOX-4K', use_raw_value=False)\"]"
+                        "[\"SearchKey(name='issue')\",\"'='\",\"SearchValue(raw_value='SILVERFIN-2PK5', use_raw_value=False)\"]"
                       ]
                     ]
                   ]
@@ -2523,9 +2679,9 @@
                 ],
                 "in_app": true,
                 "vars": {
-                  "self": "<sentry.search.events.builder.errors.ErrorsQueryBuilder object at 0x7daf18f5e5d0>",
+                  "self": "<sentry.search.events.builder.errors.ErrorsQueryBuilder object at 0x7af3882c6850>",
                   "term": [
-                    [["[\"'issue'\"]", "'='", "[\"'BOOST-INBOX-4K'\",\"False\"]"]]
+                    [["[\"'issue'\"]", "'='", "[\"'SILVERFIN-2PK5'\",\"False\"]"]]
                   ]
                 },
                 "data": { "client_in_app": true }
@@ -2553,8 +2709,8 @@
                 ],
                 "in_app": true,
                 "vars": {
-                  "self": "<sentry.search.events.builder.errors.ErrorsQueryBuilder object at 0x7daf18f5e5d0>",
-                  "terms": [[["'issue'"], "'='", ["'BOOST-INBOX-4K'", "False"]]]
+                  "self": "<sentry.search.events.builder.errors.ErrorsQueryBuilder object at 0x7af3882c6850>",
+                  "terms": [[["'issue'"], "'='", ["'SILVERFIN-2PK5'", "False"]]]
                 },
                 "data": { "client_in_app": true }
               },
@@ -2582,8 +2738,8 @@
                 "in_app": true,
                 "vars": {
                   "having": [],
-                  "self": "<sentry.search.events.builder.errors.ErrorsQueryBuilder object at 0x7daf18f5e5d0>",
-                  "term": [["'issue'"], "'='", ["'BOOST-INBOX-4K'", "False"]],
+                  "self": "<sentry.search.events.builder.errors.ErrorsQueryBuilder object at 0x7af3882c6850>",
+                  "term": [["'issue'"], "'='", ["'SILVERFIN-2PK5'", "False"]],
                   "where": []
                 },
                 "data": { "client_in_app": true }
@@ -2612,10 +2768,10 @@
                 "in_app": true,
                 "vars": {
                   "parsed_terms": [
-                    [["'issue'"], "'='", ["'BOOST-INBOX-4K'", "False"]]
+                    [["'issue'"], "'='", ["'SILVERFIN-2PK5'", "False"]]
                   ],
-                  "self": "<sentry.search.events.builder.errors.ErrorsQueryBuilder object at 0x7daf18f5e5d0>",
-                  "term": [["'issue'"], "'='", ["'BOOST-INBOX-4K'", "False"]],
+                  "self": "<sentry.search.events.builder.errors.ErrorsQueryBuilder object at 0x7af3882c6850>",
+                  "term": [["'issue'"], "'='", ["'SILVERFIN-2PK5'", "False"]],
                   "where_conditions": []
                 },
                 "data": { "client_in_app": true }
@@ -2644,8 +2800,8 @@
                 "in_app": true,
                 "vars": {
                   "name": "'issue'",
-                  "self": "<sentry.search.events.builder.errors.ErrorsQueryBuilder object at 0x7daf18f5e5d0>",
-                  "term": [["'issue'"], "'='", ["'BOOST-INBOX-4K'", "False"]]
+                  "self": "<sentry.search.events.builder.errors.ErrorsQueryBuilder object at 0x7af3882c6850>",
+                  "term": [["'issue'"], "'='", ["'SILVERFIN-2PK5'", "False"]]
                 },
                 "data": { "client_in_app": true }
               },
@@ -2672,16 +2828,16 @@
                 ],
                 "in_app": true,
                 "vars": {
-                  "converter": "<bound method DiscoverDatasetConfig._issue_filter_converter of <sentry.search.events.datasets.discover.DiscoverDatasetConfig object at 0x7daf181b54f0>>",
+                  "converter": "<bound method DiscoverDatasetConfig._issue_filter_converter of <sentry.search.events.datasets.discover.DiscoverDatasetConfig object at 0x7af3911348f0>>",
                   "name": "'issue'",
                   "search_filter": [
                     ["'issue'"],
                     "'='",
-                    ["'BOOST-INBOX-4K'", "False"]
+                    ["'SILVERFIN-2PK5'", "False"]
                   ],
-                  "self": "<sentry.search.events.builder.errors.ErrorsQueryBuilder object at 0x7daf18f5e5d0>",
+                  "self": "<sentry.search.events.builder.errors.ErrorsQueryBuilder object at 0x7af3882c6850>",
                   "unit": "None",
-                  "value": "'BOOST-INBOX-4K'"
+                  "value": "'SILVERFIN-2PK5'"
                 },
                 "data": { "client_in_app": true }
               },
@@ -2709,28 +2865,28 @@
                 "in_app": true,
                 "vars": {
                   "general_group_filter_values": [],
-                  "group_short_ids": ["'BOOST-INBOX-4K'"],
+                  "group_short_ids": ["'SILVERFIN-2PK5'"],
                   "operator": "'='",
                   "search_filter": [
                     ["'issue'"],
                     "'='",
-                    ["'BOOST-INBOX-4K'", "False"]
+                    ["'SILVERFIN-2PK5'", "False"]
                   ],
-                  "self": "<sentry.search.events.datasets.discover.DiscoverDatasetConfig object at 0x7daf181b54f0>",
-                  "value": ["'BOOST-INBOX-4K'"]
+                  "self": "<sentry.search.events.datasets.discover.DiscoverDatasetConfig object at 0x7af3911348f0>",
+                  "value": ["'SILVERFIN-2PK5'"]
                 },
                 "data": { "client_in_app": true }
               }
             ]
           },
-          "mechanism": { "type": "logging", "handled": true, "exception_id": 0 }
+          "mechanism": { "type": "logging", "handled": true }
         }
       ]
     },
     "extra": {
-      "alert_rule_id": 226731,
-      "organization_id": 1192616,
-      "subscription_id": "60/7285b974098011efb28c12598142fbc4",
+      "alert_rule_id": 234627,
+      "organization_id": 28699,
+      "subscription_id": "20/101212aa098111efbc95824069e09687",
       "sys.argv": [
         "/usr/src/sentry/src/sentry/__main__.py",
         "run",
@@ -2747,8 +2903,8 @@
       "id": "newstyle:2023-01-11"
     },
     "hashes": [
-      "527fb99bdba09f9e450d99c7177bfed3",
-      "1822aeea67d5227ffd6d8956ee41d3f7"
+      "d9f7678c250532aa9481d685edeb1a3e",
+      "2a1177ddf2eb0d1e9dd3cfc009029bbb"
     ],
     "ingest_path": [
       {
@@ -2761,13 +2917,12 @@
     "location": "sentry/search/events/datasets/discover.py",
     "logentry": { "formatted": "Failed to run comparison query", "params": [] },
     "logger": "sentry.incidents.utils.process_update_helpers",
-    "main_exception_id": 0,
     "metadata": {
       "filename": "sentry/search/events/datasets/discover.py",
       "function": "_issue_filter_converter",
       "in_app_frame_mix": "mixed",
       "type": "InvalidSearchQuery",
-      "value": "Invalid value '['BOOST-INBOX-4K']' for 'issue:' filter"
+      "value": "Invalid value '['SILVERFIN-2PK5']' for 'issue:' filter"
     },
     "modules": {
       "amqp": "5.3.1",
@@ -2796,7 +2951,6 @@
       "cssselect": "1.0.3",
       "cssutils": "2.9.0",
       "datadog": "0.49.1",
-      "deprecated": "1.2.18",
       "distro": "1.8.0",
       "django": "5.2.1",
       "django-crispy-forms": "1.14.0",
@@ -2833,7 +2987,6 @@
       "httpx": "0.25.2",
       "hyperframe": "6.1.0",
       "idna": "3.7",
-      "importlib_metadata": "8.6.1",
       "inflection": "0.5.1",
       "iso3166": "2.1.1",
       "isodate": "0.6.1",
@@ -2849,9 +3002,6 @@
       "msgpack": "1.1.0",
       "oauthlib": "3.1.0",
       "openai": "1.3.5",
-      "opentelemetry-api": "1.33.1",
-      "opentelemetry-sdk": "1.33.1",
-      "opentelemetry-semantic-conventions": "0.54b1",
       "orjson": "3.10.10",
       "packaging": "24.1",
       "parsimonious": "0.10.0",
@@ -2893,12 +3043,12 @@
       "rsa": "4.8",
       "s3transfer": "0.10.0",
       "sentry": "25.7.0.dev0",
-      "sentry-arroyo": "2.25.0",
+      "sentry-arroyo": "2.26.0",
       "sentry-kafka-schemas": "1.3.13",
       "sentry-protos": "0.2.1",
       "sentry-redis-tools": "0.5.0",
       "sentry-relay": "0.9.9",
-      "sentry-sdk": "3.0.0a2",
+      "sentry-sdk": "2.29.1",
       "sentry-usage-accountant": "0.0.10",
       "sentry_forked_email_reply_parser": "0.5.12.post1",
       "sentry_ophio": "1.1.3",
@@ -2925,18 +3075,16 @@
       "uritemplate": "4.1.1",
       "urllib3": "2.2.2",
       "vine": "5.1.0",
-      "vroomrs": "0.1.6",
+      "vroomrs": "0.1.7",
       "wcwidth": "0.2.13",
-      "wrapt": "1.17.2",
       "xmlsec": "1.3.14",
-      "zipp": "3.21.0",
       "zstandard": "0.18.0"
     },
-    "nodestore_insert": 1751474586.963507,
-    "received": 1751474584.458952,
+    "nodestore_insert": 1751821972.282048,
+    "received": 1751821970.73642,
     "sdk": {
       "name": "sentry.python.django",
-      "version": "3.0.0a2",
+      "version": "2.29.1",
       "integrations": [
         "argv",
         "atexit",
@@ -2952,11 +3100,12 @@
         "stdlib",
         "threading"
       ],
-      "packages": [{ "name": "pypi:sentry-sdk", "version": "3.0.0a2" }]
+      "packages": [{ "name": "pypi:sentry-sdk", "version": "2.29.1" }]
     },
-    "timestamp": 1751474584.442766,
-    "title": "InvalidSearchQuery: Invalid value '['BOOST-INBOX-4K']' for 'issue:' filter",
-    "transaction_info": {},
+    "timestamp": 1751821970.719978,
+    "title": "InvalidSearchQuery: Invalid value '['SILVERFIN-2PK5']' for 'issue:' filter",
+    "transaction": "query_subscription_consumer_process_message",
+    "transaction_info": { "source": "custom" },
     "type": "error",
     "version": "7"
   }
