@@ -1,0 +1,175 @@
+{
+    "level": "error",
+    "exception": {
+      "values": [
+        {
+          "mechanism": {
+            "type": "generic",
+            "handled": true,
+            "is_exception_group": true
+          },
+          "module": null,
+          "type": "ExceptionGroup",
+          "value": "groupAAA",
+          "stacktrace": {
+            "frames": [
+              {
+                "filename": "main.py",
+                "abs_path": "/Users/antonpirker/code/testing-sentry/test-plain-python-exception-groups/main.py",
+                "function": "<module>",
+                "module": "__main__",
+                "lineno": 14,
+                "pre_context": [
+                  "    debug=True,",
+                  ")",
+                  "",
+                  "try:",
+                  "    try:"
+                ],
+                "context_line": "        raise ExceptionGroup(\"groupAAA\", [ValueError(\"child1\"), ValueError(\"child2\")])",
+                "post_context": [
+                  "    finally:",
+                  "        raise TypeError(\"bar\")",
+                  "except BaseException:",
+                  "    sentry_sdk.capture_exception()"
+                ],
+                "vars": {
+                  "__name__": "'__main__'",
+                  "__doc__": "None",
+                  "__package__": "None",
+                  "__loader__": "<_frozen_importlib_external.SourceFileLoader object at 0x100884e00>",
+                  "__spec__": "None",
+                  "__annotations__": {},
+                  "__builtins__": "<module 'builtins' (built-in)>",
+                  "__file__": "'/Users/antonpirker/code/testing-sentry/test-plain-python-exception-groups/main.py'",
+                  "__cached__": "None",
+                  "os": "<module 'os' (frozen)>"
+                },
+                "in_app": true
+              }
+            ]
+          }
+        },
+        {
+          "mechanism": {
+            "type": "generic",
+            "handled": true
+          },
+          "module": null,
+          "type": "TypeError",
+          "value": "bar",
+          "stacktrace": {
+            "frames": [
+              {
+                "filename": "main.py",
+                "abs_path": "/Users/antonpirker/code/testing-sentry/test-plain-python-exception-groups/main.py",
+                "function": "<module>",
+                "module": "__main__",
+                "lineno": 16,
+                "pre_context": [
+                  "",
+                  "try:",
+                  "    try:",
+                  "        raise ExceptionGroup(\"groupAAA\", [ValueError(\"child1\"), ValueError(\"child2\")])",
+                  "    finally:"
+                ],
+                "context_line": "        raise TypeError(\"bar\")",
+                "post_context": [
+                  "except BaseException:",
+                  "    sentry_sdk.capture_exception()"
+                ],
+                "vars": {
+                  "__name__": "'__main__'",
+                  "__doc__": "None",
+                  "__package__": "None",
+                  "__loader__": "<_frozen_importlib_external.SourceFileLoader object at 0x100884e00>",
+                  "__spec__": "None",
+                  "__annotations__": {},
+                  "__builtins__": "<module 'builtins' (built-in)>",
+                  "__file__": "'/Users/antonpirker/code/testing-sentry/test-plain-python-exception-groups/main.py'",
+                  "__cached__": "None",
+                  "os": "<module 'os' (frozen)>"
+                },
+                "in_app": true
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "event_id": "bd51e51d2d824320a41ae378f1033abc",
+    "timestamp": "2025-07-08T07:03:54.844881Z",
+    "contexts": {
+      "trace": {
+        "trace_id": "dbce16e994734c039202e42a85031dea",
+        "span_id": "98a305c5c79d7aaa",
+        "parent_span_id": null
+      },
+      "runtime": {
+        "name": "CPython",
+        "version": "3.12.0",
+        "build": "3.12.0 (main, Oct  2 2023, 20:56:14) [Clang 16.0.3 ]"
+      }
+    },
+    "transaction_info": {},
+    "breadcrumbs": {
+      "values": []
+    },
+    "extra": {
+      "sys.argv": [
+        "main.py"
+      ]
+    },
+    "modules": {
+      "opentelemetry-semantic-conventions": "0.55b1",
+      "pexpect": "4.9.0",
+      "traitlets": "5.14.3",
+      "urllib3": "2.5.0",
+      "ptyprocess": "0.7.0",
+      "parso": "0.8.4",
+      "ipython": "9.4.0",
+      "certifi": "2025.6.15",
+      "jedi": "0.19.2",
+      "typing_extensions": "4.14.1",
+      "asttokens": "3.0.0",
+      "ipython_pygments_lexers": "1.1.1",
+      "decorator": "5.2.1",
+      "executing": "2.2.0",
+      "sentry-sdk": "2.32.0",
+      "stack-data": "0.6.3",
+      "wcwidth": "0.2.13",
+      "prompt_toolkit": "3.0.51",
+      "opentelemetry-sdk": "1.34.1",
+      "pure_eval": "0.2.3",
+      "pygments": "2.19.2",
+      "matplotlib-inline": "0.1.7",
+      "importlib_metadata": "8.7.0",
+      "ipdb": "0.13.13",
+      "zipp": "3.23.0",
+      "opentelemetry-api": "1.34.1"
+    },
+    "release": "74655f57698c69e31dde43c7ae2803dab137c13c",
+    "environment": "production",
+    "server_name": "Y7CYJ0XDQY.local",
+    "sdk": {
+      "name": "sentry.python",
+      "version": "2.32.0",
+      "packages": [
+        {
+          "name": "pypi:sentry-sdk",
+          "version": "2.32.0"
+        }
+      ],
+      "integrations": [
+        "argv",
+        "atexit",
+        "dedupe",
+        "excepthook",
+        "logging",
+        "modules",
+        "stdlib",
+        "threading"
+      ]
+    },
+    "platform": "python"
+  }
