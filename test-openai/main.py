@@ -10,7 +10,16 @@ from sentry_sdk.integrations.openai import OpenAIIntegration
 @ai_track("My sync OpenAI pipeline")
 def my_pipeline(client):
     with sentry_sdk.start_transaction(name="openai-sync"):
-        # Sync create message
+        # Responses API
+        response = client.responses.create(
+            model="gpt-4o-mini",
+            instructions="You are a coding assistant that talks like a pirate.",
+            input="How do I check if a Python object is an instance of a class?",
+        )
+        print("Response:")
+        print(response.model_dump())
+
+        # Completions API
         message = client.chat.completions.create(
             messages=[
                 {
@@ -23,29 +32,13 @@ def my_pipeline(client):
         print("Message:")
         print(message.dict())
 
-        # Sync embeddings
-        embedding = client.embeddings.create(
+        # Embeddings API
+        embeddings = client.embeddings.create(
             input="Your text goes here",
             model="text-embedding-3-small",
         ).data[0].embedding
-        print("Embedding:")
-        print(len(embedding))
-
-        # Sentry does not instrument streaming OpenAI API calls
-        # # Sync create streaming message
-        # stream = client.chat.completions.create(
-        #     messages=[
-        #         {
-        #             "role": "user",
-        #             "content": "Hi!",
-        #         }
-        #     ],
-        #     model="gpt-3.5-turbo",
-        #     stream=True,
-        # )
-        # print("Message (Stream):")
-        # for event in stream:
-        #     print(event)
+        print("Embeddings:")
+        print(len(embeddings))
 
 
 def main():
