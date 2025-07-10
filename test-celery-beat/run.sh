@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
 # exit on first error
-set -xe
+set -euo pipefail
 
-# create and activate virtual environment
-python -m venv .venv
-source .venv/bin/activate
+# Install uv if it's not installed
+if ! command -v uv &> /dev/null; then
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+fi
 
-# Install (or update) requirements
-python -m pip install -r requirements.txt
-
-python main.py
+# Run the script
+export SENTRY_SPOTLIGHT=1
+uv run python main.py

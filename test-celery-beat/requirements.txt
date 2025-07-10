@@ -1,6 +1,0 @@
-celery==4.4.7
-redis
-
--e ../../../code/sentry-python 
-
-ipdb

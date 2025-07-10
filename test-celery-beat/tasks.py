@@ -14,7 +14,7 @@ app = Celery("tasks", broker='redis://localhost:6379/0')
 app.conf.beat_schedule = {
     'task_a_beat': {
         'task': 'tasks.task_a',
-        'schedule': crontab(minute='*/1', day_of_week='sat'),
+        'schedule': crontab(minute='*/1'),
         'args': ('Task A from beat',),
     },
     # 'task_b_beat': {
