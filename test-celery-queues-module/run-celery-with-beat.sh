@@ -10,17 +10,15 @@ rm -f celerybeat-schedule
 # Delete redis database (empty the queue)
 rm -rf dump.rdb
 
-# create and activate virtual environment
-python -m venv .venv
-source .venv/bin/activate
-
-# Install (or update) requirements
-pip install -r requirements.txt
+# Install uv if it's not installed
+if ! command -v uv &> /dev/null; then
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+fi
 
 redis-server --daemonize yes
 
 # Run Celery and beat in the same process
-celery -A tasks.app worker \
+uv run celery -A tasks.app worker \
     --beat \
     --loglevel=DEBUG \
     --concurrency=1
