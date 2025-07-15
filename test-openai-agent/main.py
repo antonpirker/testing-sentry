@@ -3,7 +3,9 @@ import os
 
 import agents
 
-from my_agents import reasoning_agent, random_number_agent, multiply_agent
+# from my_agents import reasoning_agent
+from my_agents import random_number_agent
+# from my_agents import multiply_agent
 
 import sentry_sdk
 from sentry_sdk.integrations.openai_agents import OpenAIAgentsIntegration
@@ -54,15 +56,15 @@ async def main() -> None:
         print(response.usage)
 
     ## Run reasoning agent
-    print("Running reasoning agent")
-    result3 = await agents.Runner.run(
-        reasoning_agent,
-        input=f"Solve this step by step: If I have 15 apples and I give away 1/3 of them, then buy 8 more, how many apples do I have? Show your reasoning.",
-    )
+    # print("Running reasoning agent")
+    # result3 = await agents.Runner.run(
+    #     reasoning_agent,
+    #     input=f"Solve this step by step: If I have 15 apples and I give away 1/3 of them, then buy 8 more, how many apples do I have? Show your reasoning.",
+    # )
 
-    print("Reasoning agent usage:")
-    for response in result3.raw_responses:
-        print(response.usage)
+    # print("Reasoning agent usage:")
+    # for response in result3.raw_responses:
+    #     print(response.usage)
 
     print("\nDone!")
 

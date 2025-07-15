@@ -1,4 +1,5 @@
 import agents
+import os
 
 from pydantic import BaseModel
 from my_tools import multiply, random_number, magic_tool, query_database
@@ -105,7 +106,8 @@ multiply_agent = agents.Agent(
     name="Multiply Agent",
     instructions=f"{CACHED_SYSTEM_CONTEXT}\n\nSPECIFIC ROLE: Multiply the number x by the number y and then return the final result.",
     tools=[multiply],
-    model="gpt-4o-mini",
+    #model="gpt-4o-mini",
+    model="litellm/anthropic/claude-3-5-sonnet-20241022",  # Use Claude 3.5 Sonnet
     output_type=FinalResult,
 )
 
@@ -116,22 +118,23 @@ random_number_agent = agents.Agent(
     tools=[random_number, magic_tool, query_database],
     output_type=FinalResult,
     handoffs=[multiply_agent],
-    model="gpt-4o-mini",
+    #model="gpt-4o-mini",
+    model="litellm/anthropic/claude-3-5-sonnet-20241022",  # Use Claude 3.5 Sonnet
     model_settings=agents.ModelSettings(
         temperature=0.1,
-        top_p=0.2,
-        frequency_penalty=0.3,
-        presence_penalty=0.4,
+        # top_p=0.2,
+        # frequency_penalty=0.3,
+        # presence_penalty=0.4,
         max_tokens=500,  # Allow more tokens for cached content
     )
 )
 
 
-reasoning_agent = agents.Agent(
-    name="Reasoning Agent",
-    output_type=str,  # Use simple string output instead of structured
-    model=agents.OpenAIChatCompletionsModel(
-        model="o1-mini",
-        openai_client=agents.AsyncOpenAI()
-    ),
-)
+# reasoning_agent = agents.Agent(
+#     name="Reasoning Agent",
+#     output_type=str,  # Use simple string output instead of structured
+#     model=agents.OpenAIChatCompletionsModel(
+#         model="o1-mini",
+#         openai_client=agents.AsyncOpenAI()
+#     ),
+# )
