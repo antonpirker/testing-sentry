@@ -5,6 +5,10 @@ from pydantic import BaseModel
 from my_tools import multiply, random_number, magic_tool, query_database
 
 
+openai_client = agents.AsyncOpenAI(api_key=os.environ.get("MY_OPENAI_API_KEY"))
+claude_client = agents.AsyncOpenAI(api_key=os.environ.get("MY_ANTHROPIC_API_KEY"), base_url="https://api.anthropic.com/v1/")
+
+
 # Cache-optimized system context - keep this consistent across requests
 # Make it longer to meet OpenAI's caching requirements (typically 1024+ tokens)
 CACHED_SYSTEM_CONTEXT = """
@@ -106,8 +110,10 @@ multiply_agent = agents.Agent(
     name="Multiply Agent",
     instructions=f"{CACHED_SYSTEM_CONTEXT}\n\nSPECIFIC ROLE: Multiply the number x by the number y and then return the final result.",
     tools=[multiply],
-    #model="gpt-4o-mini",
-    model="litellm/anthropic/claude-3-5-sonnet-20241022",  # Use Claude 3.5 Sonnet
+    model=agents.OpenAIResponsesModel(
+        model="gpt-4o-mini",
+        openai_client=openai_client,
+    ),
     output_type=FinalResult,
 )
 
@@ -116,25 +122,56 @@ random_number_agent = agents.Agent(
     name="Random Number Agent",
     instructions=f"{CACHED_SYSTEM_CONTEXT}\n\nSPECIFIC ROLE: Generate a random number. If it's even, hand off to multiply agent to multiply by 2. If it's odd, hand off to the multiply agent to multiply by 30.",
     tools=[random_number, magic_tool, query_database],
-    output_type=FinalResult,
     handoffs=[multiply_agent],
-    #model="gpt-4o-mini",
-    model="litellm/anthropic/claude-3-5-sonnet-20241022",  # Use Claude 3.5 Sonnet
+    model=agents.OpenAIResponsesModel(
+        model="gpt-4o-mini",
+        openai_client=openai_client,
+    ),
     model_settings=agents.ModelSettings(
         temperature=0.1,
-        # top_p=0.2,
-        # frequency_penalty=0.3,
-        # presence_penalty=0.4,
-        max_tokens=500,  # Allow more tokens for cached content
-    )
+        top_p=0.2,
+        frequency_penalty=0.3,
+        presence_penalty=0.4,
+        max_tokens=500,
+    ),
+    output_type=FinalResult,
 )
 
 
-# reasoning_agent = agents.Agent(
-#     name="Reasoning Agent",
-#     output_type=str,  # Use simple string output instead of structured
-#     model=agents.OpenAIChatCompletionsModel(
-#         model="o1-mini",
-#         openai_client=agents.AsyncOpenAI()
-#     ),
-# )
+reasoning_agent = agents.Agent(
+    name="Reasoning Agent",
+    output_type=str,  # Use simple string output instead of structured
+    model=agents.OpenAIChatCompletionsModel(
+        model="o1-mini",
+        openai_client=openai_client,
+    ),
+)
+
+
+multiply_agent_claude = agents.Agent(
+    name="Multiply Agent",
+    instructions=f"{CACHED_SYSTEM_CONTEXT}\n\nSPECIFIC ROLE: Multiply the number x by the number y and then return the final result.",
+    tools=[multiply],
+    model=agents.OpenAIChatCompletionsModel(
+        model="claude-3-7-sonnet-20250219",
+        openai_client=claude_client,
+    ),
+    # no structured output for other models (output_type not supported)
+)
+
+random_number_agent_claude = agents.Agent(
+    name="Random Number Agent",
+    instructions=f"{CACHED_SYSTEM_CONTEXT}\n\nSPECIFIC ROLE: Generate a random number. If it's even, hand off to multiply agent to multiply by 2. If it's odd, hand off to the multiply agent to multiply by 30.",
+    tools=[random_number, magic_tool, query_database],
+    handoffs=[multiply_agent_claude],
+    model=agents.OpenAIChatCompletionsModel(
+        model="claude-3-7-sonnet-20250219",
+        openai_client=claude_client,
+    ),
+    model_settings=agents.ModelSettings(
+        temperature=0.1,
+        max_tokens=500,
+        # other settings not supported for Claude models
+    )
+    # no structured output for other models (output_type not supported)
+)
