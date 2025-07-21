@@ -5,6 +5,7 @@ from openai import OpenAI
 import sentry_sdk
 from sentry_sdk.ai.monitoring import ai_track
 from sentry_sdk.integrations.openai import OpenAIIntegration
+from sentry_sdk.integrations.stdlib import StdlibIntegration
 
 
 @ai_track("My sync OpenAI workflow")
@@ -54,6 +55,9 @@ def main():
         integrations=[
             OpenAIIntegration(include_prompts=True),
         ],
+        disabled_integrations=[
+            StdlibIntegration(),
+        ],
     )
 
     client = OpenAI(
@@ -61,6 +65,9 @@ def main():
     )
 
     my_workflow(client)
+
+    print("--------------------------------")
+    print("Done!")
 
 
 if __name__ == "__main__":

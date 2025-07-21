@@ -6,6 +6,7 @@ from openai import AsyncOpenAI
 import sentry_sdk
 from sentry_sdk.ai.monitoring import ai_track
 from sentry_sdk.integrations.openai import OpenAIIntegration
+from sentry_sdk.integrations.stdlib import StdlibIntegration
 
 
 @ai_track("My async OpenAI workflow")
@@ -39,7 +40,8 @@ async def my_workflow(client):
         embeddings = await client.embeddings.create(
             input="Your text goes here",
             model="text-embedding-3-small",
-        ).data[0].embedding
+        )
+        embeddings = embeddings.data[0].embedding
         print("--------------------------------")
         print("Embeddings:")
         print(len(embeddings))
@@ -55,6 +57,9 @@ async def main():
         integrations=[
             OpenAIIntegration(include_prompts=True),
         ],
+        disabled_integrations=[
+            StdlibIntegration(),
+        ],
     )
 
     client = AsyncOpenAI(
@@ -62,6 +67,9 @@ async def main():
     )
 
     await my_workflow(client)
+
+    print("--------------------------------")
+    print("Done!")
 
 
 asyncio.run(main())
