@@ -7,6 +7,7 @@ dependencies = [
     "ipdb>=0.13.13",
     "openai>=1.77.0",
     "sentry-sdk",
+    "tiktoken>=0.9.0",
 ]
 
 [tool.uv.sources]
