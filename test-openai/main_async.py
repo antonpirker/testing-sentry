@@ -107,9 +107,9 @@ async def main():
                 tiktoken_encoding_name="cl100k_base",
             ),
         ],
-        disabled_integrations=[
-            StdlibIntegration(),
-        ],
+        # disabled_integrations=[
+        #     StdlibIntegration(),
+        # ],
     )
 
     client = AsyncOpenAI(
