@@ -88,9 +88,9 @@ DATABASES = {
         "PORT": os.environ.get("DATABASE_PORT", "5434"),
         "OPTIONS": {
             "pool": {
-                "min_size": 2,
-                "max_size": 10,
-                "timeout": 30,
+                "min_size": 1,
+                "max_size": 3,  # Small pool to easily reproduce exhaustion
+                "timeout": 10,  # Shorter timeout to see errors faster
             }
         },
     }
