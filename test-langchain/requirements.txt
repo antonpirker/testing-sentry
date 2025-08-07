@@ -1,0 +1,7 @@
+langchain
+langchain-openai
+langchain-community
+
+-e  ../../../code/sentry-python
+
+ipdb
