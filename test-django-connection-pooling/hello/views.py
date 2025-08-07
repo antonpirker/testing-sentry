@@ -174,26 +174,26 @@ def sentry_database_interaction_test(request):
         )
 
         # 2. Trigger Sentry span for database operation
-        with sentry_sdk.start_span(op="db.query", description="Get all greetings"):
-            greetings = list(Greeting.objects.all())
+        # with sentry_sdk.start_span(op="db.query", description="Get all greetings"):
+        greetings = list(Greeting.objects.all())
 
         # 3. Update operation
-        with sentry_sdk.start_span(op="db.query", description="Update greeting count"):
-            new_greeting.count += 1
-            new_greeting.save()
+        # with sentry_sdk.start_span(op="db.query", description="Update greeting count"):
+        new_greeting.count += 1
+        new_greeting.save()
 
         # 4. Complex query with Sentry span
-        with sentry_sdk.start_span(op="db.query", description="Complex aggregation"):
-            from django.db.models import Avg, Count, Max
-            stats = Greeting.objects.aggregate(
-                avg_count=Avg('count'),
-                total_greetings=Count('id'),
-                max_count=Max('count')
-            )
+        # with sentry_sdk.start_span(op="db.query", description="Complex aggregation"):
+        from django.db.models import Avg, Count, Max
+        stats = Greeting.objects.aggregate(
+            avg_count=Avg('count'),
+            total_greetings=Count('id'),
+            max_count=Max('count')
+        )
 
         # 5. Delete the test greeting
-        with sentry_sdk.start_span(op="db.query", description="Delete test greeting"):
-            new_greeting.delete()
+        # with sentry_sdk.start_span(op="db.query", description="Delete test greeting"):
+        new_greeting.delete()
 
         end_time = time.time()
 
