@@ -1,0 +1,13 @@
+[project]
+name = "test"
+version = "0"
+requires-python = ">=3.12"
+
+dependencies = [
+    "anthropic>=0.61.0",
+    "ipdb>=0.13.13",
+    "sentry-sdk[django]>=2.34.1",
+]
+
+[tool.uv.sources]
+sentry-sdk = { path = "../../sentry-python", editable = true }

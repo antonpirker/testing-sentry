@@ -1,5 +1,0 @@
-anthropic
-
--e  ../../../code/sentry-python
-
-ipdb
