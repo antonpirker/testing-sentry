@@ -8,32 +8,32 @@ from sentry_sdk.integrations.anthropic import AnthropicIntegration
 
 
 @ai_track("My sync AI pipeline")
-def my_pipeline(client):    
+def my_pipeline(client):
     with sentry_sdk.start_transaction(name="anthropic-sync"):
         # Sync create message
         message = client.messages.create(
-            max_tokens=1024,
             messages=[
                 {
                     "role": "user",
                     "content": "Hi!",
                 }
             ],
-            model="claude-3-haiku-20240307",
+            model="claude-3-5-haiku-latest",
+            max_tokens=1024,
         )
         print("Message:")
         print(message.dict())
 
         # Sync create streaming message
         stream = client.messages.create(
-            max_tokens=1024,
             messages=[
                 {
                     "role": "user",
                     "content": "Hi!",
                 }
             ],
-            model="claude-3-haiku-20240307",
+            model="claude-3-5-haiku-latest",
+            max_tokens=1024,
             stream=True,
         )
         print("Message (Stream):")
@@ -49,7 +49,7 @@ def main():
         send_default_pii=True,
         debug=True,
         integrations=[
-            AnthropicIntegration(include_prompts=True), 
+            AnthropicIntegration(include_prompts=True),
         ],
     )
 
@@ -57,7 +57,7 @@ def main():
         api_key=os.environ.get("ANTHROPIC_API_KEY"),
     )
 
-    my_pipeline(client)    
+    my_pipeline(client)
 
 
 if __name__ == "__main__":

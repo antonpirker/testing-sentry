@@ -49,7 +49,6 @@ def my_pipeline(client):
         )
         print("Message:")
         print(message.dict())
-
         # If model wants to run a tool, run it.
         if message.stop_reason == "tool_use":
             tool_use_block = message.content[1]

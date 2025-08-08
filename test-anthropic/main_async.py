@@ -9,11 +9,10 @@ from sentry_sdk.integrations.anthropic import AnthropicIntegration
 
 
 @ai_track("My async AI pipeline")
-async def my_pipeline(client):    
+async def my_pipeline(client):
     with sentry_sdk.start_transaction(name="anthropic-async"):
         # Async create message
         message = await client.messages.create(
-            max_tokens=1024,
             messages=[
                 {
                     "role": "user",
@@ -21,12 +20,12 @@ async def my_pipeline(client):
                 }
             ],
             model="claude-3-haiku-20240307",
+            max_tokens=1024,
         )
         print(message.dict())
 
         # Async create streaming message
         stream = await client.messages.create(
-            max_tokens=1024,
             messages=[
                 {
                     "role": "user",
@@ -34,6 +33,7 @@ async def my_pipeline(client):
                 }
             ],
             model="claude-3-haiku-20240307",
+            max_tokens=1024,
             stream=True,
         )
         async for event in stream:
@@ -48,7 +48,7 @@ async def main():
         send_default_pii=True,
         debug=True,
         integrations=[
-            AnthropicIntegration(include_prompts=True), 
+            AnthropicIntegration(include_prompts=True),
         ],
     )
 
@@ -56,7 +56,7 @@ async def main():
         api_key=os.environ.get("ANTHROPIC_API_KEY"),
     )
 
-    await my_pipeline(client)    
+    await my_pipeline(client)
 
 
 asyncio.run(main())
