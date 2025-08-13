@@ -3,10 +3,19 @@ import os
 import sentry_sdk
 
 
-sentry_sdk.init(
-    dsn=os.environ["SENTRY_DSN"],
-    enable_tracing=True,
-    debug=True,
-)
+def main():
+    sentry_sdk.init(
+        dsn=os.environ["SENTRY_DSN"],
+        traces_sample_rate=1.0,
+        debug=True,
+    )
 
-division_by_zero = 1 / 0
+    for i in range(10):
+        try:
+            division_by_zero = 1 / 0
+        except Exception as e:
+            sentry_sdk.capture_exception(e)
+
+
+if __name__ == "__main__":
+    main()
