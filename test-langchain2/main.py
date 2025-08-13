@@ -6,24 +6,18 @@ from langchain_core.messages import HumanMessage, SystemMessage
 import sentry_sdk
 from sentry_sdk.ai.monitoring import ai_track
 from sentry_sdk.integrations.langchain import LangchainIntegration
+from sentry_sdk.integrations.openai import OpenAIIntegration
 
 
-@ai_track("My sync LangChain AI pipeline")
-def my_pipeline(llm):
-    with sentry_sdk.start_transaction(name="langchain-sync"):
-        # Sync create message
-        messages = [
-            SystemMessage(content="You are a helpful assistant."),
-            HumanMessage(content="Hi!"),
-        ]
-        response = llm.invoke(messages)
-        print("Response:")
-        print(response.dict())
+from langchain_openai import ChatOpenAI
+from langchain_core.tools import tool
+from langchain import hub
+from langchain.agents import AgentExecutor, create_openai_tools_agent
 
-        # Sync create streaming message
-        print("Response (Stream):")
-        for chunk in llm.stream(messages):
-            print(chunk.dict())
+@tool
+def multiply(a: int, b: int) -> int:
+    "Multiply two integers."
+    return a * b
 
 
 def main():
@@ -36,14 +30,20 @@ def main():
         integrations=[
             LangchainIntegration(include_prompts=True),
         ],
+        disabled_integrations=[
+            OpenAIIntegration(),
+        ],
     )
 
-    llm = ChatOpenAI(
-        model="gpt-3.5-turbo",
-        api_key=os.environ.get("OPENAI_API_KEY"),
-    )
+    tools = [multiply]
+    llm = ChatOpenAI(model="gpt-4o-mini")
+    prompt = hub.pull("hwchase17/openai-tools-agent")  # ReAct-style prompt
+    agent = create_openai_tools_agent(llm, tools, prompt)
+    agent_executor = AgentExecutor(agent=agent, tools=tools)
 
-    my_pipeline(llm)
+    with sentry_sdk.start_transaction(name="langchain-sync"):
+        res = agent_executor.invoke({"input": "What is 12 * 13? Use the tool."})
+        print(res["output"])
 
 
 if __name__ == "__main__":
