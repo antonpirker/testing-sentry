@@ -89,8 +89,9 @@ async def main() -> None:
     sentry_sdk.set_user(user)
     sentry_sdk.set_tag("my_custom_tag", "value_one")
 
-    await run_agents_using_openai()
-    await run_agents_using_claude()
+    with sentry_sdk.start_transaction(name="root-transaction"):
+        await run_agents_using_openai()
+        await run_agents_using_claude()
 
     print("\nDone!")
 
