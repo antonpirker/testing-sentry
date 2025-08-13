@@ -10,7 +10,7 @@ from sentry_sdk.integrations.langchain import LangchainIntegration
 
 
 @ai_track("My async LangChain AI pipeline")
-async def my_pipeline(llm):    
+async def my_pipeline(llm):
     with sentry_sdk.start_transaction(name="langchain-async"):
         # Async create message
         messages = [
@@ -35,11 +35,12 @@ async def main():
         send_default_pii=True,
         debug=True,
         integrations=[
-            LangchainIntegration(include_prompts=True), 
+            LangchainIntegration(include_prompts=True),
         ],
     )
 
     import random
+
     models = ["gpt-3.5-turbo", "gpt-4o-mini"]
     selected_model = random.choice(models)
     llm = ChatOpenAI(
@@ -47,7 +48,7 @@ async def main():
         api_key=os.environ.get("OPENAI_API_KEY"),
     )
 
-    await my_pipeline(llm)    
+    await my_pipeline(llm)
 
 
 asyncio.run(main())
