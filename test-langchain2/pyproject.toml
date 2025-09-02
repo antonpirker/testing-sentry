@@ -8,6 +8,7 @@ dependencies = [
     "langchain>=0.3.27",
     "langchain-community>=0.3.27",
     "langchain-openai>=0.3.28",
+    "pudb>=2025.1",
     "sentry-sdk",
     "tiktoken>=0.10.0",
 ]

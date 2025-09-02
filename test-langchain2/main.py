@@ -3,7 +3,7 @@ import os
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.tools import tool
-from langchain.agents import AgentExecutor, create_openai_tools_agent
+from langchain.agents import AgentExecutor, create_openai_tools_agent, create_tool_calling_agent
 
 
 import sentry_sdk
@@ -12,7 +12,7 @@ from sentry_sdk.integrations.langchain import LangchainIntegration
 from sentry_sdk.integrations.openai import OpenAIIntegration
 
 
-@tool
+@tool("my_multiply")
 def multiply(a: int, b: int) -> int:
     "Multiply two integers."
     return a * b
@@ -35,7 +35,11 @@ def main():
 
     tools = [multiply]
 
-    llm = ChatOpenAI(model="gpt-4o-mini")
+    llm = ChatOpenAI(
+        model="gpt-4o-mini",
+        model_kwargs={"stream_options": {"include_usage": True}},
+        # streaming=True,
+    )
 
     prompt = ChatPromptTemplate.from_messages([
         ("system", "You are a helpful assistant that can use tools to help answer questions."),
@@ -44,13 +48,24 @@ def main():
         ("placeholder", "{agent_scratchpad}"),
     ])
 
-    agent = create_openai_tools_agent(llm, tools, prompt)
-    agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
+    agent = create_openai_tools_agent(llm, tools, prompt).with_config({
+        "run_name": "MyAgent1",
+        "metadata": {
+            "agent_name": "MyAgent1.1",
+        },
+    })
+
+    # agent = create_tool_calling_agent(llm, tools, prompt)
+    agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True).with_config({"run_name": "MyAgent2"})
 
     with sentry_sdk.start_transaction(name="langchain-sync"):
-        res = agent_executor.invoke({"input": "What is 12 * 13? Use the tool."})
-        print(res["output"])
-
+        # res = agent_executor.invoke({"input": "What is 12 * 13? Use the tool."}, config={"run_name": "MyAgent3"})
+        # print(res["output"])
+        for chunk in agent_executor.stream(
+            {"input": "What is 12 * 13? Use the tool."},
+            config={"run_name": "MyAgent3"}
+        ):
+            print(chunk)
 
 if __name__ == "__main__":
     main()

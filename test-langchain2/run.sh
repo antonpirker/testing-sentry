@@ -8,5 +8,5 @@ if ! command -v uv &> /dev/null; then
     curl -LsSf https://astral.sh/uv/install.sh | sh
 fi
 
-# Run the script
+# # Run the script
 uv run python main.py
