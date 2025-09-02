@@ -4,7 +4,6 @@ version = "0"
 requires-python = ">=3.12"
 
 dependencies = [
-    "gandalf>=0.1.4",
     "grandalf>=0.8",
     "ipdb>=0.13.13",
     "langchain>=0.3.27",
@@ -12,6 +11,7 @@ dependencies = [
     "langchain-openai>=0.3.28",
     "langchain-tavily>=0.2.11",
     "langgraph>=0.6.4",
+    "python-dotenv>=1.0.0",
     "sentry-sdk",
     "tiktoken>=0.10.0",
 ]

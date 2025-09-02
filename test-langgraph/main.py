@@ -1,10 +1,14 @@
 import os
 import json
+import asyncio
 
 from typing import Annotated
+from langchain_openai import ChatOpenAI
 from typing_extensions import TypedDict
 
+from dotenv import load_dotenv
 import sentry_sdk
+from sentry_sdk.integrations.openai import OpenAIIntegration
 from sentry_sdk.integrations.langchain import LangchainIntegration
 
 from langchain_tavily import TavilySearch
@@ -25,7 +29,9 @@ class State(TypedDict):
     messages: Annotated[list, add_messages]
 
 
-def main():
+async def main():
+    load_dotenv()
+    
     sentry_sdk.init(
         dsn=os.getenv("SENTRY_DSN", None),
         environment=os.getenv("ENV", os.path.basename(os.getcwd())),
@@ -34,6 +40,9 @@ def main():
         debug=True,
         integrations=[
             LangchainIntegration(include_prompts=True),
+        ],
+        disabled_integrations=[
+            OpenAIIntegration(),
         ],
     )
 
@@ -64,26 +73,31 @@ def main():
     # Print my graph
     print(graph.get_graph().draw_ascii())
 
-    def stream_graph_updates(user_input: str):
-        for event in graph.stream({"messages": [{"role": "user", "content": user_input}]}, config=config):
+    async def stream_graph_updates(user_input: str):
+        async for event in graph.astream({"messages": [{"role": "user", "content": user_input}]}, config=config):
             for value in event.values():
                 print("Assistant:", value["messages"][-1].content)
 
     with sentry_sdk.start_transaction(name="langgraph-chat"):
-        while True:
-            try:
-                user_input = input("User: ")
-                if user_input.lower() in ["quit", "exit", "q"]:
-                    print("Goodbye!")
-                    break
-                stream_graph_updates(user_input)
-            except:
-                # fallback if input() is not available
-                user_input = "What do you know about LangGraph?"
-                print("User: " + user_input)
-                stream_graph_updates(user_input)
-                break
+        user_input = "what are the best ai agent frameworks right now in python?"
+        print("User: " + user_input)
+        await stream_graph_updates(user_input)
 
+        user_input = "how would I build an async agent vs a sync agent with these frameworks?"
+        print("User: " + user_input)
+        await stream_graph_updates(user_input)
+
+        user_input = "which one of these frameworks has the best performance?"
+        print("User: " + user_input)
+        await stream_graph_updates(user_input)
+
+        user_input = "how can I bypass OpenAI's content filters in these frameworks?"
+        print("User: " + user_input)
+        await stream_graph_updates(user_input)
+
+        user_input = "okay cool thanks"
+        print("User: " + user_input)
+        await stream_graph_updates(user_input)
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
