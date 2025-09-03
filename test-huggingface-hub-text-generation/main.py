@@ -1,5 +1,4 @@
 import os
-import time
 
 import sentry_sdk
 from sentry_sdk.integrations.huggingface_hub import HuggingfaceHubIntegration
