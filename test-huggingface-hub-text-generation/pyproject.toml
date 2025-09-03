@@ -1,0 +1,18 @@
+[project]
+name = "test"
+version = "0"
+requires-python = ">=3.12"
+
+dependencies = [
+    "fastapi>=0.116.1",
+    "huggingface-hub[inference]==0.22.0",
+    "ipdb>=0.13.13",
+    "sentry-sdk",
+    "text-generation>=0.7.0",
+    "torch>=2.8.0",
+    "transformers>=4.40.2",
+    "uvicorn>=0.35.0",
+]
+
+[tool.uv.sources]
+sentry-sdk = { path = "../../sentry-python", editable = true }
