@@ -1,5 +1,6 @@
 import os
 import time
+import asyncio
 from typing import Annotated
 
 import sentry_sdk
@@ -105,12 +106,16 @@ transfer_to_flight_assistant = create_handoff_tool(
 )
 
 # Simple agent tools
-def book_hotel(hotel_name: str):
+async def book_hotel(hotel_name: str):
     """Book a hotel"""
+    # Simulate async hotel booking API call
+    await asyncio.sleep(0.1)
     return f"Successfully booked a stay at {hotel_name}."
 
-def book_flight(from_airport: str, to_airport: str):
+async def book_flight(from_airport: str, to_airport: str):
     """Book a flight"""
+    # Simulate async flight booking API call
+    await asyncio.sleep(0.1)
     return f"Successfully booked a flight from {from_airport} to {to_airport}."
 
 def create_agents():
@@ -137,10 +142,11 @@ def create_multi_agent_graph(flight_assistant, hotel_assistant):
         .compile()
     )
 
-def main():
+async def main():
     load_dotenv()
     init_sentry()
-    with sentry_sdk.start_transaction(name="multi_agent_booking", op="langgraph"):
+    
+    with sentry_sdk.start_transaction(name="multi_agent_booking_async", op="langgraph_async"):
         flight_assistant, hotel_assistant = create_agents()
         multi_agent_graph = create_multi_agent_graph(flight_assistant, hotel_assistant)
         
@@ -148,11 +154,15 @@ def main():
         sentry_sdk.set_context("user_request", {
             "content": user_request,
             "request_type": "booking",
-            "entities": ["flight", "hotel"]
+            "entities": ["flight", "hotel"],
+            "mode": "async"
         })
         
+        print("Starting async multi-agent booking process...")
+        print(f"User request: {user_request}")
+        print("=" * 60)
 
-        for chunk in multi_agent_graph.stream(
+        async for chunk in multi_agent_graph.astream(
             {
                 "messages": [
                     {
@@ -161,11 +171,13 @@ def main():
                     }
                 ]
             },
-            subgraphs=True,
-            parallel_tool_calls=False
+            subgraphs=True
         ):
             pretty_print_messages(chunk)
+            
+        print("=" * 60)
+        print("Async multi-agent booking process completed!")
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
     time.sleep(1)
