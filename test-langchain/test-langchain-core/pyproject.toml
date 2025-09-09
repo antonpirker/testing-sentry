@@ -1,0 +1,15 @@
+[project]
+name = "test-langchain-core"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "dotenv>=0.9.9",
+    "langchain-core>=0.3.75",
+    "langchain-openai>=0.3.32",
+    "sentry-sdk>=2.35",
+]
+
+[tool.uv.sources]
+sentry-sdk = { path = "../../../sentry-python", editable = true }
