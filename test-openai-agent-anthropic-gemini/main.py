@@ -38,16 +38,26 @@ INSTRUCTIONS = (
     "provide an explanation for how you arrived at it. "
 )
 
+
 claude_client = AsyncOpenAI(base_url="https://api.anthropic.com/v1/", api_key=os.environ.get("ANTHROPIC_API_KEY"))
+gemini_client = AsyncOpenAI(base_url="https://generativelanguage.googleapis.com/v1beta/openai", api_key=os.getenv("GEMINI_API_KEY"))
+
 
 math_agent = Agent(
     name="MathAgent",
     instructions=INSTRUCTIONS,
     tools=[calculate],
-    model=OpenAIChatCompletionsModel(
-        model="claude-3-7-sonnet-20250219",
-        openai_client=claude_client,
+    # Use Claude
+    # model=OpenAIChatCompletionsModel(
+    #     model="claude-3-7-sonnet-20250219",
+    #     openai_client=claude_client,
+    # ),
+    # Use Gemini
+    model = OpenAIChatCompletionsModel(
+        model="gemini-2.0-flash",
+        openai_client=gemini_client
     ),
+    # Use OpenAI
     # model="gpt-4o",
 )
 
