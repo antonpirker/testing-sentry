@@ -5,9 +5,8 @@ requires-python = ">=3.12"
 
 dependencies = [
     "ipdb>=0.13.13",
+    "openai-agents>=0.2.11",
     "sentry-sdk",
-    "openai-agents>=0.0.19",
-    "simpleeval>=1.0.3",
 ]
 
 [tool.uv.sources]

@@ -1287,7 +1287,7 @@ wheels = [
 
 [[package]]
 name = "sentry-sdk"
-version = "2.35.2"
+version = "2.36.0"
 source = { editable = "../../sentry-python" }
 dependencies = [
     { name = "certifi" },

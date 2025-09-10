@@ -403,7 +403,7 @@ wheels = [
 
 [[package]]
 name = "sentry-sdk"
-version = "2.34.1"
+version = "2.36.0"
 source = { editable = "../../sentry-python" }
 dependencies = [
     { name = "certifi" },
@@ -442,6 +442,7 @@ requires-dist = [
     { name = "huey", marker = "extra == 'huey'", specifier = ">=2" },
     { name = "huggingface-hub", marker = "extra == 'huggingface-hub'", specifier = ">=0.22" },
     { name = "langchain", marker = "extra == 'langchain'", specifier = ">=0.0.210" },
+    { name = "langgraph", marker = "extra == 'langgraph'", specifier = ">=0.6.6" },
     { name = "launchdarkly-server-sdk", marker = "extra == 'launchdarkly'", specifier = ">=9.8.0" },
     { name = "litestar", marker = "extra == 'litestar'", specifier = ">=2.0.0" },
     { name = "loguru", marker = "extra == 'loguru'", specifier = ">=0.5" },
@@ -466,7 +467,7 @@ requires-dist = [
     { name = "unleashclient", marker = "extra == 'unleash'", specifier = ">=6.0.1" },
     { name = "urllib3", specifier = ">=1.26.11" },
 ]
-provides-extras = ["aiohttp", "anthropic", "arq", "asyncpg", "beam", "bottle", "celery", "celery-redbeat", "chalice", "clickhouse-driver", "django", "falcon", "fastapi", "flask", "grpcio", "http2", "httpx", "huey", "huggingface-hub", "langchain", "launchdarkly", "litestar", "loguru", "openai", "openfeature", "opentelemetry", "opentelemetry-experimental", "pure-eval", "pymongo", "pyspark", "quart", "rq", "sanic", "sqlalchemy", "starlette", "starlite", "statsig", "tornado", "unleash"]
+provides-extras = ["aiohttp", "anthropic", "arq", "asyncpg", "beam", "bottle", "celery", "celery-redbeat", "chalice", "clickhouse-driver", "django", "falcon", "fastapi", "flask", "grpcio", "http2", "httpx", "huey", "huggingface-hub", "langchain", "langgraph", "launchdarkly", "litestar", "loguru", "openai", "openfeature", "opentelemetry", "opentelemetry-experimental", "pure-eval", "pymongo", "pyspark", "quart", "rq", "sanic", "sqlalchemy", "starlette", "starlite", "statsig", "tornado", "unleash"]
 
 [[package]]
 name = "sniffio"

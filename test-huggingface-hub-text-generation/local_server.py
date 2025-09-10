@@ -56,6 +56,9 @@ class LocalTextGenerationServer:
         generated_text = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
 
         # Return full text (like HF API does)
+        print("--------------------------------")
+        print(generated_text)
+        print("--------------------------------")
         return generated_text
 
 
@@ -82,26 +85,19 @@ async def generate_text_endpoint(request: TextGenerationRequest):
             request.inputs,
             request.parameters
         )
+        import ipdb; ipdb.set_trace()
 
-        # Return in HF API format (list with generated_text)
-        return [{"generated_text": generated_text}]
+        out = {"generated_text": generated_text}
 
-    except Exception as e:
-        return {"error": str(e)}
+        if request.parameters.get("details"):
+            out["details"] = {
+                "finish_reason": "length",
+                "generated_tokens": 10,
+                "prefill": [],
+                "tokens": [],
+            }
 
-
-@app.post("/generate")
-async def generate_text_simple(request: TextGenerationRequest):
-    """
-    Alternative endpoint with simpler response format.
-    """
-    try:
-        generated_text = text_gen_server.generate_text(
-            request.inputs,
-            request.parameters
-        )
-
-        return {"generated_text": generated_text}
+        return out
 
     except Exception as e:
         return {"error": str(e)}

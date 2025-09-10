@@ -1,12 +1,12 @@
 import asyncio
 import os
 
-from agents import Agent, Runner, function_tool
-from pydantic import BaseModel
+from agents import Agent, Runner, function_tool, AsyncOpenAI, OpenAIChatCompletionsModel
 from simpleeval import simple_eval
 
 import sentry_sdk
 from sentry_sdk.integrations.openai_agents import OpenAIAgentsIntegration
+from sentry_sdk.integrations.openai import OpenAIIntegration
 from sentry_sdk.integrations.stdlib import StdlibIntegration
 
 
@@ -31,33 +31,29 @@ def calculate(expression: str):
     return result
 
 
-class FinalResult(BaseModel):
-    number: float
-
-
 INSTRUCTIONS = (
     "You are solving math problems. "
-    "Reason step by step. "
     "Use the calculator when necessary. "
     "When you give the final answer, "
     "provide an explanation for how you arrived at it. "
 )
 
+claude_client = AsyncOpenAI(base_url="https://api.anthropic.com/v1/", api_key=os.environ.get("ANTHROPIC_API_KEY"))
 
 math_agent = Agent(
     name="MathAgent",
     instructions=INSTRUCTIONS,
     tools=[calculate],
-    model="gpt-4o",
-    output_type=FinalResult,
+    model=OpenAIChatCompletionsModel(
+        model="claude-3-7-sonnet-20250219",
+        openai_client=claude_client,
+    ),
+    # model="gpt-4o",
 )
 
 
 PROMPT = (
-    "A taxi driver earns $9461 per 1-hour of work. "
-    "If he works 12 hours a day and in 1 hour "
-    "he uses 12 liters of petrol with a price of $134 for 1 liter. "
-    "How much money does he earn in one day?"
+    "What is 12 * 13? use the calculate tool."
 )
 
 
@@ -70,11 +66,13 @@ async def main() -> None:
         integrations=[OpenAIAgentsIntegration()],
         disabled_integrations=[
             StdlibIntegration(),
+            OpenAIIntegration(),
         ],
         debug=True,
     )
 
-    await Runner.run(math_agent, input=PROMPT)
+    result = await Runner.run(math_agent, input=PROMPT)
+    print(result)
 
     print("Done!")
 

@@ -30,28 +30,16 @@ def main():
         client = InferenceClient(model=local_server_url)
 
         prompt = "The sky is"
-        try:
-            print(f"🔄 Test: Generating text for '{prompt}'")
-
-            # Use the real InferenceClient with local server
-            response = client.text_generation(
-                prompt,
-                max_new_tokens=40,
-                temperature=0.7,
-                do_sample=True,
-            )
-
-            print("✅ Success!")
-            print(f"   Prompt: {prompt}")
-            print(f"   Generated: {response}")
-            print()
-
-        except Exception as e:
-            print(f"❌ Failed: {type(e).__name__}: {e}")
-            print("💡 Make sure the local server is running:")
-            print("   ./run_server.sh")
-            print()
-
+        import ipdb; ipdb.set_trace()
+        response = list(client.text_generation(
+            prompt,
+            max_new_tokens=40,
+            temperature=0.7,
+            do_sample=True,
+            details=True,
+            stream=True,
+        ))
+        print(response)
 
 if __name__ == "__main__":
     main()

@@ -40,10 +40,10 @@ def mcp_database_query(query: str) -> Dict[str, Any]:
             "timeout": 5000
         }
     }
-    
+
     # Log the request for debugging (in a real implementation, this would be sent over the network)
     print(f"MCP Request: {json.dumps(mcp_request, indent=2)}")
-    
+
     # Simulate different types of MCP errors based on query content
     if "DROP" in query.upper():
         # Simulate MCP permission error
@@ -60,12 +60,12 @@ def mcp_database_query(query: str) -> Dict[str, Any]:
             }
         }
         raise Exception(f"MCP Error: {json.dumps(error_response, indent=2)}")
-    
+
     elif "invalid" in query.lower():
         # Simulate MCP protocol error
         error_response = {
             "jsonrpc": "2.0",
-            "id": "1", 
+            "id": "1",
             "error": {
                 "code": -32602,
                 "message": "Invalid SQL syntax",
@@ -77,7 +77,7 @@ def mcp_database_query(query: str) -> Dict[str, Any]:
             }
         }
         raise ValueError(f"MCP SQL Error: {json.dumps(error_response, indent=2)}")
-    
+
     elif "timeout" in query.lower():
         # Simulate MCP timeout error
         error_response = {
@@ -94,7 +94,7 @@ def mcp_database_query(query: str) -> Dict[str, Any]:
             }
         }
         raise TimeoutError(f"MCP Timeout: {json.dumps(error_response, indent=2)}")
-    
+
     # Successful response for valid queries
     return {
         "jsonrpc": "2.0",
@@ -118,7 +118,7 @@ def create_agent_executor(llm, tools):
         ("human", "{input}"),
         ("placeholder", "{agent_scratchpad}"),
     ])
-    
+
     agent = create_tool_calling_agent(llm, tools, prompt)
     return AgentExecutor(agent=agent, tools=tools, verbose=True)
 
@@ -149,7 +149,7 @@ def run_test_case(agent_executor, test_name, input_text, expect_error=False):
 def my_pipeline(llm, tools, provider_name="unknown"):
     # Create agent executor once upfront
     agent_executor = create_agent_executor(llm, tools)
-    
+
     # Define test cases
     test_cases = [
         {
@@ -178,7 +178,7 @@ def my_pipeline(llm, tools, provider_name="unknown"):
             "expect_error": True
         },
         {
-            "name": f"{provider_name}-mcp-syntax-error", 
+            "name": f"{provider_name}-mcp-syntax-error",
             "input": "Execute this database query: SELECT invalid syntax FROM nowhere",
             "expect_error": True
         },
@@ -188,7 +188,7 @@ def my_pipeline(llm, tools, provider_name="unknown"):
             "expect_error": True
         }
     ]
-    
+
     # Run each test case in its own transaction
     for test_case in test_cases:
         run_test_case(
@@ -207,13 +207,13 @@ def main():
         send_default_pii=True,
         debug=True,
         integrations=[
-            LangchainIntegration(include_prompts=True), 
+            LangchainIntegration(include_prompts=True),
         ],
         disabled_integrations=[OpenAIIntegration(), AnthropicIntegration()]
     )
 
     tools = [get_weather, calculate_tip, mcp_database_query]
-    
+
     # Test with OpenAI
     openai_api_key = os.environ.get("OPENAI_API_KEY")
     if openai_api_key:
@@ -226,7 +226,7 @@ def main():
         my_pipeline(openai_llm, tools, "openai")
     else:
         print("Skipping OpenAI tests - no API key found")
-    
+
     # Test with Anthropic
     anthropic_api_key = os.environ.get("ANTHROPIC_API_KEY")
     if anthropic_api_key:
@@ -239,7 +239,7 @@ def main():
         my_pipeline(anthropic_llm, tools, "anthropic")
     else:
         print("Skipping Anthropic tests - no API key found")
-    
+
     if not openai_api_key and not anthropic_api_key:
         print("No API keys found. Please set OPENAI_API_KEY and/or ANTHROPIC_API_KEY environment variables.")
 

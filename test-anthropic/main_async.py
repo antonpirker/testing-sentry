@@ -4,40 +4,39 @@ import os
 from anthropic import AsyncAnthropic
 
 import sentry_sdk
-from sentry_sdk.ai.monitoring import ai_track
+from sentry_sdk.consts import SPANTEMPLATE
 from sentry_sdk.integrations.anthropic import AnthropicIntegration
 
 
-@ai_track("My async AI pipeline")
+@sentry_sdk.trace(name="Custom AI Agent", template=SPANTEMPLATE.AI_AGENT)
 async def my_pipeline(client):
-    with sentry_sdk.start_transaction(name="anthropic-async"):
-        # Async create message
-        message = await client.messages.create(
-            messages=[
-                {
-                    "role": "user",
-                    "content": "Hi!",
-                }
-            ],
-            model="claude-3-haiku-20240307",
-            max_tokens=1024,
-        )
-        print(message.dict())
+    # Async create message
+    message = await client.messages.create(
+        messages=[
+            {
+                "role": "user",
+                "content": "Hi!",
+            }
+        ],
+        model="claude-3-haiku-20240307",
+        max_tokens=1024,
+    )
+    print(message.dict())
 
-        # Async create streaming message
-        stream = await client.messages.create(
-            messages=[
-                {
-                    "role": "user",
-                    "content": "Hi!",
-                }
-            ],
-            model="claude-3-haiku-20240307",
-            max_tokens=1024,
-            stream=True,
-        )
-        async for event in stream:
-            print(event.dict())
+    # Async create streaming message
+    stream = await client.messages.create(
+        messages=[
+            {
+                "role": "user",
+                "content": "Hi!",
+            }
+        ],
+        model="claude-3-haiku-20240307",
+        max_tokens=1024,
+        stream=True,
+    )
+    async for event in stream:
+        print(event.dict())
 
 
 async def main():
@@ -56,7 +55,8 @@ async def main():
         api_key=os.environ.get("ANTHROPIC_API_KEY"),
     )
 
-    await my_pipeline(client)
+    with sentry_sdk.start_transaction(name="anthropic-async"):
+        await my_pipeline(client)
 
 
 asyncio.run(main())
