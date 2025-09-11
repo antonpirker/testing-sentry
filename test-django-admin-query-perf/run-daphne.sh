@@ -9,4 +9,5 @@ if ! command -v uv &> /dev/null; then
 fi
 
 # Run Django with Daphne
+export SENTRY_ENV=daphne
 uv run daphne -b 0.0.0.0 -p 8000 django_admin_sentry_perf.asgi:application

@@ -9,4 +9,5 @@ if ! command -v uv &> /dev/null; then
 fi
 
 # Run Django with Gunicorn
+export SENTRY_ENV=gunicorn
 uv run gunicorn --bind 0.0.0.0:8000 django_admin_sentry_perf.wsgi:application

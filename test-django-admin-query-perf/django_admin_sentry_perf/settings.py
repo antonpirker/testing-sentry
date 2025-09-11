@@ -140,7 +140,7 @@ import sentry_sdk
 
 sentry_sdk.init(
     dsn=os.environ.get("SENTRY_DSN"),
+    environment=os.environ.get("SENTRY_ENV", "local"),
     traces_sample_rate=1.0,
     profiles_sample_rate=1.0,
-    debug=True,
 )

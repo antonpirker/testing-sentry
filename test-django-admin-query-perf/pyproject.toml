@@ -1,18 +1,20 @@
 [project]
 name = "test"
 version = "0"
-requires-python = ">=3.13"
+# requires-python = "==3.11.11"
+requires-python = "==3.13.5"
 
 dependencies = [
     "ipdb>=0.13.13",
     "sentry-sdk[django]",
     "daphne>=4.2.1",
-    "django>=4.2.0",
-    # "django>=5.2.5",
+    # "django~=4.2.0",
+    "django>=5.2.5",
     "psycopg>=3.1.0",
     "gunicorn>=23.0.0",
     "whitenoise>=6.5.0",
 ]
 
+# comment this out to install from pypi
 [tool.uv.sources]
 sentry-sdk = { path = "../../sentry-python", editable = true }
