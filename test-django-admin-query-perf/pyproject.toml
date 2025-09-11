@@ -11,6 +11,7 @@ dependencies = [
     # "django>=5.2.5",
     "psycopg>=3.1.0",
     "gunicorn>=23.0.0",
+    "whitenoise>=6.5.0",
 ]
 
 [tool.uv.sources]

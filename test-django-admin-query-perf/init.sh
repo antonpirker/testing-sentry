@@ -25,6 +25,9 @@ sleep 10
 # Create database tables
 uv run ./manage.py migrate
 
+# Collect static files
+uv run ./manage.py collectstatic --noinput
+
 # Create superuser account
 export DJANGO_SUPERUSER_USERNAME=admin
 export DJANGO_SUPERUSER_EMAIL=admin@example.com
