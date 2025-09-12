@@ -9,7 +9,9 @@ from sentry_sdk.integrations.anthropic import AnthropicIntegration
 
 
 @sentry_sdk.trace(name="Custom AI Agent", template=SPANTEMPLATE.AI_AGENT)
-async def my_pipeline(client):
+async def my_custom_agent(client):
+    print("~~~ Starting my_custom_agent ~~~")
+
     # Async create message
     message = await client.messages.create(
         messages=[
@@ -21,7 +23,8 @@ async def my_pipeline(client):
         model="claude-3-haiku-20240307",
         max_tokens=1024,
     )
-    print(message.dict())
+    print("~~~ First result (async message): ~~~")
+    print(message.model_dump())
 
     # Async create streaming message
     stream = await client.messages.create(
@@ -35,8 +38,11 @@ async def my_pipeline(client):
         max_tokens=1024,
         stream=True,
     )
+    print("~~~ Second result (async streaming message): ~~~")
     async for event in stream:
-        print(event.dict())
+        print(event.model_dump())
+
+    print("~~~ Done ~~~")
 
 
 async def main():
@@ -56,7 +62,7 @@ async def main():
     )
 
     with sentry_sdk.start_transaction(name="anthropic-async"):
-        await my_pipeline(client)
+        await my_custom_agent(client)
 
 
 asyncio.run(main())

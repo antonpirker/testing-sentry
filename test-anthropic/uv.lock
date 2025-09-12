@@ -403,7 +403,7 @@ wheels = [
 
 [[package]]
 name = "sentry-sdk"
-version = "2.36.0"
+version = "2.37.1"
 source = { editable = "../../sentry-python" }
 dependencies = [
     { name = "certifi" },
