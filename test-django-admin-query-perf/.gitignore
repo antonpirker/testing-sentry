@@ -1,0 +1,20 @@
+# Django
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+db.sqlite3
+
+# Environment
+.env
+.venv
+
+# IDE
+.vscode/
+.idea/
+
+# Mac
+.DS_Store
+
+latest.pstats

@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-o@*-9@vr977+cq(&p-i&*nrkb^f1ggh2l)=dz-(v$-wz$ad^vh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'testserver']
 
 
 # Application definition
@@ -143,4 +143,5 @@ sentry_sdk.init(
     environment=os.environ.get("SENTRY_ENV", "local"),
     traces_sample_rate=1.0,
     profiles_sample_rate=1.0,
+    debug=True,
 )
