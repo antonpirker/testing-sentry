@@ -1,0 +1,13 @@
+[project]
+name = "test-logging"
+version = "0"
+requires-python = ">=3.12"
+
+dependencies = [
+    "flask>=3.1.2",
+    "ipdb>=0.13.13",
+    "sentry-sdk",
+]
+
+[tool.uv.sources]
+sentry-sdk = { path = "../../sentry-python", editable = true }
